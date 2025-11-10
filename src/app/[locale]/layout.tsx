@@ -1,21 +1,22 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
-import { getMessages } from "next-intl/server";
-import { ILocaleParams } from "@/interfaces";
-import { getMetadataTranslations } from "@/hooks";
+import { getMetadataTranslations } from '@/hooks';
+import { routing } from '@/i18n/routing';
+import { ILocaleParams } from '@/interfaces';
+import { cn } from '@/lib/utils';
+import type { Metadata, Viewport } from 'next';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { Noto_Sans_Mono, Noto_Serif } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import '../globals.css';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const notoSerif = Noto_Serif({
+  variable: '--font-noto-serif',
+  subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const notoMono = Noto_Sans_Mono({
+  variable: '--font-noto-mono',
+  subsets: ['latin'],
 });
 
 export async function generateMetadata(
@@ -28,17 +29,17 @@ export async function generateMetadata(
   const t = await getMetadataTranslations(locale);
 
   return {
-    applicationName: "IEM Alumni - HCMIU",
-    title: t("Title"),
-    description: t("Description"),
+    applicationName: 'IEM Alumni - HCMIU',
+    title: t('Title'),
+    description: t('Description'),
     openGraph: {
       locale,
-      type: "website",
+      type: 'website',
     },
     appleWebApp: {
       capable: true,
-      statusBarStyle: "default",
-      title: t("Title"),
+      statusBarStyle: 'default',
+      title: t('Title'),
     },
     formatDetection: {
       telephone: false,
@@ -48,17 +49,12 @@ export async function generateMetadata(
 
 export const viewport: Viewport = {
   initialScale: 1,
-  width: "device-width",
+  width: 'device-width',
   maximumScale: 1,
-  viewportFit: "cover",
+  viewportFit: 'cover',
 };
 
-type Props = {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-};
-
-export default async function RootLayout({ children, params }: Props) {
+export default async function RootLayout({ children, params }: ILocaleParams) {
   const { locale } = await params;
 
   if (!hasLocale(routing.locales, locale)) {
@@ -69,8 +65,23 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <html lang={locale}>
+      <head>
+        <meta
+          property='og:image'
+          content='/iema-logo-bg-md.png'
+          key={'og:image'}
+        />
+        <meta property='og:image:width' content='512' />
+        <meta property='og:image:height' content='512' />
+        <meta name='mobile-web-app-capable' content='yes' />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        // className={`${notoSerif.className} ${notoMono.variable} antialiased`}
+        className={cn(
+          notoSerif.className,
+          notoMono.variable,
+          'font-serif antialiased'
+        )}
       >
         <NextIntlClientProvider messages={messages}>
           {children}

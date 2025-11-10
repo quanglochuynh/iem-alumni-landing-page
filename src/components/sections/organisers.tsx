@@ -26,7 +26,7 @@ export function Organisers() {
           <p className="text-muted-foreground leading-relaxed">
             {ORGANISERS.description2}
           </p>
-          <Button size="md">{ORGANISERS.cta}</Button>
+          <Button>{ORGANISERS.cta}</Button>
         </div>
       </div>
     </section>

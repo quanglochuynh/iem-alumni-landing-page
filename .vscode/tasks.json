@@ -14,6 +14,28 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Build project",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"build"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Build project",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-s",
+				"build"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

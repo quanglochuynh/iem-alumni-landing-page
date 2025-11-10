@@ -33,7 +33,7 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <Button size="md">Get Tickets</Button>
+          <Button>Get Tickets</Button>
         </nav>
         <div className="md:hidden flex items-center gap-2">
           <Button

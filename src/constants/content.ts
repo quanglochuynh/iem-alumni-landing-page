@@ -8,12 +8,11 @@ export const NAV_ITEMS = [
 ];
 
 export const HERO = {
-  title: "Design & Experience",
+  title: "Welcome IEM Alumni #2",
   subtitle: "The Challenges of Web Innovation",
   date: "04 April 2023",
   address: "500 Terry Francois Street San Francisco, CA 94158",
-  image:
-    "https://websitedemos.net/event-02/wp-content/uploads/sites/863/2021/05/event-img.jpg",
+  image: "/wiema-cover.webp",
 };
 
 export interface ScheduleItem {
@@ -135,7 +134,7 @@ export const FOOTER = {
   dateText: "04 April 2023\n9:00 AM – 3:00 PM",
   cta: "Get Tickets",
   mapSrc:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.839057195339!2d-122.38931348425348!3d37.77037177976027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7fc4fe7ace37%3A0xfa1746dd4faeb818!2s500%20Terry%20A%20Francois%20Blvd%2C%20San%20Francisco%2C%20CA%2094158%2C%20USA!5e0!3m2!1sen!2sin!4v1621249847102!5m2!1sen!2sin",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d659.7029922633542!2d106.80159818456582!3d10.877464066879655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d8a415a9d221%3A0x550c2b41569376f9!2sInternational%20University%20-%20VNU-HCM!5e0!3m2!1sen!2s!4v1762787522936!5m2!1sen!2s",
   copyright:
     "Copyright © 2025 Event Landing Page | Powered By Event Landing Page",
 };

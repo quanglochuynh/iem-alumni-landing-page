@@ -39,3 +39,17 @@ Remote images from the demo site are allowed via `next.config.ts` `images.remote
 ## Notes
 
 - This project targets Cloudflare using `@opennextjs/cloudflare`. Use `pnpm preview` to build and preview on Cloudflare.
+
+## Fonts
+
+Google fonts are loaded via `next/font`. In `src/app/[locale]/layout.tsx`:
+
+- `Noto_Serif` is applied to the `<body>` using its generated `.className`.
+- `Noto_Sans_Mono` is attached as a CSS variable via `.variable` so it doesn't override the body font.
+
+Utilities are mapped in `tailwind.config.ts` so you can use Tailwind classes:
+
+- `font-serif` -> `var(--font-noto-serif), serif`
+- `font-mono` -> `var(--font-noto-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace`
+
+Additionally, `globals.css` applies the mono font to `code`, `pre`, `kbd`, and `samp` elements automatically. Use `className="font-mono"` anywhere else you want monospaced text.
