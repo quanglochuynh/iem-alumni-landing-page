@@ -1,0 +1,79 @@
+{
+  "Required": "This field is required",
+  "Address": {
+    "MaxLength": "Address must be at most {number} characters",
+    "MinLength": "Address must be at least {number} characters",
+    "Required": "Address is required"
+  },
+  "ConfirmPassword": {
+    "Mismatch": "Passwords are mismatch",
+    "Required": "Confirm password is required"
+  },
+  "Email": {
+    "Invalid": "Email is invalid",
+    "Required": "Email is required"
+  },
+  "FirstName": {
+    "MinLength": "First Name must be at least {number} characters",
+    "Required": "First Name is required",
+    "MaxLength": "First Name must be at most {number} characters"
+  },
+  "LastName": {
+    "MinLength": "Last Name must be at least {number} characters",
+    "Required": "Last Name is required",
+    "MaxLength": "Last Name must be at most {number} characters"
+  },
+  "Name": {
+    "MaxLength": "Name must be at most {number} characters",
+    "MinLength": "Name must be at least {number} characters",
+    "Required": "Name is required"
+  },
+  "Password": {
+    "MaxLength": "Password must be at most {number} characters",
+    "MinLength": "Password must be at least {number} characters",
+    "Mismatch": "Passwords are mismatch",
+    "Required": "Password is required"
+  },
+  "Phone": {
+    "Invalid": "Phone number is invalid",
+    "Required": "Phone number is required"
+  },
+  "MoneyAmount": {
+    "Required": "Money amount is required",
+    "Invalid": "Money amount is invalid",
+    "Positive": "Money amount must be positive",
+    "Int": "Money amount must be an integer"
+  },
+  "Username": {
+    "Invalid": "Username is invalid",
+    "MinLength": "Username must be at least {number} characters",
+    "Required": "Username is required",
+    "MaxLength": "Username must be at most {number} characters"
+  },
+  "Dob": {
+    "Required": "Date of birth is required",
+    "Invalid": "Date of birth is invalid"
+  },
+  "Gender": "Gender is required",
+  "Location": "Location is required",
+  "Country": {
+    "Required": "Country is required",
+    "MinLength": "Country must be at least {number} characters"
+  },
+  "Province": {
+    "Required": "Province is required",
+    "MinLength": "Province must be at least {number} characters"
+  },
+  "District": {
+    "Required": "District is required",
+    "MinLength": "District must be at least {number} characters"
+  },
+  "Ward": {
+    "Required": "Zip code is required",
+    "MinLength": "Zip code must be at least {number} characters"
+  },
+  "Street": {
+    "Required": "Street is required",
+    "MinLength": "Street must be at least {number} characters"
+  }
+}

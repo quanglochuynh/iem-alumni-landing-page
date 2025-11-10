@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IEM Alumni Landing Page
+
+Built with Next.js App Router, Tailwind CSS v4, and shadcn-style UI components.
 
 ## Getting Started
 
@@ -14,23 +16,26 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:5500](http://localhost:5500) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The localized landing page is at `src/app/[locale]/page.tsx`. Content is composed from section components under `src/components/sections` and data in `src/constants/content.ts`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tailwind v4 is enabled via `@import "tailwindcss"` in `globals.css`. A small set of shadcn-like design tokens (CSS variables) are defined there for consistent theming.
 
-## Learn More
+Remote images from the demo site are allowed via `next.config.ts` `images.remotePatterns`.
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/components/ui/button.tsx` – Minimal Button component styled with Tailwind and the design tokens.
+- `src/components/sections/*` – Navbar, Hero, Schedule, Speakers, Organisers, Sponsors, Footer.
+- `src/constants/content.ts` – All strings, images, and arrays for the landing page sections.
+- `src/app/globals.css` – Tailwind import and theme tokens.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Customization
 
-## Deploy on Vercel
+- To update schedule items, speakers, or sponsor logos, edit `src/constants/content.ts`.
+- To change section layout or styles, tweak the components in `src/components/sections`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This project targets Cloudflare using `@opennextjs/cloudflare`. Use `pnpm preview` to build and preview on Cloudflare.
