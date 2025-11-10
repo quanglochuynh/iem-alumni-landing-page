@@ -1,10 +1,10 @@
-import Navbar from "@/components/sections/navbar";
-import { Hero } from "@/components/sections/hero";
-import { Schedule } from "@/components/sections/schedule";
-import { Speakers } from "@/components/sections/speakers";
-import { Organisers } from "@/components/sections/organisers";
-import { Sponsors } from "@/components/sections/sponsors";
-import Footer from "@/components/sections/footer";
+import Footer from '@/components/sections/footer';
+import { Hero } from '@/components/sections/hero';
+import Navbar from '@/components/sections/navbar';
+import { Organisers } from '@/components/sections/organisers';
+import { Schedule } from '@/components/sections/schedule';
+import { Speakers } from '@/components/sections/speakers';
+import { Sponsors } from '@/components/sections/sponsors';
 
 export default async function Home({
   params,
@@ -13,7 +13,7 @@ export default async function Home({
 }) {
   await params; // locale handled by app layout elsewhere for now
   return (
-    <div className="font-sans">
+    <div>
       <Navbar />
       <main>
         <Hero />

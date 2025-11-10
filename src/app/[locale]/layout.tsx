@@ -10,12 +10,12 @@ import { notFound } from 'next/navigation';
 import '../globals.css';
 
 const notoSerif = Noto_Serif({
-  variable: '--font-noto-serif',
+  variable: '--font-serif',
   subsets: ['latin'],
 });
 
 const notoMono = Noto_Sans_Mono({
-  variable: '--font-noto-mono',
+  variable: '--font-mono',
   subsets: ['latin'],
 });
 
@@ -76,9 +76,8 @@ export default async function RootLayout({ children, params }: ILocaleParams) {
         <meta name='mobile-web-app-capable' content='yes' />
       </head>
       <body
-        // className={`${notoSerif.className} ${notoMono.variable} antialiased`}
         className={cn(
-          notoSerif.className,
+          notoSerif.variable,
           notoMono.variable,
           'font-serif antialiased'
         )}
