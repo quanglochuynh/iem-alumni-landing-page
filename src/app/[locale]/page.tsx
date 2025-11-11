@@ -1,10 +1,8 @@
 import Footer from '@/components/sections/footer';
+import { Gallery } from '@/components/sections/gallery';
 import { Hero } from '@/components/sections/hero';
 import Navbar from '@/components/sections/navbar';
-import { Organisers } from '@/components/sections/organisers';
 import { Schedule } from '@/components/sections/schedule';
-import { Speakers } from '@/components/sections/speakers';
-import { Sponsors } from '@/components/sections/sponsors';
 
 export default async function Home({
   params,
@@ -18,9 +16,9 @@ export default async function Home({
       <main>
         <Hero />
         <Schedule />
-        <Speakers />
-        <Organisers />
-        <Sponsors />
+        <Gallery />
+        {/* <Organisers />
+        <Sponsors /> */}
       </main>
       <Footer />
     </div>

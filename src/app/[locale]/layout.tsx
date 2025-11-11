@@ -68,7 +68,7 @@ export default async function RootLayout({ children, params }: ILocaleParams) {
       <head>
         <meta
           property='og:image'
-          content='/iema-logo-bg-md.png'
+          content='/wiema-cover.webp'
           key={'og:image'}
         />
         <meta property='og:image:width' content='512' />

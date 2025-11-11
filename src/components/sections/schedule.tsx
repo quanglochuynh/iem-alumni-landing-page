@@ -1,28 +1,42 @@
-import { SCHEDULE, SCHEDULE_INTRO } from "@/constants/content";
+import { useInfoTranslation } from '@/hooks';
 
 export function Schedule() {
+  const infoTrans = useInfoTranslation();
+  const items = [0, 1, 2, 3].map((index) => ({
+    time: infoTrans(`SCHEDULE.items.${index}.time`),
+    title: infoTrans(`SCHEDULE.items.${index}.title`),
+    activity: infoTrans.rich(`SCHEDULE.items.${index}.activity`, {
+      Fotopop: (chunks) => (
+        <a
+          href='https://www.facebook.com/fotopopstudiosaigon'
+          target='_blank'
+          rel='noreferrer'
+          className='font-bold text-black'
+        >
+          {chunks}
+        </a>
+      ),
+    }),
+  }));
   return (
     <section
-      id="schedule"
-      className="container py-16 md:py-24 bg-secondary/30 rounded-xl mt-8"
+      id='schedule'
+      className='bg-secondary/30 container mt-8 rounded-xl py-16 md:py-24'
     >
-      <div className="max-w-3xl mb-10">
-        <h2 className="text-3xl font-bold mb-4">{SCHEDULE_INTRO.heading}</h2>
-        <p className="text-muted-foreground leading-relaxed">
-          {SCHEDULE_INTRO.description}
-        </p>
+      <div className='mb-10 max-w-3xl'>
+        <h2 className='mb-4 text-3xl font-bold'>
+          {infoTrans('SCHEDULE.heading')}
+        </h2>
       </div>
-      <div className="grid md:grid-cols-2 gap-10">
-        <div className="space-y-8">
-          {SCHEDULE.slice(0, 4).map((item) => (
-            <ScheduleItem key={item.time} {...item} />
-          ))}
-        </div>
-        <div className="space-y-8">
-          {SCHEDULE.slice(4).map((item) => (
-            <ScheduleItem key={item.time} {...item} />
-          ))}
-        </div>
+      <div className='grid gap-10 md:grid-cols-2'>
+        {items.map((item, idx) => (
+          <ScheduleItem
+            key={idx}
+            time={item.time}
+            title={item.title}
+            activities={item.activity}
+          />
+        ))}
       </div>
     </section>
   );
@@ -31,18 +45,24 @@ export function Schedule() {
 function ScheduleItem({
   time,
   title,
-  speaker,
+  activities,
 }: {
   time: string;
   title: string;
-  speaker?: string;
+  activities?: React.ReactNode;
 }) {
   return (
-    <div className="space-y-1">
-      <h5 className="text-sm font-semibold text-primary/80">{time}</h5>
-      <h3 className="text-xl font-semibold">{title}</h3>
-      {speaker && (
-        <h5 className="text-sm text-muted-foreground">Speaker: {speaker}</h5>
+    <div className='space-y-1'>
+      <h5 className='text-primary/80 text-sm font-semibold'>{time}</h5>
+      <h3 className='text-xl font-semibold'>{title}</h3>
+      {/* {activities &&
+        activities.split('|').map((activity, index) => (
+          <h5 key={index} className='text-muted-foreground text-sm'>
+            - {activity.trim()}
+          </h5>
+        ))} */}
+      {activities && (
+        <div className='text-muted-foreground text-sm'>{activities}</div>
       )}
     </div>
   );

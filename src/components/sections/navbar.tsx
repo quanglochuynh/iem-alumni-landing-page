@@ -1,72 +1,66 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { NAV_ITEMS } from "@/constants/content";
+import { Button } from '@/components/ui/button';
+import { NAV_ITEMS } from '@/constants/content';
+import { Menu } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Link href="#home" className="flex items-center gap-2">
+    <header className='bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur'>
+      <div className='container flex h-16 items-center justify-between'>
+        <div className='flex items-center gap-3'>
+          <Link href='#home' className='flex items-center gap-2'>
             {/* Placeholder logo to match example */}
             <Image
-              src="/next.svg"
-              alt="Event Landing Page"
-              width={120}
-              height={24}
-              className="dark:invert"
+              src='/android-chrome-512x512.png'
+              alt='Event Landing Page'
+              width={48}
+              height={48}
+              className='rounded-xl bg-gray-100 transition hover:bg-gray-200 dark:invert'
             />
           </Link>
         </div>
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className='hidden items-center gap-6 md:flex'>
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className='text-muted-foreground hover:text-foreground text-sm font-medium transition-colors'
             >
               {item.label}
             </Link>
           ))}
           <Button>Get Tickets</Button>
         </nav>
-        <div className="md:hidden flex items-center gap-2">
+        <div className='flex items-center gap-2 md:hidden'>
           <Button
-            variant="outline"
-            size="sm"
+            variant='outline'
+            size='sm'
             onClick={() => setOpen((s) => !s)}
-            aria-label="Toggle Menu"
+            aria-label='Toggle Menu'
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-5"
-            >
-              <path d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm.75 4.5a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75Z" />
-            </svg>
+            <Menu />
           </Button>
         </div>
       </div>
       {open && (
-        <div className="md:hidden border-t bg-background">
-          <div className="container py-3 space-y-3">
+        <div className='bg-background border-t md:hidden'>
+          <div className='container space-y-3 py-3'>
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block text-sm font-medium text-muted-foreground hover:text-foreground"
+                className='text-muted-foreground hover:text-foreground block text-sm font-medium'
                 onClick={() => setOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <Button className="w-full" onClick={() => setOpen(false)}>
+            <Button className='w-full' onClick={() => setOpen(false)}>
               Get Tickets
             </Button>
           </div>

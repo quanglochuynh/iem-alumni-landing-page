@@ -1,1 +1,49 @@
-{}
+{
+  "WIEMA": {
+    "title": "Welcome IEM Alumni #2",
+    "subtitle": "Gratitude Grows - Success Blossoms",
+    "date": "22 November 2025 (Saturday)",
+    "address": "HCMIU - Thu Duc Campus, Quarter 33, Linh Xuan Ward, Ho Chi Minh City"
+  },
+  "ABOUT": {
+    "heading": "About the Event",
+    "strong": "WELCOME IEM ALUMNI 2025 is organized in the warm spirit of Vietnamese Teachers' Day (20/11). The event welcomes new alumni, honors the connection between generations, and embodies the “Pay-It-Forward” spirit through fundraising and awarding scholarships to current IEM students.",
+    "p1": "It is also an occasion for alumni to return to their alma mater, pay tribute to teachers, witness the development of the Faculty, and inspire young lecturers through stories of success and innovation in education.",
+    "p2": "The event also strengthens connections within the ISE, Logistics, and Supply Chain community, and calls for the establishment of the IEM Alumni Association Representative Board - consisting of nine dynamic and trusted members from different cohorts.",
+    "cta": "Register Now",
+    "price": "Registration Fee: 200,000 VND/person"
+  },
+  "SCHEDULE": {
+    "heading": "Event Schedule",
+    "items": {
+      "0": {
+        "title": "CHECK-IN",
+        "time": "13:00",
+        "activity": "The tree of gratitude | Instant Photo with Fotopop"
+      },
+      "1": {
+        "title": "CLUB-FAIR - MINI IEM VERSION",
+        "time": "13:00",
+        "activity": "Photo Run Challenge with IEM Youth Union | Memory Challenge with IEM Academic Club | Golden Ear Challenge with IEM Art Club"
+      },
+      "2": {
+        "title": "THE CENTER STAGE",
+        "time": "14:30",
+        "activity": "Paying gratitude to lecturers | Voting for IEM Alumni Representative Board | Welcoming new graduates into IEM-IU Alumni Association | Awarding Scholarship - raised from registration fee and donation"
+      },
+      "3": {
+        "title": " STANDUP BUFFET AND FREE NETWORKING SESSION",
+        "time": "16:00",
+        "activity": "Mingle through stories, job matching needs, karaoke, etc."
+      }
+    }
+  },
+  "GALLERY": {
+    "heading": "Photo Gallery",
+    "cta": "View More Photos on Facebook",
+    "description": "Explore memorable moments from previous IEM Alumni events."
+  },
+  "FOOTER": {
+    "heading": "Welcome IEM Alumni #2"
+  }
+}
