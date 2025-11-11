@@ -6,7 +6,7 @@ import Image from 'next/image';
 export function Hero() {
   const infoTrans = useInfoTranslation();
   return (
-    <section id='home' className='container py-16 md:py-24'>
+    <section id='home' className='z-10 container py-16 md:py-24'>
       <div className='grid items-center gap-10 lg:grid-cols-2'>
         <div className='space-y-6'>
           <h1 className='text-4xl font-bold md:text-5xl'>

@@ -6,7 +6,7 @@ export default function Footer() {
   const infoTrans = useInfoTranslation();
   const commonTrans = useCommonTranslation();
   return (
-    <footer className='bg-primary text-primary-foreground mt-16 border-t text-justify'>
+    <footer className='bg-primary text-primary-foreground border-t text-justify'>
       <div className='container mt-16'>
         <h2 className='text-2xl font-bold'>{infoTrans('FOOTER.heading')}</h2>
       </div>
@@ -42,7 +42,7 @@ export default function Footer() {
           title='map'
           className='w-full md:w-3/2'
           height={400}
-          style={{ border: 0 }}
+          style={{ border: 0, filter: 'invert(90%)' }}
           loading='lazy'
           referrerPolicy='no-referrer-when-downgrade'
           src={FOOTER.mapSrc}

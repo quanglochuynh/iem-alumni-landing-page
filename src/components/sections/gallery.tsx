@@ -5,8 +5,8 @@ import { useInfoTranslation } from '@/hooks';
 export function Gallery() {
   const infoTrans = useInfoTranslation();
   return (
-    <section id='gallery' className='container py-16 md:py-24'>
-      <div className='mb-10 max-w-3xl'>
+    <section id='gallery' className='py-16 md:py-24'>
+      <div className='container mb-10 max-w-3xl'>
         <h2 className='mb-4 text-3xl font-bold'>
           {infoTrans('GALLERY.heading')}
         </h2>
@@ -22,28 +22,30 @@ export function Gallery() {
           <Button>{infoTrans('GALLERY.cta')}</Button>
         </a>
       </div>
-      <Carousel
-        slides={[
-          {
-            src: '/images/img1.webp',
-          },
-          {
-            src: '/images/img2.webp',
-          },
-          {
-            src: '/images/img3.webp',
-          },
-          {
-            src: '/images/img4.webp',
-          },
-          {
-            src: '/images/img5.webp',
-          },
-          {
-            src: '/images/img6.webp',
-          },
-        ]}
-      />
+      <div className='h-[calc(50vmin+4rem)] w-full overflow-hidden'>
+        <Carousel
+          slides={[
+            {
+              src: '/images/img1.webp',
+            },
+            {
+              src: '/images/img2.webp',
+            },
+            {
+              src: '/images/img3.webp',
+            },
+            {
+              src: '/images/img4.webp',
+            },
+            {
+              src: '/images/img5.webp',
+            },
+            {
+              src: '/images/img6.webp',
+            },
+          ]}
+        />
+      </div>
     </section>
   );
 }

@@ -19,26 +19,28 @@ export function Schedule() {
     }),
   }));
   return (
-    <section
-      id='schedule'
-      className='bg-secondary/30 container mt-8 rounded-xl py-16 md:py-24'
-    >
-      <div className='mb-10 max-w-3xl'>
-        <h2 className='mb-4 text-3xl font-bold'>
-          {infoTrans('SCHEDULE.heading')}
-        </h2>
-      </div>
-      <div className='grid gap-10 md:grid-cols-2'>
-        {items.map((item, idx) => (
-          <ScheduleItem
-            key={idx}
-            time={item.time}
-            title={item.title}
-            activities={item.activity}
-          />
-        ))}
-      </div>
-    </section>
+    <div className='container'>
+      <section
+        id='schedule'
+        className='bg-secondary mt-8 rounded-xl p-4 md:p-12'
+      >
+        <div className='mb-10 max-w-3xl'>
+          <h2 className='mb-4 text-3xl font-bold'>
+            {infoTrans('SCHEDULE.heading')}
+          </h2>
+        </div>
+        <div className='grid gap-10 md:grid-cols-2'>
+          {items.map((item, idx) => (
+            <ScheduleItem
+              key={idx}
+              time={item.time}
+              title={item.title}
+              activities={item.activity}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -55,12 +57,6 @@ function ScheduleItem({
     <div className='space-y-1'>
       <h5 className='text-primary/80 text-sm font-semibold'>{time}</h5>
       <h3 className='text-xl font-semibold'>{title}</h3>
-      {/* {activities &&
-        activities.split('|').map((activity, index) => (
-          <h5 key={index} className='text-muted-foreground text-sm'>
-            - {activity.trim()}
-          </h5>
-        ))} */}
       {activities && (
         <div className='text-muted-foreground text-sm'>{activities}</div>
       )}
