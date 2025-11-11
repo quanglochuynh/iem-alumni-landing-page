@@ -1,26 +1,26 @@
 import { Button } from '@/components/ui/button';
-import { FOOTER } from '@/constants/content';
+import { FOOTER, HERO } from '@/constants/content';
 import { useCommonTranslation, useInfoTranslation } from '@/hooks';
 
 export default function Footer() {
   const infoTrans = useInfoTranslation();
   const commonTrans = useCommonTranslation();
   return (
-    <footer className='bg-primary text-primary-foreground mt-16 border-t'>
+    <footer className='bg-primary text-primary-foreground mt-16 border-t text-justify'>
       <div className='container mt-16'>
         <h2 className='text-2xl font-bold'>{infoTrans('FOOTER.heading')}</h2>
       </div>
       <div>
-        <div className='container grid gap-8 py-12 md:grid-cols-5'>
+        <div className='container grid gap-8 py-12 md:grid-cols-4'>
           <div className='md:col-span-2'>
             <h3 className='mb-3 font-semibold'>{infoTrans('ABOUT.heading')}</h3>
-            <p className='text-muted-foreground max-w-xs text-sm'>
+            <p className='text-muted-foreground text-sm'>
               {infoTrans('ABOUT.strong')}
             </p>
           </div>
           <div>
             <h3 className='mb-3 font-semibold'>{commonTrans('Address')}</h3>
-            <p className='text-muted-foreground max-w-xs text-sm'>
+            <p className='text-muted-foreground text-sm'>
               {infoTrans('WIEMA.address')}
             </p>
           </div>
@@ -31,7 +31,9 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <Button variant={'secondary'}>{infoTrans('ABOUT.cta')}</Button>
+            <a href={HERO.rsvpUrl} target='_blank' rel='noopener noreferrer'>
+              <Button variant={'secondary'}>{infoTrans('ABOUT.cta')}</Button>
+            </a>
           </div>
         </div>
       </div>
@@ -46,7 +48,7 @@ export default function Footer() {
           src={FOOTER.mapSrc}
         />
       </div>
-      <div className='text-primary-foreground mt-8 bg-black'>
+      <div className='text-primary-foreground bg-black'>
         <div className='text-muted-foreground container py-6 text-sm'>
           {FOOTER.copyright}
         </div>

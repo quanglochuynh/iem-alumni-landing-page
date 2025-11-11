@@ -19,10 +19,8 @@ export function Hero() {
             <p className='font-medium'>{infoTrans('WIEMA.date')}</p>
             <p>{infoTrans('WIEMA.address')}</p>
           </div>
-          <div className='space-y-6 pt-4'>
-            <h2 id='about' className='text-3xl font-bold'>
-              {infoTrans('ABOUT.heading')}
-            </h2>
+          <section className='space-y-6 pt-4' id='about'>
+            <h2 className='text-3xl font-bold'>{infoTrans('ABOUT.heading')}</h2>
             <p className='text-lg font-semibold'>{infoTrans('ABOUT.strong')}</p>
             <p>{infoTrans('ABOUT.p1')}</p>
             <p>{infoTrans('ABOUT.p2')}</p>
@@ -30,7 +28,7 @@ export function Hero() {
             <a href={HERO.rsvpUrl} target='_blank' rel='noopener noreferrer'>
               <Button>{infoTrans('ABOUT.cta')}</Button>
             </a>
-          </div>
+          </section>
         </div>
         <div className='relative aspect-12/5 w-full overflow-hidden rounded-lg shadow'>
           <Image

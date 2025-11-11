@@ -13,8 +13,7 @@ export default function Navbar() {
     <header className='bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur'>
       <div className='container flex h-16 items-center justify-between'>
         <div className='flex items-center gap-3'>
-          <Link href='#home' className='flex items-center gap-2'>
-            {/* Placeholder logo to match example */}
+          <Link href='/' className='flex items-center gap-2'>
             <Image
               src='/android-chrome-512x512.png'
               alt='Event Landing Page'
