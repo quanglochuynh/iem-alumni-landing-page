@@ -22,9 +22,12 @@ export function Gallery() {
           <Button>{infoTrans('GALLERY.cta')}</Button>
         </a>
       </div>
-      <div className='h-[calc(50vmin+4rem)] w-full overflow-hidden'>
+      <div className='h-[calc(50vmin+5rem)] w-full overflow-hidden'>
         <Carousel
           slides={[
+            {
+              src: '/images/img3.webp',
+            },
             {
               src: '/images/img1.webp',
             },
@@ -32,16 +35,13 @@ export function Gallery() {
               src: '/images/img2.webp',
             },
             {
-              src: '/images/img3.webp',
-            },
-            {
               src: '/images/img4.webp',
             },
             {
-              src: '/images/img5.webp',
+              src: '/images/img6.webp',
             },
             {
-              src: '/images/img6.webp',
+              src: '/images/img5.webp',
             },
           ]}
         />
