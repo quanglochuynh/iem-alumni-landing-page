@@ -23,6 +23,17 @@ export function Hero() {
         {children}
       </Highlighter>
     ),
+    underline2: (children) => (
+      <Highlighter
+        animationDuration={1000}
+        action='underline'
+        color='#ed9111'
+        strokeWidth={2}
+        delay={5500}
+      >
+        {children}
+      </Highlighter>
+    ),
     highlight: (children) => (
       <Highlighter
         animationDuration={1000}

@@ -1,14 +1,16 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { NAV_ITEMS } from '@/constants/content.constant';
-import { Menu } from 'lucide-react';
+import { HERO, NAV_ITEMS } from '@/constants/content.constant';
+import { useCommonTranslation } from '@/hooks';
+import { Menu, TicketCheck } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const commonTrans = useCommonTranslation();
   return (
     <header className='bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur'>
       <div className='container flex h-16 items-center justify-between'>
@@ -30,10 +32,15 @@ export default function Navbar() {
               href={item.href}
               className='text-muted-foreground hover:text-foreground text-sm font-medium transition-colors'
             >
-              {item.label}
+              {commonTrans(item.label)}
             </Link>
           ))}
-          <Button>Get Tickets</Button>
+          <a href={HERO.rsvpUrl} target='_blank' rel='noopener noreferrer'>
+            <Button>
+              <TicketCheck className='mr-2 inline-block' size={16} />
+              {commonTrans('Register')}
+            </Button>
+          </a>
         </nav>
         <div className='flex items-center gap-2 md:hidden'>
           <Button
@@ -56,11 +63,11 @@ export default function Navbar() {
                 className='text-muted-foreground hover:text-foreground block text-sm font-medium'
                 onClick={() => setOpen(false)}
               >
-                {item.label}
+                {commonTrans(item.label)}
               </Link>
             ))}
             <Button className='w-full' onClick={() => setOpen(false)}>
-              Get Tickets
+              {commonTrans('Register')}
             </Button>
           </div>
         </div>

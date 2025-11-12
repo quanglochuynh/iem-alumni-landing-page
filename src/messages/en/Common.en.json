@@ -1,4 +1,10 @@
 {
   "Address": "Address",
-  "DateTime": "Date & Time"
+  "DateTime": "Date & Time",
+  "Home": "Home",
+  "About Event": "About the Event",
+  "Schedule": "Schedule",
+  "Gallery": "Photo Gallery",
+  "Register": "Register",
+  "Contact": "Contact"
 }

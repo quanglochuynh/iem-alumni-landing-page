@@ -6,18 +6,9 @@ export function Schedule() {
   const items = [0, 1, 2, 3].map((index) => ({
     time: infoTrans(`SCHEDULE.items.${index}.time`),
     title: infoTrans(`SCHEDULE.items.${index}.title`),
-    activity: infoTrans.rich(`SCHEDULE.items.${index}.activity`, {
-      Fotopop: (chunks) => (
-        <a
-          href='https://www.facebook.com/fotopopstudiosaigon'
-          target='_blank'
-          rel='noreferrer'
-          className='font-bold text-black'
-        >
-          {chunks}
-        </a>
-      ),
-    }),
+    activity: infoTrans(`SCHEDULE.items.${index}.activity`)
+      .split('|')
+      .map((line, idx) => <li key={idx}>- {line}</li>),
   }));
   return (
     <div className='container'>
@@ -56,9 +47,7 @@ function ScheduleItem({
     <div className='space-y-2 p-4'>
       <h5 className='text-primary text-sm font-semibold'>{time}</h5>
       <h3 className='text-xl font-semibold'>{title}</h3>
-      {activities && (
-        <div className='text-primary/80 text-sm'>{activities}</div>
-      )}
+      {activities && <ul className='text-primary/80 text-sm'>{activities}</ul>}
     </div>
   );
 }

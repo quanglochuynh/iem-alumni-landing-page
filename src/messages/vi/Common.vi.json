@@ -1,4 +1,10 @@
 {
   "Address": "Địa chỉ",
-  "DateTime": "Ngày & Giờ"
+  "DateTime": "Ngày & Giờ",
+  "Home": "Trang Chủ",
+  "About Event": "Về Sự Kiện",
+  "Schedule": "Lịch Trình",
+  "Gallery": "Thư Viện Ảnh",
+  "Register": "Đăng Ký",
+  "Contact": "Liên Hệ"
 }

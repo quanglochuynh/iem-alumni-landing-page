@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { FOOTER, HERO } from '@/constants/content.constant';
 import { useCommonTranslation, useInfoTranslation } from '@/hooks';
 import { StripTags } from '@/lib/rich-text.util';
+import { Edit } from 'lucide-react';
 
 export default function Footer() {
   const infoTrans = useInfoTranslation();
@@ -49,10 +50,17 @@ export default function Footer() {
           src={FOOTER.mapSrc}
         />
       </div>
-      <div className='text-primary-foreground bg-black'>
-        <div className='text-muted-foreground container py-6 text-sm'>
-          {FOOTER.copyright}
-        </div>
+      <div className='text-primary-foreground container flex flex-wrap items-center gap-2 bg-black py-6'>
+        <p className='text-muted-foreground text-sm'>{FOOTER.copyright}</p>
+        <a
+          className='text-muted-foreground ms-auto font-mono text-sm hover:underline'
+          href={FOOTER.suggestEditsUrl}
+          target='_blank'
+          rel='noreferrer noopener'
+        >
+          <Edit className='mr-2 inline' size={16} />
+          Suggest edits
+        </a>
       </div>
     </footer>
   );
