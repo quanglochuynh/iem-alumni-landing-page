@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Carousel from '@/components/ui/carousel';
 import { useInfoTranslation } from '@/hooks';
-import { Image } from 'lucide-react';
+import { ImageIcon } from 'lucide-react';
 
 export function Gallery() {
   const infoTrans = useInfoTranslation();
@@ -21,7 +21,7 @@ export function Gallery() {
           className='text-primary mt-4 inline-block hover:underline'
         >
           <Button>
-            <Image className='mr-2' size={16} />
+            <ImageIcon className='mr-2' size={16} />
             {infoTrans('GALLERY.cta')}
           </Button>
         </a>

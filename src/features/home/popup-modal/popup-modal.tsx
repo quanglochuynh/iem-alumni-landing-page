@@ -5,9 +5,7 @@ import { popUpStore } from '@/features/home/popup-modal/popup.store';
 import { useCommonTranslation } from '@/hooks';
 import { DialogTitle } from '@radix-ui/react-dialog';
 
-type Props = {};
-
-export default function PopupModal({}: Props) {
+export default function PopupModal() {
   const { content, setPopup } = popUpStore();
   const commonTrans = useCommonTranslation();
   return (
