@@ -1,1 +1,2 @@
-export * from "./locale.constant";
+export * from './content.constant';
+export * from './locale.constant';

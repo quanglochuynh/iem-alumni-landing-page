@@ -1,3 +1,4 @@
+import { FocusCards } from '@/components/ui/focus-cards';
 import { useInfoTranslation } from '@/hooks';
 
 export function Schedule() {
@@ -20,25 +21,23 @@ export function Schedule() {
   }));
   return (
     <div className='container'>
-      <section
-        id='schedule'
-        className='bg-secondary mt-8 rounded-xl p-4 md:p-12'
-      >
-        <div className='mb-10 max-w-3xl'>
-          <h2 className='mb-4 text-3xl font-bold'>
-            {infoTrans('SCHEDULE.heading')}
-          </h2>
-        </div>
-        <div className='grid gap-10 md:grid-cols-2'>
-          {items.map((item, idx) => (
-            <ScheduleItem
-              key={idx}
-              time={item.time}
-              title={item.title}
-              activities={item.activity}
-            />
-          ))}
-        </div>
+      <section id='schedule' className='mt-8'>
+        <h2 className='mb-12 text-center text-3xl font-bold'>
+          {infoTrans('SCHEDULE.heading')}
+        </h2>
+        <div className='grid gap-10 md:grid-cols-2'></div>
+        <FocusCards
+          cards={items.map((item, idx) => ({
+            children: (
+              <ScheduleItem
+                key={idx}
+                time={item.time}
+                title={item.title}
+                activities={item.activity}
+              />
+            ),
+          }))}
+        />
       </section>
     </div>
   );
@@ -54,11 +53,11 @@ function ScheduleItem({
   activities?: React.ReactNode;
 }) {
   return (
-    <div className='space-y-1'>
-      <h5 className='text-primary/80 text-sm font-semibold'>{time}</h5>
+    <div className='space-y-2 p-4'>
+      <h5 className='text-primary text-sm font-semibold'>{time}</h5>
       <h3 className='text-xl font-semibold'>{title}</h3>
       {activities && (
-        <div className='text-muted-foreground text-sm'>{activities}</div>
+        <div className='text-primary/80 text-sm'>{activities}</div>
       )}
     </div>
   );

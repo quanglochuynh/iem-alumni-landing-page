@@ -4,7 +4,7 @@ import HeroBg from '@/components/common/hero-bg';
 import { Highlighter } from '@/components/ui/highlighter';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { TypingAnimation } from '@/components/ui/typing-animation';
-import { HERO } from '@/constants/content';
+import { HERO } from '@/constants/content.constant';
 import { useInfoTranslation } from '@/hooks';
 import { TicketCheck } from 'lucide-react';
 import Image from 'next/image';

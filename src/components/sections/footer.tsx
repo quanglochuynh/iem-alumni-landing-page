@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { FOOTER, HERO } from '@/constants/content';
+import { FOOTER, HERO } from '@/constants/content.constant';
 import { useCommonTranslation, useInfoTranslation } from '@/hooks';
 import { StripTags } from '@/lib/rich-text.util';
 
