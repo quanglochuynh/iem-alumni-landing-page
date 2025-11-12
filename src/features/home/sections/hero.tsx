@@ -5,6 +5,7 @@ import { Highlighter } from '@/components/ui/highlighter';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { TypingAnimation } from '@/components/ui/typing-animation';
 import { HERO } from '@/constants/content.constant';
+import { triggerV1Popup } from '@/features/home/popup-modal/popup.util';
 import { useInfoTranslation } from '@/hooks';
 import { TicketCheck } from 'lucide-react';
 import Image from 'next/image';
@@ -73,7 +74,7 @@ export function Hero() {
               <p>{infoTrans('ABOUT.p2')}</p>
               <p>{infoTrans('ABOUT.price')}</p>
               <a href={HERO.rsvpUrl} target='_blank' rel='noopener noreferrer'>
-                <RainbowButton>
+                <RainbowButton onClick={triggerV1Popup}>
                   <TicketCheck className='mr-2' />
                   {infoTrans('ABOUT.cta')}
                 </RainbowButton>

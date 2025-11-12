@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Carousel from '@/components/ui/carousel';
 import { useInfoTranslation } from '@/hooks';
+import { Image } from 'lucide-react';
 
 export function Gallery() {
   const infoTrans = useInfoTranslation();
@@ -19,7 +20,10 @@ export function Gallery() {
           rel='noreferrer'
           className='text-primary mt-4 inline-block hover:underline'
         >
-          <Button>{infoTrans('GALLERY.cta')}</Button>
+          <Button>
+            <Image className='mr-2' size={16} />
+            {infoTrans('GALLERY.cta')}
+          </Button>
         </a>
       </div>
       <div className='h-[calc(50vmin+5rem)] w-full overflow-hidden'>

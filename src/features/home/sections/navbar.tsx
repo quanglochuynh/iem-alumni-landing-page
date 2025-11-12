@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { HERO, NAV_ITEMS } from '@/constants/content.constant';
+import { triggerV1Popup } from '@/features/home/popup-modal/popup.util';
 import { useCommonTranslation } from '@/hooks';
 import { Menu, TicketCheck } from 'lucide-react';
 import Image from 'next/image';
@@ -36,7 +37,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a href={HERO.rsvpUrl} target='_blank' rel='noopener noreferrer'>
-            <Button>
+            <Button onClick={triggerV1Popup}>
               <TicketCheck className='mr-2 inline-block' size={16} />
               {commonTrans('Register')}
             </Button>

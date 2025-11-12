@@ -1,5 +1,8 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { FOOTER, HERO } from '@/constants/content.constant';
+import { triggerV1Popup } from '@/features/home/popup-modal/popup.util';
 import { useCommonTranslation, useInfoTranslation } from '@/hooks';
 import { StripTags } from '@/lib/rich-text.util';
 import { Edit } from 'lucide-react';
@@ -34,7 +37,9 @@ export default function Footer() {
           </div>
           <div>
             <a href={HERO.rsvpUrl} target='_blank' rel='noopener noreferrer'>
-              <Button variant={'secondary'}>{infoTrans('ABOUT.cta')}</Button>
+              <Button variant={'secondary'} onClick={triggerV1Popup}>
+                {infoTrans('ABOUT.cta')}
+              </Button>
             </a>
           </div>
         </div>
@@ -50,7 +55,7 @@ export default function Footer() {
           src={FOOTER.mapSrc}
         />
       </div>
-      <div className='text-primary-foreground container flex flex-wrap items-center gap-2 bg-black py-6'>
+      <div className='text-primary-foreground container flex flex-wrap items-center gap-2 py-6'>
         <p className='text-muted-foreground text-sm'>{FOOTER.copyright}</p>
         <a
           className='text-muted-foreground ms-auto font-mono text-sm hover:underline'

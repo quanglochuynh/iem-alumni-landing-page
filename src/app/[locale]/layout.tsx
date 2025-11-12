@@ -1,3 +1,4 @@
+import PopupModal from '@/features/home/popup-modal/popup-modal';
 import { getMetadataTranslations } from '@/hooks';
 import { routing } from '@/i18n/routing';
 import { ILocaleParams } from '@/interfaces';
@@ -83,6 +84,7 @@ export default async function RootLayout({ children, params }: ILocaleParams) {
         )}
       >
         <NextIntlClientProvider messages={messages}>
+          <PopupModal />
           {children}
         </NextIntlClientProvider>
       </body>
