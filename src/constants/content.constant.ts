@@ -1,8 +1,8 @@
 export const NAV_ITEMS = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About Event' },
-  { href: '#schedule', label: 'Schedule' },
-  { href: '#gallery', label: 'Gallery' },
+  { href: '/', label: 'Home' },
+  // { href: 'about', label: 'About' },
+  { href: '/wiema2025', label: 'WIEMA 2025' },
+  // { href: '#gallery', label: 'Gallery' },
 ];
 
 export const HERO = {

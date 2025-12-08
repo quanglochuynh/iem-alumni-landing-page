@@ -43,7 +43,18 @@
     "cta": "View More Photos on Facebook",
     "description": "Explore memorable moments from previous IEM Alumni events."
   },
+  "ABOUT_US": {
+    "heading": "About Us",
+    "description": "IEM Alumni Association of the Faculty of Industrial Engineering and Management. The Faculty has 2 departments: Industrial Systems Engineering and Logistics & Supply Chain Management."
+  },
+  "CONTACT_US": {
+    "heading": "Contact Us",
+    "description": "For any inquiries or further information, please reach out to us at:",
+    "address": "HCMIU - Thu Duc Campus, Quarter 33, Linh Xuan Ward, Ho Chi Minh City",
+    "email": "iem.alumni@hcmiu.edu.vn",
+    "phone": "+8428 3724 4270"
+  },
   "FOOTER": {
-    "heading": "Welcome IEM Alumni #2"
+    "heading": "IEM Alumni Association"
   }
 }

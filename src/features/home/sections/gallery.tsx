@@ -30,22 +30,31 @@ export function Gallery() {
         <Carousel
           slides={[
             {
-              src: '/images/img3.webp',
+              src: 'https://bucket.iemalumni.org/I_M1A0855_XLARGE.webp',
             },
             {
-              src: '/images/img1.webp',
+              src: 'https://bucket.iemalumni.org/Messenger_creation_F5EB9078-3855-4C5A-A5CF-C407263A02DC_XLARGE.webp',
             },
             {
-              src: '/images/img2.webp',
+              src: 'https://bucket.iemalumni.org/IDSCF7612_XLARGE.webp',
             },
             {
-              src: '/images/img4.webp',
+              src: 'https://bucket.iemalumni.org/IMG_1832_XLARGE.webp',
             },
             {
-              src: '/images/img6.webp',
+              src: 'https://bucket.iemalumni.org/Messenger_creation_7605ACED-3986-48AB-A4A9-6C4D6CEB0006_XLARGE.webp',
             },
             {
-              src: '/images/img5.webp',
+              src: 'https://bucket.iemalumni.org/I_M1A0891_XLARGE.webp',
+            },
+            {
+              src: 'https://bucket.iemalumni.org/IDSC00072_XLARGE.webp',
+            },
+            {
+              src: 'https://bucket.iemalumni.org/Messenger_creation_A9B85D55-DD11-4048-B255-02CB33360BDD_XLARGE.webp',
+            },
+            {
+              src: 'https://bucket.iemalumni.org/IDSC00042_XLARGE.webp',
             },
           ]}
         />

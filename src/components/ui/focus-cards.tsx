@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 export const Card = React.memo(
@@ -26,10 +27,12 @@ export const Card = React.memo(
     >
       {card.children}
       {card.src && (
-        <img
+        <Image
           src={card.src}
           alt={card.title}
           className='absolute inset-0 object-cover'
+          width={1280}
+          height={720}
         />
       )}
       {card.title && (

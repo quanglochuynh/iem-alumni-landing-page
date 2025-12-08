@@ -43,7 +43,18 @@
     "cta": "Xem Thêm Ảnh Trên Facebook",
     "description": "Khám phá những khoảnh khắc đáng nhớ từ các sự kiện trước đây của IEM Alumni."
   },
+  "ABOUT_US": {
+    "heading": "About Us",
+    "description": "Hội cựu sinh viên khoa Kỹ thuật và Quản lý Công nghiệp. Khoa có 2 bộ môn: Kỹ thuật hệ thống công nghiệp và Logistics & quản lý chuỗi cung ứng."
+  },
+  "CONTACT_US": {
+    "heading": "Contact Us",
+    "description": "Liên hệ với chúng tôi qua địa chỉ sau:",
+    "address": "Trường Đại học Quốc tế - Cơ sở Thủ Đức, Khu phố 33, Phường Linh Xuân, Thành phố Hồ Chí Minh",
+    "email": "iem.alumni@hcmiu.edu.vn",
+    "phone": "028 3724 4270"
+  },
   "FOOTER": {
-    "heading": "Welcome IEM Alumni #2"
+    "heading": "IEM Alumni Association"
   }
 }
