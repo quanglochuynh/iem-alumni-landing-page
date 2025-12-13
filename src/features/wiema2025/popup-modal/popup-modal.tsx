@@ -1,7 +1,7 @@
 'use client';
 
 import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
-import { popUpStore } from '@/features/home/popup-modal/popup.store';
+import { popUpStore } from '@/features/wiema2025/popup-modal/popup.store';
 import { useCommonTranslation } from '@/hooks';
 import { DialogTitle } from '@radix-ui/react-dialog';
 

@@ -1,13 +1,5 @@
-import { Gallery } from '@/features/home/sections/gallery';
-import { Hero } from '@/features/home/sections/hero';
-import { Schedule } from '@/features/home/sections/schedule';
+import WIEMA2025Page from '@/features/wiema2025/wiema2025.page';
 
-export default function WIEM2025Page() {
-  return (
-    <main className='font-serif'>
-      <Hero />
-      <Schedule />
-      <Gallery />
-    </main>
-  );
+export default function Page() {
+  return <WIEMA2025Page />;
 }

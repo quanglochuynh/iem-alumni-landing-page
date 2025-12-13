@@ -1,6 +1,6 @@
-import PopupModal from '@/features/home/popup-modal/popup-modal';
-import Footer from '@/features/home/sections/footer';
-import Navbar from '@/features/home/sections/navbar';
+import PopupModal from '@/features/wiema2025/popup-modal/popup-modal';
+import Footer from '@/features/wiema2025/sections/footer';
+import Navbar from '@/features/wiema2025/sections/navbar';
 import { getMetadataTranslations } from '@/hooks';
 import { routing } from '@/i18n/routing';
 import { ILocaleParams } from '@/interfaces';
