@@ -12,17 +12,19 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const commonTrans = useCommonTranslation();
   return (
-    <header className='bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b font-sans backdrop-blur'>
+    <header className='bg-foreground text-background sticky top-0 z-50 w-full font-sans'>
       <div className='container flex h-16 items-center justify-between'>
         <div className='flex items-center gap-3'>
           <Link href='/' className='flex items-center gap-2'>
-            <Image
-              src='/android-chrome-512x512.png'
-              alt='Event Landing Page'
-              width={48}
-              height={48}
-              className='rounded-xl bg-gray-100 transition hover:bg-gray-200 dark:invert'
-            />
+            <span className='flex size-16 items-center justify-center bg-gray-800'>
+              <Image
+                src='/android-chrome-512x512.png'
+                alt='Event Landing Page'
+                width={48}
+                height={48}
+                className='transition dark:invert'
+              />
+            </span>
             <span className='text-xl font-extrabold sm:text-3xl'>
               IEM ALUMNI
             </span>
@@ -33,7 +35,7 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className='text-muted-foreground hover:text-foreground text-sm font-medium transition-colors'
+              className='text-background hover:text-background/60 text-sm font-medium transition-colors'
             >
               {commonTrans(item.label)}
             </Link>
@@ -57,7 +59,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className='text-muted-foreground hover:text-foreground block text-sm font-medium'
+                className='text-background hover:text-background/60 block text-sm font-medium transition-colors'
                 onClick={() => setOpen(false)}
               >
                 {commonTrans(item.label)}

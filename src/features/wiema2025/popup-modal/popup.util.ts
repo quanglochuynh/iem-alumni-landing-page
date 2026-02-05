@@ -1,4 +1,4 @@
-import { popUpStore } from '@/features/home/popup-modal/popup.store';
+import { popUpStore } from '@/features/wiema2025/popup-modal/popup.store';
 
 export function triggerV1Popup() {
   popUpStore
