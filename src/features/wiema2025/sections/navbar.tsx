@@ -23,8 +23,8 @@ export default function Navbar() {
               height={48}
               className='rounded-xl bg-gray-100 transition hover:bg-gray-200 dark:invert'
             />
-            <span className='text-xl font-semibold sm:text-3xl'>
-              IEM Alumni
+            <span className='text-xl font-extrabold sm:text-3xl'>
+              IEM ALUMNI
             </span>
           </Link>
         </div>

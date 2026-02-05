@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className='mt-8 flex justify-center'>
+      {/* <div className='mt-8 flex justify-center'>
         <iframe
           title='map'
           className='w-full md:w-3/2'
@@ -63,7 +63,7 @@ export default function Footer() {
           referrerPolicy='no-referrer-when-downgrade'
           src={FOOTER.mapSrc}
         />
-      </div>
+      </div> */}
       <div className='text-primary-foreground container flex flex-wrap items-center gap-2 py-6'>
         <p className='text-muted-foreground text-sm'>{FOOTER.copyright}</p>
         <a
