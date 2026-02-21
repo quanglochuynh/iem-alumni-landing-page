@@ -4,10 +4,10 @@ import { Schedule } from '@/features/wiema2025/sections/schedule';
 
 export default function WIEMA2025Page() {
   return (
-    <main className='font-serif'>
+    <div className='font-serif'>
       <Hero />
       <Schedule />
       <Gallery />
-    </main>
+    </div>
   );
 }

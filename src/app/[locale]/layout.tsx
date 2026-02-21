@@ -79,16 +79,14 @@ export default async function RootLayout({ children, params }: ILocaleParams) {
         <meta name='mobile-web-app-capable' content='yes' />
       </head>
       <body
-        className={cn(
-          notoSerif.variable,
-          notoMono.variable,
-          'font-serif antialiased'
-        )}
+        className={cn(notoSerif.variable, notoMono.variable, 'antialiased')}
       >
         <NextIntlClientProvider messages={messages}>
           <PopupModal />
           <Navbar />
-          {children}
+          <main className='min-h-[calc(100svh-var(--navbar-height))]'>
+            {children}
+          </main>
           <Footer />
         </NextIntlClientProvider>
       </body>

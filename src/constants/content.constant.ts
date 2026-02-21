@@ -1,8 +1,9 @@
+import { AppRoute } from '@/interfaces';
+
 export const NAV_ITEMS = [
-  { href: '/', label: 'Home' },
-  // { href: 'about', label: 'About' },
-  { href: '/wiema2025', label: 'WIEMA 2025' },
-  // { href: '#gallery', label: 'Gallery' },
+  { href: AppRoute.HOME, label: 'Home' },
+  { href: AppRoute.WIEMA2025, label: 'WIEMA 2025' },
+  { href: AppRoute.ARTICLES, label: 'Blogs' },
 ];
 
 export const HERO = {

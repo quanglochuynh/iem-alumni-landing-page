@@ -6,17 +6,21 @@ import { useCommonTranslation } from '@/hooks';
 import { Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const commonTrans = useCommonTranslation();
+  const path = usePathname(); // '/en', the first segment is the locale, the second segment is the page (if any)
+  const isHomePage = path.split('/').slice(2).length === 0; // Check if there are no segments after the locale
+
   return (
     <header className='bg-foreground text-background sticky top-0 z-50 w-full font-sans'>
-      <div className='container flex h-16 items-center justify-between'>
+      <div className='container flex h-(--navbar-height) items-center justify-between'>
         <div className='flex items-center gap-3'>
           <Link href='/' className='flex items-center gap-2'>
-            <span className='flex size-16 items-center justify-center bg-gray-800'>
+            <span className='flex size-16 items-center justify-center bg-gray-800 transition hover:bg-gray-700'>
               <Image
                 src='/android-chrome-512x512.png'
                 alt='Event Landing Page'
@@ -25,9 +29,11 @@ export default function Navbar() {
                 className='transition dark:invert'
               />
             </span>
-            <span className='text-xl font-extrabold sm:text-3xl'>
-              IEM ALUMNI
-            </span>
+            {!isHomePage && (
+              <span className='text-xl font-extrabold sm:text-3xl'>
+                IEM ALUMNI
+              </span>
+            )}
           </Link>
         </div>
         <nav className='hidden items-center gap-6 md:flex'>

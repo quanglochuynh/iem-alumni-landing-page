@@ -113,6 +113,7 @@
   --color-3: oklch(69.6% 0.165 251);
   --color-4: oklch(80.2% 0.134 225);
   --color-5: oklch(90.7% 0.231 133);
+  --navbar-height: 4rem;
 }
 
 .dark {
@@ -159,7 +160,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 }
 
