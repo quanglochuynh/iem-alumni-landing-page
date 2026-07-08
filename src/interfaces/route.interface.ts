@@ -3,6 +3,7 @@ export enum AppRoute {
   CONTACT = '/contact',
   ABOUT = '/about',
   ARTICLES = '/articles',
+  ARTICLE = '/article',
   WIEMA2025 = '/wiema2025',
 }
 

@@ -15,6 +15,13 @@ type Props = {
   }[];
 } & ComponentProps<'nav'>;
 
+function shortenLabel(label: string, maxLength: number): string {
+  if (label.length <= maxLength) {
+    return label;
+  }
+  return label.slice(0, maxLength) + '...';
+}
+
 export default function SimpleBreadcrumb({ paths, ...props }: Props) {
   return (
     <Breadcrumb {...props}>
@@ -23,9 +30,11 @@ export default function SimpleBreadcrumb({ paths, ...props }: Props) {
           <Fragment key={index}>
             <BreadcrumbItem key={index}>
               {index < paths.length - 1 ? (
-                <BreadcrumbLink href={path.href}>{path.name}</BreadcrumbLink>
+                <BreadcrumbLink href={path.href}>
+                  {shortenLabel(path.name, 20)}
+                </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage>{path.name}</BreadcrumbPage>
+                <BreadcrumbPage>{shortenLabel(path.name, 20)}</BreadcrumbPage>
               )}
             </BreadcrumbItem>
             {index < paths.length - 1 && <BreadcrumbSeparator />}

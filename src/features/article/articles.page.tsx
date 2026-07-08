@@ -33,6 +33,7 @@ export default async function ArticlesPage(props: { locale: string }) {
         {articles.map((blog) => (
           <ArticleCard
             key={blog.id}
+            slug={blog.slug}
             title={blog.title}
             description={blog.description}
             imageUrl={getR2ImageUrl(blog.thumbnail.path)}

@@ -31,3 +31,17 @@ export interface Thumbnail {
   updatedAt: Date;
   deletedAt: null;
 }
+
+export interface TArticleDetailPreview {
+  id: string;
+  locale: string;
+  title: string;
+  slug: string;
+  keywords: string;
+  description: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+  thumbnail: Thumbnail;
+  author: Author;
+}

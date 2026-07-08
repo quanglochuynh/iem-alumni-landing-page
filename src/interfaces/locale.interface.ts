@@ -9,7 +9,7 @@ export interface IParams<T extends Record<string, any>> {
   params: T;
 }
 
-export interface ILocaleParams {
+export interface ILocaleParams<T = {}> {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string } & T>;
 }
