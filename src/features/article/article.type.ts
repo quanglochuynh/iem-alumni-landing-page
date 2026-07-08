@@ -14,8 +14,10 @@ export interface TArticlePreview {
 export interface Author {
   id: string;
   name: string;
-  username: string;
-  avatarUrl: null;
+  avatar: null | {
+    id: string;
+    path: string;
+  };
 }
 
 export interface Thumbnail {
