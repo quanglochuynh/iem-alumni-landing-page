@@ -5,6 +5,7 @@ import { getCommonTranslation } from '@/hooks';
 import { getR2ImageUrl } from '@/lib/cloudflare.helper';
 import { DateFormat, getDateFormatted } from '@/lib/date.util';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
+import Image from 'next/image';
 import { remark } from 'remark';
 import html from 'remark-html';
 
@@ -45,19 +46,23 @@ export default async function ArticleDetailPage({ locale, slug }: Props) {
       <div className='my-4 flex items-center space-x-4 text-gray-500'>
         <span>{getDateFormatted(article.createdAt, DateFormat.DATETIME)}</span>
         <div className='ms-auto flex items-center space-x-2'>
-          <img
+          <Image
             className='h-10 w-10 rounded-full'
             src={getR2ImageUrl(article.author.avatar?.path || '')}
             alt={article.author.name}
+            width={40}
+            height={40}
           />
           <span>{article.author.name}</span>
         </div>
       </div>
       <p className='text-lg text-gray-600'>{article.description}</p>
-      <img
+      <Image
         className='my-4 rounded-lg'
         src={getR2ImageUrl(article.thumbnail.path)}
         alt=''
+        width={800}
+        height={400}
       />
       <div
         className='md-content mb-16'
