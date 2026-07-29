@@ -11,7 +11,7 @@ import html from 'remark-html';
 
 async function fetchArticleDetail(slug: string) {
   const { env } = getCloudflareContext();
-  const article: TArticleDetailPreview = (
+  const article: TArticleDetailPreview = await (
     env.ADMIN_SERVICE as any
   ).getArticleBySlug(slug);
 

@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <header className='bg-foreground text-background sticky top-0 z-50 w-full font-sans'>
-      <div className='container flex h-(--navbar-height) items-center justify-between'>
+      <div className='flex h-(--navbar-height) items-center justify-between px-4'>
         <div className='flex items-center gap-3'>
           <Link href='/' className='flex items-center gap-2'>
             <span className='flex size-16 items-center justify-center bg-gray-800 transition hover:bg-gray-700'>
