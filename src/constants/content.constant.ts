@@ -4,6 +4,7 @@ export const NAV_ITEMS = [
   { href: AppRoute.HOME, label: 'Home' },
   { href: AppRoute.WIEMA2025, label: 'WIEMA 2025' },
   { href: AppRoute.ARTICLES, label: 'Blogs' },
+  { href: AppRoute.EVENTS, label: 'Events' },
 ];
 
 export const HERO = {

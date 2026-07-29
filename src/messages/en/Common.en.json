@@ -10,5 +10,8 @@
   "Contact": "Contact",
   "Notification": "Notification",
   "Close": "Close",
-  "Blogs": "Articles"
+  "Blogs": "Articles",
+  "Events": "Events",
+  "Upcoming events": "Upcoming events",
+  "Happened events": "Happened events"
 }
