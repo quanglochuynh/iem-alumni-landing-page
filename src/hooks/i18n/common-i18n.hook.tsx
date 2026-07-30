@@ -9,7 +9,3 @@ export const useCommonTranslation = () => {
 export const getCommonTranslation = (locale: string) => {
   return getTranslations({ locale, namespace: 'Common' });
 };
-
-export const getErrorTranslation = (locale: string) => {
-  return getTranslations({ locale, namespace: 'Error' });
-};

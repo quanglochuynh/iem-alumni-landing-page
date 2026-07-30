@@ -1,4 +1,5 @@
 import { TextReveal } from '@/components/ui/text-reveal';
+import { useInfoTranslation } from '@/hooks';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { HTMLAttributes } from 'react';
@@ -6,6 +7,7 @@ import { HTMLAttributes } from 'react';
 type Props = HTMLAttributes<HTMLDivElement>;
 
 export default function AboutUsSection({ className, ...props }: Props) {
+  const infoT = useInfoTranslation();
   return (
     <section className={cn('md:flex', className)} {...props}>
       <Image
@@ -15,13 +17,10 @@ export default function AboutUsSection({ className, ...props }: Props) {
         alt='About Us'
         className='w-full rounded-r-lg object-cover md:w-1/2'
       />
-      <div className='p-8'>
+      <div className='p-8 md:w-1/2'>
         <h2 className='ms-auto text-6xl font-black'>WHO WE ARE</h2>
         <TextReveal className='text-2xl'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. In fuga
-          dolore natus asperiores? Amet, rerum! Tenetur vel nobis voluptatum,
-          ratione nisi facere rem minus culpa consequuntur dolores, consectetur
-          exercitationem excepturi.
+          {infoT('ABOUT_US.description')}
         </TextReveal>
       </div>
     </section>

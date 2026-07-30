@@ -44,7 +44,6 @@ export default async function EventsPage(props: { locale: string }) {
 
   try {
     const events = await fetchEvents();
-    console.log(events);
 
     const { upcoming, happened } = splitEvents(events);
 
