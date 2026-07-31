@@ -1,8 +1,6 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { AppRoute } from '@/interfaces';
 import { DateFormat, getDateFormatted } from '@/lib/date.util';
-import { Ticket } from 'lucide-react';
 import Link from 'next/link';
 
 type Props = {
@@ -11,24 +9,30 @@ type Props = {
   description: string;
   imageUrl: string;
   location: string;
-  startDate: Date;
-  endDate: Date | null;
-  rsvpPath?: string;
+  jobType: string;
+  experienceLevel: string;
+  salary: string | null;
+  createdAt: Date;
+  salaryLabel: string;
 };
 
-export default function EventCard({
+export default function CareerCard({
   slug,
   title,
   description,
   imageUrl,
   location,
-  startDate,
-  endDate,
-  rsvpPath,
+  jobType,
+  experienceLevel,
+  salary,
+  createdAt,
+  salaryLabel,
 }: Props) {
+  console.log(imageUrl);
+
   return (
     <Card className='pt-0'>
-      <Link href={`${AppRoute.EVENT}/${slug}`}>
+      <Link href={`${AppRoute.CAREER}/${slug}`}>
         <img className='rounded-t-xl' src={imageUrl} alt='' />
         <CardContent className='p-5'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
@@ -37,27 +41,22 @@ export default function EventCard({
           <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>
             {description}
           </p>
-          <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
+          <p className='mb-1 text-sm text-gray-500 dark:text-gray-400'>
             {location}
           </p>
+          <p className='mb-1 text-sm text-gray-500 dark:text-gray-400'>
+            {jobType} | {experienceLevel}
+          </p>
+          {salary ? (
+            <p className='mb-1 text-sm text-gray-500 dark:text-gray-400'>
+              {salaryLabel}: {salary}
+            </p>
+          ) : null}
           <p className='text-sm text-gray-500 dark:text-gray-400'>
-            {getDateFormatted(startDate, DateFormat.DATETIME)}
-            {endDate
-              ? ` - ${getDateFormatted(endDate, DateFormat.DATETIME)}`
-              : ''}
+            {getDateFormatted(createdAt, DateFormat.DATETIME)}
           </p>
         </CardContent>
       </Link>
-      {rsvpPath && (
-        <CardFooter>
-          <Link href={rsvpPath}>
-            <Button>
-              <Ticket className='size-4' />
-              RSVP
-            </Button>
-          </Link>
-        </CardFooter>
-      )}
     </Card>
   );
 }

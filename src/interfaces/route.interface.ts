@@ -4,6 +4,8 @@ export enum AppRoute {
   ABOUT = '/about',
   ARTICLES = '/articles',
   ARTICLE = '/article',
+  CAREERS = '/careers',
+  CAREER = '/career',
   EVENTS = '/events',
   EVENT = '/event',
   WIEMA2025 = '/wiema2025',

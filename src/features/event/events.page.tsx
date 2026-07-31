@@ -1,4 +1,5 @@
 import Container from '@/components/common/container';
+import Empty from '@/components/common/empty';
 import SimpleBreadcrumb from '@/components/common/simple-breadcrumb';
 import EventCard from '@/features/event/event-card';
 import { TEventPreview } from '@/features/event/event.type';
@@ -62,6 +63,7 @@ export default async function EventsPage(props: { locale: string }) {
           <h2 className='mb-4 text-2xl font-bold'>
             {commonT('Upcoming events')}
           </h2>
+          {upcoming.length === 0 && <Empty />}
           <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
             {upcoming.map((event) => (
               <EventCard
@@ -73,6 +75,7 @@ export default async function EventsPage(props: { locale: string }) {
                 location={event.location}
                 startDate={event.startDate}
                 endDate={event.endDate}
+                rsvpPath={'/'}
               />
             ))}
           </div>
@@ -82,6 +85,7 @@ export default async function EventsPage(props: { locale: string }) {
           <h2 className='mb-4 text-2xl font-bold'>
             {commonT('Happened events')}
           </h2>
+          {happened.length === 0 && <Empty />}
           <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
             {happened.map((event) => (
               <EventCard
@@ -99,7 +103,7 @@ export default async function EventsPage(props: { locale: string }) {
         </section>
       </Container>
     );
-  } catch (error) {
+  } catch {
     const errorT = await getErrorTranslation(locale);
     return (
       <Container size='max'>
