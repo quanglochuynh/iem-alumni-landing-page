@@ -1,15 +1,15 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
-import Image from "next/image";
-import { remark } from "remark";
-import html from "remark-html";
-import Container from "@/components/common/container";
-import SimpleBreadcrumb from "@/components/common/simple-breadcrumb";
-import type { TEventDetailPreview } from "@/features/event/event.type";
-import { getCommonTranslation } from "@/hooks";
-import { getR2ImageUrl } from "@/lib/cloudflare.helper";
-import { DateFormat, getDateFormatted } from "@/lib/date.util";
+import { getCloudflareContext } from '@opennextjs/cloudflare';
+import Image from 'next/image';
+import { remark } from 'remark';
+import html from 'remark-html';
+import Container from '@/components/common/container';
+import SimpleBreadcrumb from '@/components/common/simple-breadcrumb';
+import type { TEventDetailPreview } from '@/features/event/event.type';
+import { getCommonTranslation } from '@/hooks';
+import { getR2ImageUrl } from '@/lib/cloudflare.helper';
+import { DateFormat, getDateFormatted } from '@/lib/date.util';
 
-export async function fetchEventDetail(slug: string) {
+async function fetchEventDetail(slug: string) {
   const { env } = getCloudflareContext();
   const event: TEventDetailPreview = await (
     env.ADMIN_SERVICE as any
@@ -34,8 +34,8 @@ export default async function EventDetailPage({ locale, slug }: Props) {
     <Container>
       <SimpleBreadcrumb
         paths={[
-          { name: commonT("Home"), href: "/" },
-          { name: commonT("Events"), href: "/events" },
+          { name: commonT('Home'), href: '/' },
+          { name: commonT('Events'), href: '/events' },
           { name: event.title, href: `/event/${event.slug}` },
         ]}
         className="mt-4"
@@ -49,7 +49,7 @@ export default async function EventDetailPage({ locale, slug }: Props) {
           {getDateFormatted(event.startDate, DateFormat.DATETIME)}
           {event.endDate
             ? ` - ${getDateFormatted(event.endDate, DateFormat.DATETIME)}`
-            : ""}
+            : ''}
         </p>
       </div>
       <p className="text-gray-600 text-lg">{event.description}</p>
@@ -64,6 +64,7 @@ export default async function EventDetailPage({ locale, slug }: Props) {
       ) : null}
       <div
         className="md-content mb-16"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: This is safe because this page is SSR and the content is processed with remark
         dangerouslySetInnerHTML={{ __html: event.contentHtml }}
       />
     </Container>

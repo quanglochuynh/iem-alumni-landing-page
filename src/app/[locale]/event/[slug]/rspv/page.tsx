@@ -7,7 +7,7 @@ import type { TEventDetailPreview } from '@/features/event/event.type';
 import RSVPForm from '@/features/event/rsvp-form';
 import { getCommonTranslation } from '@/hooks';
 
-export async function fetchEventDetail(slug: string) {
+async function fetchEventDetail(slug: string) {
   const { env } = getCloudflareContext();
   const event: TEventDetailPreview = await (
     env.ADMIN_SERVICE as any
