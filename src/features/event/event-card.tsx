@@ -13,7 +13,6 @@ type Props = {
   location: string;
   startDate: Date;
   endDate: Date | null;
-  rsvpPath?: string;
 };
 
 export default function EventCard({
@@ -24,7 +23,6 @@ export default function EventCard({
   location,
   startDate,
   endDate,
-  rsvpPath,
 }: Props) {
   return (
     <Card className='pt-0'>
@@ -48,16 +46,16 @@ export default function EventCard({
           </p>
         </CardContent>
       </Link>
-      {rsvpPath && (
+
         <CardFooter>
-          <Link href={rsvpPath}>
+          <Link href={`${AppRoute.EVENT}/${slug}/rspv`}>
             <Button>
               <Ticket className='size-4' />
               RSVP
             </Button>
           </Link>
         </CardFooter>
-      )}
+
     </Card>
   );
 }

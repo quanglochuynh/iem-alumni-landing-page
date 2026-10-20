@@ -75,7 +75,6 @@ export default async function EventsPage(props: { locale: string }) {
                 location={event.location}
                 startDate={event.startDate}
                 endDate={event.endDate}
-                rsvpPath={'/'}
               />
             ))}
           </div>
