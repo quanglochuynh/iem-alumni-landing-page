@@ -1,10 +1,15 @@
 'use client';
 
-import { motion, MotionValue, useScroll, useTransform } from 'motion/react';
 import {
-  ComponentPropsWithoutRef,
-  FC,
-  ReactNode,
+  type MotionValue,
+  motion,
+  useScroll,
+  useTransform,
+} from 'motion/react';
+import {
+  type ComponentPropsWithoutRef,
+  type FC,
+  type ReactNode,
   useEffect,
   useRef,
 } from 'react';
@@ -52,20 +57,23 @@ export const TextReveal: FC<TextRevealProps> = ({
 
   return (
     <div className={cn('relative z-0', containerClassName)} ref={targetRef}>
-      <div
-        className={'top-0 mx-auto flex max-w-4xl items-center bg-transparent'}
-      >
+      <div className={'top-0 flex max-w-4xl items-center bg-transparent'}>
         <span
           className={cn(
-            'flex flex-wrap text-2xl font-bold text-black/20 md:text-3xl lg:text-4xl xl:text-5xl dark:text-white/20',
-            className
+            'flex flex-wrap font-bold text-2xl text-black/20 md:text-3xl lg:text-4xl xl:text-5xl dark:text-white/20',
+            className,
           )}
         >
           {words.map((word, i) => {
             const start = i / words.length;
             const end = start + 1 / words.length;
             return (
-              <Word key={i} progress={scrollYProgress} range={[start, end]}>
+              <Word
+                // biome-ignore lint/suspicious/noArrayIndexKey: Using index as key is acceptable here because words are static and won't change order
+                key={`word${i}`}
+                progress={scrollYProgress}
+                range={[start, end]}
+              >
                 {word}
               </Word>
             );
@@ -85,8 +93,8 @@ interface WordProps {
 const Word: FC<WordProps> = ({ children, progress, range }) => {
   const opacity = useTransform(progress, range, [0, 1]);
   return (
-    <span className='xl:lg-3 relative mx-1 lg:mx-1.5'>
-      <span className='absolute opacity-30'>{children}</span>
+    <span className="xl:lg-3 relative mx-1 lg:mx-1.5">
+      <span className="absolute opacity-30">{children}</span>
       <motion.span
         style={{ opacity: opacity }}
         className={'text-black dark:text-white'}

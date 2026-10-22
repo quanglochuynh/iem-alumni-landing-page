@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -39,6 +39,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-blink-cursor: blink-cursor 1.2s step-end infinite;
+  --font-heading: var(--font-heading);
+  --font-sans: var(--font-sans);
   @keyframes blink-cursor {
     0%,
     49% {

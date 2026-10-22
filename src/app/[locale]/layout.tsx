@@ -1,29 +1,30 @@
+import type { Metadata, Viewport } from 'next';
+import { Lexend_Deca, Ultra } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import PopupModal from '@/features/wiema2025/popup-modal/popup-modal';
 import Footer from '@/features/wiema2025/sections/footer';
 import Navbar from '@/features/wiema2025/sections/navbar';
 import { getMetadataTranslations } from '@/hooks';
 import { routing } from '@/i18n/routing';
-import { ILocaleParams } from '@/interfaces';
+import type { ILocaleParams } from '@/interfaces';
 import { cn } from '@/lib/utils';
-import type { Metadata, Viewport } from 'next';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { Noto_Sans_Mono, Noto_Serif } from 'next/font/google';
-import { notFound } from 'next/navigation';
 import '../globals.css';
 
-const notoSerif = Noto_Serif({
-  variable: '--font-serif',
-  subsets: ['latin'],
+const ultra = Ultra({
+  weight: '400',
+  variable: '--font-heading',
+  subsets: ['latin', 'latin-ext'],
 });
 
-const notoMono = Noto_Sans_Mono({
-  variable: '--font-mono',
-  subsets: ['latin'],
+const lexendDeca = Lexend_Deca({
+  variable: '--font-sans',
+  subsets: ['latin', 'vietnamese'],
 });
 
 export async function generateMetadata(
-  props: ILocaleParams
+  props: ILocaleParams,
 ): Promise<Metadata> {
   const params = await props.params;
 
@@ -70,21 +71,19 @@ export default async function RootLayout({ children, params }: ILocaleParams) {
     <html lang={locale}>
       <head>
         <meta
-          property='og:image'
-          content='/wiema-cover.webp'
+          property="og:image"
+          content="/wiema-cover.webp"
           key={'og:image'}
         />
-        <meta property='og:image:width' content='512' />
-        <meta property='og:image:height' content='512' />
-        <meta name='mobile-web-app-capable' content='yes' />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body
-        className={cn(notoSerif.variable, notoMono.variable, 'antialiased')}
-      >
+      <body className={cn(ultra.variable, lexendDeca.variable, 'antialiased')}>
         <NextIntlClientProvider messages={messages}>
           <PopupModal />
           <Navbar />
-          <main className='min-h-[calc(100svh-var(--navbar-height))]'>
+          <main className="min-h-[calc(100svh-var(--navbar-height))]">
             {children}
           </main>
           <Footer />
