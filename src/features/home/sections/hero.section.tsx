@@ -22,9 +22,9 @@ export default function HeroSection({ className, ...props }: Props) {
         loading="eager"
         width={1920}
         height={1080}
-        className="absolute top-0 left-0 z-40 h-full w-full object-cover"
+        className="absolute top-0 left-0 z-30 h-full w-full object-cover"
       />
-      <div className="absolute top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/70 p-4">
+      <div className="absolute top-0 left-0 z-40 flex h-full w-full items-center justify-center bg-black/70 p-4">
         <motion.div
           style={{ y: parallaxY }}
           className="text-primary-foreground"
