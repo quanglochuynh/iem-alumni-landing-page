@@ -19,17 +19,21 @@ export default function HeroSection({ className, ...props }: Props) {
       <Image
         src={'/I_M1A0855.webp'}
         alt="Hero Image"
+        loading="eager"
         width={1920}
         height={1080}
-        className="absolute top-0 left-0 h-full w-full object-cover"
+        className="absolute top-0 left-0 z-40 h-full w-full object-cover"
       />
-      <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center bg-black/70">
-        <motion.div style={{ y: parallaxY }} className="text-primary-foreground">
+      <div className="absolute top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-black/70 p-4">
+        <motion.div
+          style={{ y: parallaxY }}
+          className="text-primary-foreground"
+        >
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="mb-4 font-black font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
+            className="mb-4 font-black font-heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
           >
             IEM-IU Alumni <br />
             Association

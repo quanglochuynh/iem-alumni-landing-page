@@ -1,21 +1,26 @@
 import type { Metadata, Viewport } from 'next';
-import { Lexend_Deca, Ultra } from 'next/font/google';
+import { Lexend_Deca } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import PopupModal from '@/features/wiema2025/popup-modal/popup-modal';
 import Footer from '@/features/wiema2025/sections/footer';
-import Navbar from '@/features/wiema2025/sections/navbar';
 import { getMetadataTranslations } from '@/hooks';
 import { routing } from '@/i18n/routing';
 import type { ILocaleParams } from '@/interfaces';
 import { cn } from '@/lib/utils';
 import '../globals.css';
+import localFont from 'next/font/local';
 
-const ultra = Ultra({
-  weight: '400',
+// const ultra = Ultra({
+//   weight: '400',
+//   variable: '--font-heading',
+//   subsets: ['latin', 'latin-ext'],
+// });
+
+const brodille = localFont({
+  src: '../../../public/fonts/Brodille.woff2',
   variable: '--font-heading',
-  subsets: ['latin', 'latin-ext'],
 });
 
 const lexendDeca = Lexend_Deca({
@@ -79,13 +84,13 @@ export default async function RootLayout({ children, params }: ILocaleParams) {
         <meta property="og:image:height" content="512" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className={cn(ultra.variable, lexendDeca.variable, 'antialiased')}>
+      <body
+        className={cn(brodille.variable, lexendDeca.variable, 'antialiased')}
+      >
         <NextIntlClientProvider messages={messages}>
           <PopupModal />
-          <Navbar />
-          <main className="min-h-[calc(100svh-var(--navbar-height))]">
-            {children}
-          </main>
+          {/* <Navbar /> */}
+          <main>{children}</main>
           <Footer />
         </NextIntlClientProvider>
       </body>

@@ -1,5 +1,18 @@
-import LandingPage from '@/features/home/landing.page';
+'use client';
 
-export default async function Page() {
-  return <LandingPage />;
+import Lenis from '@/components/common/lenis';
+import HeroSection from '@/features/home/sections/hero.section';
+import WhatWeDoSection from '@/features/home/sections/what-we-do.section';
+import WhoWeAreSection from '@/features/home/sections/who-we-are.section';
+
+export default function Page() {
+  return (
+    <Lenis>
+      <main className="relative pb-32">
+        <HeroSection id="hero-section" />
+        <WhoWeAreSection className="mt-32" />
+        <WhatWeDoSection className="mt-32" />
+      </main>
+    </Lenis>
+  );
 }
