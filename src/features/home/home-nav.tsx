@@ -22,7 +22,7 @@ export default function HomeNav({ className, ...props }: Props) {
   return (
     <nav
       className={cn(
-        'absolute top-0 left-0 z-50 flex w-full justify-center gap-4 p-4 text-primary-foreground md:gap-16',
+        'absolute top-0 left-0 z-50 flex w-full justify-center gap-6 p-4 text-primary-foreground md:gap-16',
         className,
       )}
       {...props}
@@ -31,7 +31,7 @@ export default function HomeNav({ className, ...props }: Props) {
         <Link
           key={link.href}
           href={link.href}
-          className="font-light text-xl hover:underline"
+          className="font-light text-md hover:underline md:text-xl"
         >
           {link.label}
         </Link>

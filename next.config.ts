@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         hostname: 'bucket.iemalumni.org',
       },
       {
+        protocol: 'https',
+        hostname: 'admin.iemalumni.org',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
       },

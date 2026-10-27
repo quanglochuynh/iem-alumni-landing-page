@@ -33,7 +33,7 @@ export default function WhoWeAreSection({ className, ...props }: Props) {
           className="absolute -z-50"
         />
       </motion.div>
-      <div className="items-center md:flex md:h-[60svh]">
+      <div className="z-40 items-center md:flex md:h-[60svh]">
         <div className="flex justify-center md:sticky md:top-[30svh] md:w-1/2 md:self-start">
           <Image
             src={'/founders/anh-ha.jpg'}
