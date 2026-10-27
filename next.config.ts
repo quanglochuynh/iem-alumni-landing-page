@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
       },
     ],
+    dangerouslyAllowLocalIP: process.env.NODE_ENV === 'development',
   },
 };
 

@@ -12,12 +12,6 @@ import { cn } from '@/lib/utils';
 import '../globals.css';
 import localFont from 'next/font/local';
 
-// const ultra = Ultra({
-//   weight: '400',
-//   variable: '--font-heading',
-//   subsets: ['latin', 'latin-ext'],
-// });
-
 const brodille = localFont({
   src: '../../../public/fonts/Brodille.woff2',
   variable: '--font-heading',

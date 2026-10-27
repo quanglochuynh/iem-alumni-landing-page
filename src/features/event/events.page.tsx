@@ -1,16 +1,16 @@
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import Container from '@/components/common/container';
 import Empty from '@/components/common/empty';
 import SimpleBreadcrumb from '@/components/common/simple-breadcrumb';
+import type { TEventPreview } from '@/features/event/event.type';
 import EventCard from '@/features/event/event-card';
-import { TEventPreview } from '@/features/event/event.type';
 import { getCommonTranslation, getErrorTranslation } from '@/hooks';
 import { getR2ImageUrl } from '@/lib/cloudflare.helper';
-import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 async function fetchEvents() {
   const { env } = getCloudflareContext();
   const events: TEventPreview[] = await (env.ADMIN_SERVICE as any).getEvents(
-    {}
+    {},
   );
   return events;
 }
@@ -49,22 +49,22 @@ export default async function EventsPage(props: { locale: string }) {
     const { upcoming, happened } = splitEvents(events);
 
     return (
-      <Container size='max'>
+      <Container size="max">
         <SimpleBreadcrumb
           paths={[
             { name: commonT('Home'), href: '/' },
             { name: commonT('Events'), href: '/events' },
           ]}
-          className='mt-4'
+          className="mt-4"
         />
-        <h1 className='my-4 text-4xl font-black'>{commonT('Events')}</h1>
+        <h1 className="my-4 font-black text-4xl">{commonT('Events')}</h1>
 
-        <section className='mb-10'>
-          <h2 className='mb-4 text-2xl font-bold'>
+        <section className="mb-10">
+          <h2 className="mb-4 font-bold text-2xl">
             {commonT('Upcoming events')}
           </h2>
           {upcoming.length === 0 && <Empty />}
-          <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {upcoming.map((event) => (
               <EventCard
                 key={event.id}
@@ -80,12 +80,12 @@ export default async function EventsPage(props: { locale: string }) {
           </div>
         </section>
 
-        <section className='mb-10'>
-          <h2 className='mb-4 text-2xl font-bold'>
+        <section className="mb-10">
+          <h2 className="mb-4 font-bold text-2xl">
             {commonT('Happened events')}
           </h2>
           {happened.length === 0 && <Empty />}
-          <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {happened.map((event) => (
               <EventCard
                 key={event.id}
@@ -105,16 +105,16 @@ export default async function EventsPage(props: { locale: string }) {
   } catch {
     const errorT = await getErrorTranslation(locale);
     return (
-      <Container size='max'>
+      <Container size="max">
         <SimpleBreadcrumb
           paths={[
             { name: commonT('Home'), href: '/' },
             { name: commonT('Events'), href: '/events' },
           ]}
-          className='mt-4'
+          className="mt-4"
         />
-        <h1 className='my-4 text-4xl font-black'>{commonT('Events')}</h1>
-        <p className='text-lg text-gray-600'>
+        <h1 className="my-4 font-black text-4xl">{commonT('Events')}</h1>
+        <p className="text-gray-600 text-lg">
           {errorT('Failed to load events')}
         </p>
       </Container>

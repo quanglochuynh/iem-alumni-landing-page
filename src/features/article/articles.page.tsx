@@ -1,10 +1,10 @@
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import Container from '@/components/common/container';
 import SimpleBreadcrumb from '@/components/common/simple-breadcrumb';
+import type { TArticlePreview } from '@/features/article/article.type';
 import ArticleCard from '@/features/article/article-card';
-import { TArticlePreview } from '@/features/article/article.type';
 import { getCommonTranslation, getErrorTranslation } from '@/hooks';
 import { getR2ImageUrl } from '@/lib/cloudflare.helper';
-import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 async function fetchArticles() {
   const { env } = getCloudflareContext();
@@ -20,16 +20,16 @@ export default async function ArticlesPage(props: { locale: string }) {
   try {
     const articles = await fetchArticles();
     return (
-      <Container size='max'>
+      <Container size="max">
         <SimpleBreadcrumb
           paths={[
             { name: commonT('Home'), href: '/' },
             { name: commonT('Blogs'), href: '/blogs' },
           ]}
-          className='mt-4'
+          className="mt-4"
         />
-        <h1 className='my-4 text-4xl font-black'>{commonT('Blogs')}</h1>
-        <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        <h1 className="my-4 font-black text-4xl">{commonT('Blogs')}</h1>
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {articles.map((blog) => (
             <ArticleCard
               key={blog.id}
@@ -52,16 +52,16 @@ export default async function ArticlesPage(props: { locale: string }) {
   } catch (error) {
     const errorT = await getErrorTranslation(locale);
     return (
-      <Container size='max'>
+      <Container size="max">
         <SimpleBreadcrumb
           paths={[
             { name: commonT('Home'), href: '/' },
             { name: commonT('Blogs'), href: '/blogs' },
           ]}
-          className='mt-4'
+          className="mt-4"
         />
-        <h1 className='my-4 text-4xl font-black'>{commonT('Blogs')}</h1>
-        <p className='text-lg text-gray-600'>
+        <h1 className="my-4 font-black text-4xl">{commonT('Blogs')}</h1>
+        <p className="text-gray-600 text-lg">
           {errorT('Failed to load articles')}
         </p>
       </Container>

@@ -9,6 +9,7 @@ export enum AppRoute {
   EVENTS = '/events',
   EVENT = '/event',
   WIEMA2025 = '/wiema2025',
+  OUR_PEOPLE = '/our-people',
 }
 
 export interface INavRoute {
