@@ -1,6 +1,6 @@
+import z from 'zod';
 import { fileRecordSchema } from '@/schemas/file.schema';
 import { createMediaArraySchema } from '@/schemas/media-schema.zod';
-import z from 'zod';
 
 export const registerFormSchema = z.object({
   name: z.string().min(1).max(100),
@@ -18,7 +18,7 @@ export const registerFormSchemaWithRefine = registerFormSchema.refine(
   (data) => data.password === data.confirmPassword,
   {
     message: 'Passwords do not match',
-  }
+  },
 );
 
 export type RegisterFormData = z.infer<typeof registerFormSchema>;

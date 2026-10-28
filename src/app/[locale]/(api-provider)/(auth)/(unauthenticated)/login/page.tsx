@@ -124,6 +124,18 @@ export default function LoginPage() {
           </Button>
         </form>
         <Link
+          className="mt-4 block w-full text-center text-sm underline"
+          href={AppRoute.REGISTER}
+        >
+          <Button
+            className="mt-4 w-full"
+            variant={'ghost'}
+            disabled={isSubmitting}
+          >
+            Tạo tài khoản
+          </Button>
+        </Link>
+        <Link
           className="mt-6 block text-center text-sm underline"
           href={AppRoute.ROOT}
         >

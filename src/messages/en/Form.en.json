@@ -12,5 +12,22 @@
   "loginError": "Unable to sign in. Please try again.",
   "backToHome": "Back to home",
   "sessionError": "Unable to load your session. Please try again.",
-  "retry": "Retry"
+  "retry": "Retry",
+  "registerTitle": "Create account",
+  "registerDescription": "Register for IEM Alumni",
+  "fullName": "Full name",
+  "email": "Email",
+  "phone": "Phone number",
+  "academicYear": "Academic year",
+  "major": "Major",
+  "bio": "Bio (optional)",
+  "confirmPassword": "Confirm password",
+  "register": "Register",
+  "registering": "Registering...",
+  "passwordsNotMatch": "Passwords do not match.",
+  "studentIdTaken": "Student ID is already taken.",
+  "registerError": "Unable to register. Please try again.",
+  "registerSuccess": "Registered successfully. Please sign in.",
+  "invalidField": "Invalid value.",
+  "haveAccount": "Already have an account? Sign in"
 }

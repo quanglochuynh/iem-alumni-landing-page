@@ -1,6 +1,6 @@
-import { STORAGE_KEY } from '@/constants/storage.constant';
 import { MonitorCog, SunDimIcon, Sunset } from 'lucide-react';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import type { STORAGE_KEY } from '@/constants/storage.constant';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const themeOptions: { name: Theme; icon: any; label: string }[] = [

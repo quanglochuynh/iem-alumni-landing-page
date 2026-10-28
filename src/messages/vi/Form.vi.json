@@ -12,5 +12,22 @@
   "loginError": "Không thể đăng nhập. Vui lòng thử lại.",
   "backToHome": "Về trang chủ",
   "sessionError": "Không thể tải phiên đăng nhập. Vui lòng thử lại.",
-  "retry": "Thử lại"
+  "retry": "Thử lại",
+  "registerTitle": "Tạo tài khoản",
+  "registerDescription": "Đăng ký tài khoản IEM Alumni",
+  "fullName": "Họ và tên",
+  "email": "Email",
+  "phone": "Số điện thoại",
+  "academicYear": "Khóa",
+  "major": "Ngành học",
+  "bio": "Giới thiệu (tùy chọn)",
+  "confirmPassword": "Xác nhận mật khẩu",
+  "register": "Đăng ký",
+  "registering": "Đang đăng ký...",
+  "passwordsNotMatch": "Mật khẩu xác nhận không khớp.",
+  "studentIdTaken": "Mã số sinh viên đã được sử dụng.",
+  "registerError": "Không thể đăng ký. Vui lòng thử lại.",
+  "registerSuccess": "Đăng ký thành công. Vui lòng đăng nhập.",
+  "invalidField": "Giá trị không hợp lệ.",
+  "haveAccount": "Đã có tài khoản? Đăng nhập"
 }

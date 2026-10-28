@@ -1,4 +1,4 @@
-import dayjs, { Dayjs as DayjsDateType } from 'dayjs';
+import dayjs, { type Dayjs as DayjsDateType } from 'dayjs';
 
 import CustomParseFormat from 'dayjs/plugin/customParseFormat';
 import isBetween from 'dayjs/plugin/isBetween';
@@ -32,14 +32,14 @@ export const getTodayDate = (format: DateFormat = DateFormat.DATE): string => {
 
 export const getDateFormatted = (
   date: string | Date | DayjsDateType = new Date(),
-  format: DateFormat = DateFormat.DATE
+  format: DateFormat = DateFormat.DATE,
 ): string => {
   return dayjs(date).isValid() ? dayjs(date).format(format) : '';
 };
 
 export const getLocalDateTime = (
   date: string | Date | DateFormat = new Date(),
-  format: DateFormat = DateFormat.DAY_MONTH_YEAR
+  format: DateFormat = DateFormat.DAY_MONTH_YEAR,
 ): string => {
   return dayjs(date).isValid() ? dayjs.utc(date).local().format(format) : '';
 };

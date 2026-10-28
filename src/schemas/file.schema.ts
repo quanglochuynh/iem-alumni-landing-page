@@ -33,7 +33,7 @@ export const deleteFileSchema = z
     z.object({
       type: z.literal('path'),
       path: z.string(),
-    })
+    }),
   );
 
 export const fileRecordSchema = z.object({

@@ -2,7 +2,7 @@ import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 export async function POST(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   if (!id) {
@@ -12,7 +12,7 @@ export async function POST(
   const { env } = getCloudflareContext();
   const target = new URL(
     `/api/event/${encodeURIComponent(id)}/rsvp`,
-    'https://iem-alumni-admin'
+    'https://iem-alumni-admin',
   );
   const adminRequest = new Request(target, {
     method: 'POST',

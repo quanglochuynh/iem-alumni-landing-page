@@ -12,7 +12,7 @@ interface IDisclosureProps {
   deleteDataAfterClose?: boolean;
 }
 export function useDisclosure<T = unknown>(
-  props?: IDisclosureProps
+  props?: IDisclosureProps,
 ): IDisclosureControls<T> {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState<T | null | undefined>(undefined);

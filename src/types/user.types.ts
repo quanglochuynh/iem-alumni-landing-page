@@ -1,6 +1,6 @@
+import z from 'zod';
 import type { File } from '@/features/gallery/album.type';
 import { registerFormSchema } from '@/features/register/register.schema';
-import z from 'zod';
 
 export const userSessionSchema = registerFormSchema
   .omit({

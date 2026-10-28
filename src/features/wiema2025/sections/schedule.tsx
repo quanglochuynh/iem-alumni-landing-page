@@ -11,12 +11,12 @@ export function Schedule() {
       .map((line, idx) => <li key={idx}>- {line}</li>),
   }));
   return (
-    <div className='container'>
-      <section id='schedule' className='mt-8'>
-        <h2 className='mb-12 text-center text-3xl font-bold'>
+    <div className="container">
+      <section id="schedule" className="mt-8">
+        <h2 className="mb-12 text-center font-bold text-3xl">
           {infoTrans('SCHEDULE.heading')}
         </h2>
-        <div className='grid gap-10 md:grid-cols-2'></div>
+        <div className="grid gap-10 md:grid-cols-2"></div>
         <FocusCards
           cards={items.map((item, idx) => ({
             children: (
@@ -44,10 +44,10 @@ function ScheduleItem({
   activities?: React.ReactNode;
 }) {
   return (
-    <div className='space-y-2 p-4'>
-      <h5 className='text-primary text-sm font-semibold'>{time}</h5>
-      <h3 className='text-xl font-semibold'>{title}</h3>
-      {activities && <ul className='text-primary/80 text-sm'>{activities}</ul>}
+    <div className="space-y-2 p-4">
+      <h5 className="font-semibold text-primary text-sm">{time}</h5>
+      <h3 className="font-semibold text-xl">{title}</h3>
+      {activities && <ul className="text-primary/80 text-sm">{activities}</ul>}
     </div>
   );
 }

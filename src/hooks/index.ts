@@ -1,2 +1,2 @@
-export * from "./disclosure.hook";
-export * from "./i18n";
+export * from './disclosure.hook';
+export * from './i18n';

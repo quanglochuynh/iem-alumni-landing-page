@@ -1,13 +1,13 @@
-import Container from '@/components/common/container';
-import SimpleBreadcrumb from '@/components/common/simple-breadcrumb';
-import { TArticleDetailPreview } from '@/features/article/article.type';
-import { getCommonTranslation } from '@/hooks';
-import { getR2ImageUrl } from '@/lib/cloudflare.helper';
-import { DateFormat, getDateFormatted } from '@/lib/date.util';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import Image from 'next/image';
 import { remark } from 'remark';
 import html from 'remark-html';
+import Container from '@/components/common/container';
+import SimpleBreadcrumb from '@/components/common/simple-breadcrumb';
+import type { TArticleDetailPreview } from '@/features/article/article.type';
+import { getCommonTranslation } from '@/hooks';
+import { getR2ImageUrl } from '@/lib/cloudflare.helper';
+import { DateFormat, getDateFormatted } from '@/lib/date.util';
 
 async function fetchArticleDetail(slug: string) {
   const { env } = getCloudflareContext();
@@ -38,16 +38,16 @@ export default async function ArticleDetailPage({ locale, slug }: Props) {
           { name: commonT('Blogs'), href: '/articles' },
           { name: article.title, href: `/article/${article.slug}` },
         ]}
-        className='mt-4'
+        className="mt-4"
       />
-      <a href={`/article/${article.slug}`} className='no-underline'>
-        <h1 className='my-4 text-4xl font-bold'>{article.title}</h1>
+      <a href={`/article/${article.slug}`} className="no-underline">
+        <h1 className="my-4 font-bold text-4xl">{article.title}</h1>
       </a>
-      <div className='my-4 flex items-center space-x-4 text-gray-500'>
+      <div className="my-4 flex items-center space-x-4 text-gray-500">
         <span>{getDateFormatted(article.createdAt, DateFormat.DATETIME)}</span>
-        <div className='ms-auto flex items-center space-x-2'>
+        <div className="ms-auto flex items-center space-x-2">
           <Image
-            className='h-10 w-10 rounded-full'
+            className="h-10 w-10 rounded-full"
             src={getR2ImageUrl(article.author.avatar?.path || '')}
             alt={article.author.name}
             width={40}
@@ -56,16 +56,16 @@ export default async function ArticleDetailPage({ locale, slug }: Props) {
           <span>{article.author.name}</span>
         </div>
       </div>
-      <p className='text-lg text-gray-600'>{article.description}</p>
+      <p className="text-gray-600 text-lg">{article.description}</p>
       <Image
-        className='my-4 rounded-lg'
+        className="my-4 rounded-lg"
         src={getR2ImageUrl(article.thumbnail.path)}
-        alt=''
+        alt=""
         width={800}
         height={400}
       />
       <div
-        className='md-content mb-16'
+        className="md-content mb-16"
         dangerouslySetInnerHTML={{ __html: article.contentHtml }}
       />
     </Container>

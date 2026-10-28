@@ -1,14 +1,15 @@
 /* eslint-disable react-refresh/only-export-components */
+
+import { createContext, useEffect, useMemo, useState } from 'react';
 import { isPwa } from '@/components/providers/theme-provider/pwa.hook';
 import {
   getBreakpoint,
-  Theme,
+  type Theme,
+  type ThemeProviderProps,
+  type ThemeProviderState,
   themeInitialState,
-  ThemeProviderProps,
-  ThemeProviderState,
 } from '@/components/providers/theme-provider/theme.helper';
 import { STORAGE_KEY, ThemeColor } from '@/constants';
-import { createContext, useEffect, useMemo, useState } from 'react';
 
 export const ThemeProviderContext =
   createContext<ThemeProviderState>(themeInitialState);

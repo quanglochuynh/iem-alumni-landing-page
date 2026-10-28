@@ -1,3 +1,4 @@
+import { type ComponentProps, Fragment } from 'react';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,7 +7,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { ComponentProps, Fragment } from 'react';
 
 type Props = {
   paths: {

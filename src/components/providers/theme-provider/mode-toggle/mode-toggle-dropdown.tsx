@@ -1,5 +1,6 @@
+import { Check } from 'lucide-react';
 import {
-  Theme,
+  type Theme,
   themeOptions,
 } from '@/components/providers/theme-provider/theme.helper';
 import { useTheme } from '@/components/providers/theme-provider/theme.hook';
@@ -9,7 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Check } from 'lucide-react';
 
 type Props = {
   renderButton: (theme: Theme) => React.ReactNode;

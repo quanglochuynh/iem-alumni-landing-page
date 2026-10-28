@@ -1,9 +1,9 @@
+import { Ticket } from 'lucide-react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { AppRoute } from '@/interfaces';
 import { DateFormat, getDateFormatted } from '@/lib/date.util';
-import { Ticket } from 'lucide-react';
-import Link from 'next/link';
 
 type Props = {
   slug: string;
@@ -25,20 +25,20 @@ export default function EventCard({
   endDate,
 }: Props) {
   return (
-    <Card className='pt-0'>
+    <Card className="pt-0">
       <Link href={`${AppRoute.EVENT}/${slug}`}>
-        <img className='rounded-t-xl' src={imageUrl} alt='' />
-        <CardContent className='p-5'>
-          <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
+        <img className="rounded-t-xl" src={imageUrl} alt="" />
+        <CardContent className="p-5">
+          <h5 className="mb-2 font-bold text-2xl text-gray-900 tracking-tight dark:text-white">
             {title}
           </h5>
-          <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {description}
           </p>
-          <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
+          <p className="mb-2 text-gray-500 text-sm dark:text-gray-400">
             {location}
           </p>
-          <p className='text-sm text-gray-500 dark:text-gray-400'>
+          <p className="text-gray-500 text-sm dark:text-gray-400">
             {getDateFormatted(startDate, DateFormat.DATETIME)}
             {endDate
               ? ` - ${getDateFormatted(endDate, DateFormat.DATETIME)}`
@@ -47,15 +47,14 @@ export default function EventCard({
         </CardContent>
       </Link>
 
-        <CardFooter>
-          <Link href={`${AppRoute.EVENT}/${slug}/rspv`}>
-            <Button>
-              <Ticket className='size-4' />
-              RSVP
-            </Button>
-          </Link>
-        </CardFooter>
-
+      <CardFooter>
+        <Link href={`${AppRoute.EVENT}/${slug}/rspv`}>
+          <Button>
+            <Ticket className="size-4" />
+            RSVP
+          </Button>
+        </Link>
+      </CardFooter>
     </Card>
   );
 }

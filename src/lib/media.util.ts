@@ -69,6 +69,6 @@ export function isImage(type: string) {
 
 export function isVideo(type: string) {
   return [MediaFileType.Mov, MediaFileType.Mp4, MediaFileType.Mp3].includes(
-    type as MediaFileType
+    type as MediaFileType,
   );
 }

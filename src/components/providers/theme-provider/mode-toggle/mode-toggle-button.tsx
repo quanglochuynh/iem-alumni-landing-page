@@ -1,6 +1,6 @@
-import ModeToggleDropdown from '@/components/providers/theme-provider/mode-toggle/mode-toggle-dropdown';
-import { Button, ButtonProps } from '@/components/ui/button';
 import { MonitorCog, Sun } from 'lucide-react';
+import ModeToggleDropdown from '@/components/providers/theme-provider/mode-toggle/mode-toggle-dropdown';
+import { Button, type ButtonProps } from '@/components/ui/button';
 
 export default function ModeToggleButton({ ...props }: ButtonProps) {
   return (
