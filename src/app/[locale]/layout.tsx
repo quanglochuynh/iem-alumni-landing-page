@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import PopupModal from '@/features/wiema2025/popup-modal/popup-modal';
-import Footer from '@/features/wiema2025/sections/footer';
 import { getMetadataTranslations } from '@/hooks';
 import { routing } from '@/i18n/routing';
 import type { ILocaleParams } from '@/interfaces';
@@ -83,9 +82,7 @@ export default async function RootLayout({ children, params }: ILocaleParams) {
       >
         <NextIntlClientProvider messages={messages}>
           <PopupModal />
-          {/* <Navbar /> */}
           <main>{children}</main>
-          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

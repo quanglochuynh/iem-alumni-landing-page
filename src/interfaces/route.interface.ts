@@ -1,5 +1,5 @@
 export enum AppRoute {
-  HOME = '/',
+  ROOT = '/',
   CONTACT = '/contact',
   ABOUT = '/about',
   ARTICLES = '/articles',
@@ -10,6 +10,9 @@ export enum AppRoute {
   EVENT = '/event',
   WIEMA2025 = '/wiema2025',
   OUR_PEOPLE = '/our-people',
+  LOGIN = '/login',
+  REGISTER = '/register',
+  HOME = '/home',
 }
 
 export interface INavRoute {

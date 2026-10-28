@@ -1,8 +1,12 @@
 'use client';
 
+import { Ticket } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import type { HTMLAttributes } from 'react';
+import { Button } from '@/components/ui/button';
+import { AppRoute } from '@/interfaces';
 import { cn } from '@/lib/utils';
 
 type Props = HTMLAttributes<HTMLDivElement>;
@@ -46,6 +50,15 @@ export default function HeroSection({ className, ...props }: Props) {
           >
             Reunite, Celebrate, and Ignite the Future of IEM Alumni
           </motion.p>
+          <Link href={AppRoute.LOGIN}>
+            <Button
+              size={'lg'}
+              className="bg-background text-foreground text-lg hover:translate-y-1 hover:bg-background/80 hover:text-foreground"
+            >
+              <Ticket />
+              Join us now
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

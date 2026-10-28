@@ -1,6 +1,7 @@
 'use client';
 
 import Lenis from '@/components/common/lenis';
+import Footer from '@/components/footer';
 import HomeNav from '@/features/home/home-nav';
 import ContactSection from '@/features/home/sections/contact.section';
 import GallerySection from '@/features/home/sections/gallery.section';
@@ -19,6 +20,7 @@ export default function Page() {
         <GallerySection className="mt-32" />
         <ContactSection className="mt-32" />
       </main>
+      <Footer />
     </Lenis>
   );
 }

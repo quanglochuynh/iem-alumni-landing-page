@@ -118,7 +118,6 @@ export default function GallerySection({ className, ...props }: Props) {
                       src={resolveUrl(image.file.path)}
                       alt={`${album.name} ${i + 1}`}
                       fill
-                      // loading="lazy"
                       sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />

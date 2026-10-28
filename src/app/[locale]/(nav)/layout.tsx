@@ -1,4 +1,5 @@
-import Navbar from '@/features/wiema2025/sections/navbar';
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 import type { ILocaleParams } from '@/interfaces';
 
 export default function NavLayout({ children }: ILocaleParams) {
@@ -6,6 +7,7 @@ export default function NavLayout({ children }: ILocaleParams) {
     <div className="min-h-screen">
       <Navbar />
       {children}
+      <Footer />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { AppRoute } from '@/interfaces';
 
 export const NAV_ITEMS = [
-  { href: AppRoute.HOME, label: 'Home' },
+  { href: AppRoute.ROOT, label: 'Home' },
   { href: AppRoute.WIEMA2025, label: 'WIEMA 2025' },
   { href: AppRoute.ARTICLES, label: 'Blogs' },
   { href: AppRoute.CAREERS, label: 'Careers' },
