@@ -39,6 +39,11 @@ Remote images from the demo site are allowed via `next.config.ts` `images.remote
 ## Notes
 
 - This project targets Cloudflare using `@opennextjs/cloudflare`. Use `pnpm preview` to build and preview on Cloudflare.
+- Login uses the `ADMIN_SERVICE` binding configured in `wrangler.jsonc` to
+  reach the admin worker's authentication endpoints. The admin service and
+  its database must be available when running or previewing the login flow.
+  The session is stored in an HTTP-only cookie; selecting "Keep me logged in"
+  also stores a refresh token in the browser.
 
 ## Fonts
 

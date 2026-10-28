@@ -1,9 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
+import { useCallback } from 'react';
 import { apiClient } from '@/components/providers/api-provider/api-client';
 import { authStore } from '@/components/providers/auth-provider/auth.store';
 import { QueryKeys } from '@/constants';
 import type { MeResponse } from '@/types/user.types';
-import { useQuery } from '@tanstack/react-query';
-import { useCallback } from 'react';
 
 async function me() {
   return apiClient.get<MeResponse>('/api/protected/me');
@@ -12,7 +12,7 @@ async function me() {
 export function useFetchMe() {
   const setUserSession = authStore((s) => s.setUserSession);
 
-  const { refetch, isLoading } = useQuery({
+  const { refetch, isFetching } = useQuery({
     queryKey: [QueryKeys.USER_SESSION],
     queryFn: me,
     enabled: false,
@@ -20,13 +20,16 @@ export function useFetchMe() {
   });
 
   const fetchMe = useCallback(async () => {
-    await refetch()
-      .then((data) => {
-        if (!data.data) return;
-        setUserSession(data.data?.data);
-      })
-      .catch();
+    try {
+      const result = await refetch({ throwOnError: true });
+      if (!result.data) {
+        throw new Error('Session response is missing');
+      }
+      setUserSession(result.data.data);
+    } catch {
+      console.log('here');
+    }
   }, [refetch, setUserSession]);
 
-  return { fetchMe, isLoading };
+  return { fetchMe, isLoading: isFetching };
 }

@@ -1,8 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { authStore } from '@/components/providers/auth-provider/auth.store';
+import { useRouter } from '@/i18n/navigation';
 import { AppRoute } from '@/interfaces';
 
 export default function UnAuthenticatedLayout({

@@ -3,16 +3,20 @@ import type { NextRequest } from 'next/server';
 
 async function ALL(req: NextRequest) {
   const { env } = getCloudflareContext();
-  const path = req.nextUrl.pathname;
-  const forwardPath = `${env.ADMIN_SERVICE_URL}${path.split('/api').pop()}`;
+  const target = new URL(
+    `${req.nextUrl.pathname}${req.nextUrl.search}`,
+    'https://iem-alumni-admin',
+  );
 
-  // biome-ignore lint/suspicious/noExplicitAny: check wrangler.jsonc
-  const result: Response = await (env.ADMIN_SERVICE as any).fetch(
-    new Request(forwardPath, {
+  const result = await env.ADMIN_SERVICE.fetch(
+    new Request(target, {
       method: req.method,
       headers: req.headers,
-      body: req.body,
-    })
+      body:
+        req.method === 'GET' || req.method === 'HEAD'
+          ? undefined
+          : await req.arrayBuffer(),
+    }),
   );
 
   return new Response(result.body, result);

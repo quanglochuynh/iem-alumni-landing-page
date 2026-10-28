@@ -1,1 +1,16 @@
-{}
+{
+  "loginTitle": "Welcome back",
+  "loginDescription": "Sign in to IEM Alumni",
+  "studentId": "Student ID",
+  "password": "Password",
+  "keepMeLoggedIn": "Keep me logged in",
+  "signIn": "Sign in",
+  "signingIn": "Signing in...",
+  "invalidStudentId": "Student ID must be at least 3 characters long.",
+  "invalidCredentials": "Invalid student ID or password.",
+  "inactiveAccount": "Your account is not activated.",
+  "loginError": "Unable to sign in. Please try again.",
+  "backToHome": "Back to home",
+  "sessionError": "Unable to load your session. Please try again.",
+  "retry": "Retry"
+}

@@ -10,6 +10,7 @@ import type { ILocaleParams } from '@/interfaces';
 import { cn } from '@/lib/utils';
 import '../globals.css';
 import localFont from 'next/font/local';
+import { Toaster } from 'sonner';
 
 const brodille = localFont({
   src: '../../../public/fonts/Brodille.woff2',
@@ -81,6 +82,12 @@ export default async function RootLayout({ children, params }: ILocaleParams) {
         className={cn(brodille.variable, lexendDeca.variable, 'antialiased')}
       >
         <NextIntlClientProvider messages={messages}>
+          <Toaster
+            closeButton
+            richColors
+            duration={4000}
+            position="top-right"
+          />
           <PopupModal />
           <main>{children}</main>
         </NextIntlClientProvider>

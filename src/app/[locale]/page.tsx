@@ -2,14 +2,14 @@
 
 import Lenis from '@/components/common/lenis';
 import Footer from '@/components/footer';
-import HomeNav from '@/features/home/home-nav';
-import ContactSection from '@/features/home/sections/contact.section';
-import GallerySection from '@/features/home/sections/gallery.section';
-import HeroSection from '@/features/home/sections/hero.section';
-import WhatWeDoSection from '@/features/home/sections/what-we-do.section';
-import WhoWeAreSection from '@/features/home/sections/who-we-are.section';
+import HomeNav from '@/features/root/home-nav';
+import ContactSection from '@/features/root/sections/contact.section';
+import GallerySection from '@/features/root/sections/gallery.section';
+import HeroSection from '@/features/root/sections/hero.section';
+import WhatWeDoSection from '@/features/root/sections/what-we-do.section';
+import WhoWeAreSection from '@/features/root/sections/who-we-are.section';
 
-export default function Page() {
+export default function RootPage() {
   return (
     <Lenis>
       <HomeNav />

@@ -1,1 +1,16 @@
-{}
+{
+  "loginTitle": "Chào mừng trở lại",
+  "loginDescription": "Đăng nhập vào IEM Alumni",
+  "studentId": "Mã số sinh viên",
+  "password": "Mật khẩu",
+  "keepMeLoggedIn": "Duy trì đăng nhập",
+  "signIn": "Đăng nhập",
+  "signingIn": "Đang đăng nhập...",
+  "invalidStudentId": "Mã số sinh viên phải có ít nhất 3 ký tự.",
+  "invalidCredentials": "Mã số sinh viên hoặc mật khẩu không đúng.",
+  "inactiveAccount": "Tài khoản của bạn chưa được kích hoạt.",
+  "loginError": "Không thể đăng nhập. Vui lòng thử lại.",
+  "backToHome": "Về trang chủ",
+  "sessionError": "Không thể tải phiên đăng nhập. Vui lòng thử lại.",
+  "retry": "Thử lại"
+}

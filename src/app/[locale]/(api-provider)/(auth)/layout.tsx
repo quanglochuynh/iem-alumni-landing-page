@@ -1,17 +1,21 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LoadingScreen from '@/components/loading-screen';
 import { useFetchMe } from '@/components/providers/auth-provider/me.hook';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { fetchMe, isLoading } = useFetchMe();
 
+  const [checked, setChecked] = useState(false);
+
   useEffect(() => {
-    fetchMe();
+    fetchMe()
+      .catch(() => {})
+      .finally(() => setChecked(true));
   }, [fetchMe]);
 
-  if (isLoading) {
+  if (!checked || isLoading) {
     return <LoadingScreen />;
   }
 

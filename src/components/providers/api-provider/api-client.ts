@@ -1,9 +1,10 @@
-import { STORAGE_KEY } from '@/constants';
-import { AppRoute } from '@/interfaces';
-import type { RefreshTokenResponse } from '@/types/user.types';
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
+import { authStore } from '@/components/providers/auth-provider/auth.store';
+import { STORAGE_KEY } from '@/constants';
+import type { RefreshTokenResponse } from '@/types/user.types';
 
 const refreshEndpoint = '/api/refresh-token';
+let refreshPromise: Promise<void> | null = null;
 
 export const apiClient = axios.create({
   withCredentials: true,
@@ -12,54 +13,49 @@ export const apiClient = axios.create({
 apiClient.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
-    const originalRequest = error.config as InternalAxiosRequestConfig & {
-      _retry?: boolean;
-    };
+    const request = error.config as
+      | (InternalAxiosRequestConfig & { _retry?: boolean })
+      | undefined;
 
-    // Avoid infinite loop if the refresh request itself fails
-    if (originalRequest.url === refreshEndpoint) {
+    if (
+      !request ||
+      error.response?.status !== 401 ||
+      request._retry ||
+      request.url === refreshEndpoint ||
+      request.url === '/api/login'
+    ) {
       return Promise.reject(error);
     }
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      if (apiClient.defaults.headers.common['isRefreshing']) {
-        return new Promise((resolve) => {
-          const interval = setInterval(() => {
-            if (!apiClient.defaults.headers.common['isRefreshing']) {
-              clearInterval(interval);
-              resolve(apiClient.request(originalRequest));
-            }
-          }, 100);
-        });
-      }
-
-      originalRequest._retry = true;
-      apiClient.defaults.headers.common['isRefreshing'] = true;
-
-      try {
-        const refreshToken = localStorage.getItem(STORAGE_KEY.REFRESH_TOKEN);
-
-        if (!refreshToken) {
-          return Promise.reject(error);
-        }
-        const { data } = await apiClient.post<RefreshTokenResponse>(
-          refreshEndpoint,
-          {
-            refreshToken,
-          }
-        );
-
-        localStorage.setItem(STORAGE_KEY.REFRESH_TOKEN, data.refreshToken);
-        return apiClient.request(originalRequest);
-      } catch (refreshError) {
-        localStorage.removeItem(STORAGE_KEY.REFRESH_TOKEN);
-        window.location.href = AppRoute.LOGIN;
-        return Promise.reject(refreshError);
-      } finally {
-        delete apiClient.defaults.headers.common['isRefreshing'];
-      }
+    request._retry = true;
+    const refreshToken = localStorage.getItem(STORAGE_KEY.REFRESH_TOKEN);
+    if (!refreshToken) {
+      authStore.getState().logout();
+      return Promise.reject(error);
     }
 
-    return Promise.reject(error);
-  }
+    if (!refreshPromise) {
+      refreshPromise = apiClient
+        .post<RefreshTokenResponse>(refreshEndpoint, { refreshToken })
+        .then(({ data }) => {
+          localStorage.setItem(STORAGE_KEY.REFRESH_TOKEN, data.refreshToken);
+        })
+        .catch((refreshError: unknown) => {
+          if (
+            axios.isAxiosError(refreshError) &&
+            refreshError.response?.status === 401
+          ) {
+            localStorage.removeItem(STORAGE_KEY.REFRESH_TOKEN);
+            authStore.getState().logout();
+          }
+          throw refreshError;
+        })
+        .finally(() => {
+          refreshPromise = null;
+        });
+    }
+
+    await refreshPromise;
+    return apiClient.request(request);
+  },
 );

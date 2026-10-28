@@ -1,5 +1,5 @@
-import { MeResponse } from '@common/types/user.types';
 import { create } from 'zustand';
+import type { MeResponse } from '@/types/user.types';
 
 type AuthStore = {
   userSession: MeResponse | null;
