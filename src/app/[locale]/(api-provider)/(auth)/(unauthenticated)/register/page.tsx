@@ -76,7 +76,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
+    <div className="flex min-h-screen w-100 items-center justify-center p-4">
       <div className="w-full max-w-md rounded-xl border bg-background p-6 shadow-sm sm:p-8">
         <h1 className="text-center font-bold text-3xl">{t('registerTitle')}</h1>
         <p className="mt-2 text-center text-muted-foreground text-sm">

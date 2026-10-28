@@ -19,5 +19,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return <LoadingScreen />;
   }
 
-  return <section>{children}</section>;
+  return children;
 }

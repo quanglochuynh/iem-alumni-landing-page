@@ -5,6 +5,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -24,6 +25,8 @@ export default function ApiProvider({
   children: React.ReactNode;
 }) {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <AuroraBackground>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </AuroraBackground>
   );
 }
