@@ -32,4 +32,7 @@ export type RefreshTokenResponse = {
   refreshToken: string;
 };
 
-export type MeResponse = Omit<UserSession, 'avatar'> & { avatar: File | null };
+export type MeResponse = Omit<UserSession, 'avatar'> & {
+  avatar: File | null;
+  clientCode: string;
+};
