@@ -26,9 +26,7 @@ export function useFetchMe() {
         throw new Error('Session response is missing');
       }
       setUserSession(result.data.data);
-    } catch {
-      console.log('here');
-    }
+    } catch {}
   }, [refetch, setUserSession]);
 
   return { fetchMe, isLoading: isFetching };

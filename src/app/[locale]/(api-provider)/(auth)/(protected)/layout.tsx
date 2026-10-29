@@ -20,5 +20,5 @@ export default function ProtectedLayout({
     }
   }, [userSession, router]);
 
-  return <section>{children}</section>;
+  return <section className="z-10 size-full">{children}</section>;
 }

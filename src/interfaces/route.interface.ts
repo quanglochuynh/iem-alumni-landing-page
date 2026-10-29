@@ -13,6 +13,7 @@ export enum AppRoute {
   LOGIN = '/login',
   REGISTER = '/register',
   HOME = '/home',
+  ACTIVATE_ACCOUNT = '/activate-account',
 }
 
 export interface INavRoute {

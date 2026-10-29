@@ -48,6 +48,12 @@ export default function RSVPForm({ eventId }: Props) {
 
     setStatus('submitting');
     const bio = String(formData.get('bio') ?? '').trim();
+    const facebookProfile = String(
+      formData.get('facebookProfile') ?? '',
+    ).trim();
+    const linkedinProfile = String(
+      formData.get('linkedinProfile') ?? '',
+    ).trim();
     const payload = {
       name: String(formData.get('name') ?? '').trim(),
       email: String(formData.get('email') ?? '').trim(),
@@ -55,9 +61,9 @@ export default function RSVPForm({ eventId }: Props) {
       studentId: String(formData.get('studentId') ?? '').trim(),
       password,
       confirmPassword,
-      academicYear: Number(formData.get('academicYear')),
-      major: String(formData.get('major') ?? '').trim(),
       ...(bio ? { bio } : {}),
+      ...(facebookProfile ? { facebookProfile } : {}),
+      ...(linkedinProfile ? { linkedinProfile } : {}),
     };
 
     try {
@@ -157,40 +163,6 @@ export default function RSVPForm({ eventId }: Props) {
       </div>
 
       <div className="space-y-2">
-        <label
-          className="block font-medium text-sm"
-          htmlFor="rsvp-academic-year"
-        >
-          {commonT('RSVP academic year')}
-        </label>
-        <input
-          className="h-10 w-full rounded-md border bg-background px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          disabled={isSubmitting || isComplete}
-          id="rsvp-academic-year"
-          min={1}
-          name="academicYear"
-          required
-          step={1}
-          type="number"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <label className="block font-medium text-sm" htmlFor="rsvp-major">
-          {commonT('RSVP major')}
-        </label>
-        <input
-          className="h-10 w-full rounded-md border bg-background px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          disabled={isSubmitting || isComplete}
-          id="rsvp-major"
-          maxLength={100}
-          minLength={1}
-          name="major"
-          required
-        />
-      </div>
-
-      <div className="space-y-2">
         <label className="block font-medium text-sm" htmlFor="rsvp-bio">
           {commonT('RSVP bio')}
         </label>
@@ -200,6 +172,32 @@ export default function RSVPForm({ eventId }: Props) {
           id="rsvp-bio"
           maxLength={500}
           name="bio"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label className="block font-medium text-sm" htmlFor="rsvp-facebook">
+          {commonT('RSVP facebook profile')}
+        </label>
+        <input
+          className="h-10 w-full rounded-md border bg-background px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          disabled={isSubmitting || isComplete}
+          id="rsvp-facebook"
+          name="facebookProfile"
+          type="url"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label className="block font-medium text-sm" htmlFor="rsvp-linkedin">
+          {commonT('RSVP linkedin profile')}
+        </label>
+        <input
+          className="h-10 w-full rounded-md border bg-background px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          disabled={isSubmitting || isComplete}
+          id="rsvp-linkedin"
+          name="linkedinProfile"
+          type="url"
         />
       </div>
 

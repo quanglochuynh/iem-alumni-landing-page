@@ -2,23 +2,25 @@ import z from 'zod';
 import { fileRecordSchema } from '@/schemas/file.schema';
 import { createMediaArraySchema } from '@/schemas/media-schema.zod';
 
+const socialProfileSchema = z
+  .union([z.url({ protocol: /^https?$/ }), z.literal('')])
+  .optional();
+
 export const registerFormSchema = z.object({
   name: z.string().min(1).max(100),
   password: z.string().min(6).max(100),
   confirmPassword: z.string().min(6).max(100),
   email: z.email(),
   phone: z.string().min(10).max(15),
-  academicYear: z.coerce.number().positive(),
-  major: z.string().min(1).max(100),
-  bio: z.string().min(1).max(500).optional(),
+  bio: z.string().max(500).optional(),
+  facebookProfile: socialProfileSchema,
+  linkedinProfile: socialProfileSchema,
   studentId: z.string().min(1).max(20),
 });
 
 export const registerFormSchemaWithRefine = registerFormSchema.refine(
   (data) => data.password === data.confirmPassword,
-  {
-    message: 'Passwords do not match',
-  },
+  { path: ['confirmPassword'] },
 );
 
 export type RegisterFormData = z.infer<typeof registerFormSchema>;
@@ -29,9 +31,9 @@ export const registerFormInitialValues: RegisterFormData = {
   confirmPassword: '',
   email: '',
   phone: '',
-  academicYear: 2022,
-  major: '',
   bio: '',
+  facebookProfile: '',
+  linkedinProfile: '',
   studentId: '',
 };
 
@@ -41,7 +43,6 @@ export const updateProfileFormSchemaClient = registerFormSchema
     studentId: true,
     password: true,
     confirmPassword: true,
-    academicYear: true,
   })
   .extend({
     id: z.cuid2(),
@@ -60,6 +61,8 @@ export const updateProfileFormInitialValues: UpdateProfileFormDataClient = {
   password: '',
   confirmPassword: '',
   avatar: [],
+  facebookProfile: '',
+  linkedinProfile: '',
 };
 
 export const updateProfileFormSchemaServer = updateProfileFormSchemaClient

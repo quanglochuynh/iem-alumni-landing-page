@@ -1,15 +1,23 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useTranslations } from 'next-intl';
-import { type FormEvent, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import CheckboxForm from '@/components/forms/checkbox-form';
+import InputForm from '@/components/forms/input-form';
 import { apiClient } from '@/components/providers/api-provider/api-client';
 import { useFetchMe } from '@/components/providers/auth-provider/me.hook';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { STORAGE_KEY } from '@/constants';
 import { Link } from '@/i18n/navigation';
 import { AppRoute } from '@/interfaces';
+import {
+  createLoginFormSchema,
+  type LoginFormData,
+  loginFormInitialValues,
+} from '@/schemas/login-form.schema';
 import type { LoginResponse } from '@/types/user.types';
 
 type LoginError =
@@ -21,29 +29,29 @@ type LoginError =
 export default function LoginPage() {
   const t = useTranslations('Form');
   const { fetchMe } = useFetchMe();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<LoginError | null>(null);
+  const schema = useMemo(
+    () =>
+      createLoginFormSchema({
+        invalidStudentId: t('invalidStudentId'),
+        invalidPassword: t('invalidPassword'),
+      }),
+    [t],
+  );
+  const { control, handleSubmit, formState } = useForm<LoginFormData>({
+    resolver: zodResolver(schema),
+    defaultValues: loginFormInitialValues,
+  });
+  const isSubmitting = formState.isSubmitting;
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (isSubmitting) return;
-
-    const formData = new FormData(event.currentTarget);
-    const studentId = String(formData.get('studentId') ?? '').trim();
-    if (studentId.length < 3) {
-      setError('invalidStudentId');
-      return;
-    }
-
-    setIsSubmitting(true);
+  async function onSubmit(values: LoginFormData) {
     setError(null);
     let loginCompleted = false;
     try {
-      const { data } = await apiClient.post<LoginResponse>('/api/login', {
-        studentId,
-        password: String(formData.get('password') ?? ''),
-        keepMeLoggedIn: true,
-      });
+      const { data } = await apiClient.post<LoginResponse>(
+        '/api/login',
+        values,
+      );
       loginCompleted = true;
 
       if (data.refreshToken) {
@@ -64,56 +72,42 @@ export default function LoginPage() {
             ? 'inactiveAccount'
             : 'loginError',
       );
-    } finally {
-      setIsSubmitting(false);
     }
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
-      <div className="w-full max-w-md rounded-xl border bg-background p-6 shadow-sm sm:p-8">
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="mx-2 w-full max-w-full rounded-xl border bg-background p-6 shadow-sm sm:p-8 md:w-100">
         <h1 className="text-center font-bold text-3xl">{t('loginTitle')}</h1>
         <p className="mt-2 text-center text-muted-foreground text-sm">
           {t('loginDescription')}
         </p>
         <form
           className="mt-8 space-y-5"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           aria-busy={isSubmitting}
         >
-          <div className="space-y-2">
-            <label
-              className="block font-medium text-sm"
-              htmlFor="login-student-id"
-            >
-              {t('studentId')}
-            </label>
-            <Input
-              autoComplete="username"
-              disabled={isSubmitting}
-              id="login-student-id"
-              minLength={3}
-              name="studentId"
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <label
-              className="block font-medium text-sm"
-              htmlFor="login-password"
-            >
-              {t('password')}
-            </label>
-            <Input
-              autoComplete="current-password"
-              disabled={isSubmitting}
-              id="login-password"
-              minLength={6}
-              name="password"
-              required
-              type="password"
-            />
-          </div>
+          <InputForm
+            control={control}
+            name="studentId"
+            label={t('studentId')}
+            autoComplete="username"
+            disabled={isSubmitting}
+          />
+          <InputForm
+            control={control}
+            name="password"
+            label={t('password')}
+            type="password"
+            autoComplete="current-password"
+            disabled={isSubmitting}
+          />
+          <CheckboxForm
+            control={control}
+            name="keepMeLoggedIn"
+            label={t('keepMeLoggedIn')}
+            disabled={isSubmitting}
+          />
           {error && (
             <p className="text-destructive text-sm" role="alert">
               {t(error)}
