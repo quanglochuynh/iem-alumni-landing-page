@@ -1,11 +1,9 @@
-import { useMediaStore } from '@/components/common/media-preview/media-store';
-import { Button } from '@/components/ui/button';
-import { getR2ImageUrl } from '@/lib';
-import { handleDownloadFile } from '@/lib/download.util';
-import { isImage, isVideo } from '@common/utils/media.util';
 import { Download } from 'lucide-react';
 import { toast } from 'sonner';
-import Modal from '../modal';
+import { useMediaStore } from '@/components/common/media-preview/media-store';
+import Modal from '@/components/common/modal';
+import Button from '@/components/common/overridden/button';
+import { getR2ImageUrl, handleDownloadFile, isImage, isVideo } from '@/lib';
 
 export default function ImagePreviewModal() {
   const { current: media, setCurrent } = useMediaStore();
@@ -60,8 +58,9 @@ export default function ImagePreviewModal() {
           {!isImage(media.dto.type) && !isVideo(media.dto.type) && (
             <div className="flex justify-center p-4">
               <button
+                type="button"
                 onClick={handleDownload}
-                className="hover:bg-accent/20 text-accent flex cursor-pointer flex-col items-center justify-center rounded-lg p-4"
+                className="flex cursor-pointer flex-col items-center justify-center rounded-lg p-4 text-accent hover:bg-accent/20"
               >
                 <Download className="mr-2 size-20" />
                 Tải tệp xuống
