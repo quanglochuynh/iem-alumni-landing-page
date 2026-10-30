@@ -1,6 +1,6 @@
 import z from 'zod';
-import type { File } from '@/features/gallery/album.type';
 import { registerFormSchema } from '@/features/register/register.schema';
+import type { TFileRecord } from '@/schemas/file.schema';
 
 export const userSessionSchema = registerFormSchema
   .omit({
@@ -33,6 +33,6 @@ export type RefreshTokenResponse = {
 };
 
 export type MeResponse = Omit<UserSession, 'avatar'> & {
-  avatar: File | null;
+  avatar: TFileRecord | null;
   clientCode: string;
 };

@@ -3,11 +3,8 @@
 import { Ticket } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { apiClient } from '@/components/providers/api-provider/api-client';
-import { authStore } from '@/components/providers/auth-provider/auth.store';
 import { DateFormat, getDateFormatted } from '@/lib/date.util';
 
 type Props = {
@@ -19,6 +16,7 @@ type Props = {
   startDate: Date;
   endDate: Date | null;
   href: string;
+  registered: boolean;
   rspvHref: string;
 };
 
@@ -32,46 +30,42 @@ export default function EventCard({
   endDate,
   href,
   rspvHref,
+  registered,
 }: Props) {
-  const userSession = authStore((state) => state.userSession);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isCheckingRegisterStatus, setIsCheckingRegisterStatus] =
-    useState(false);
+  // useEffect(() => {
+  //   if (!userSession) {
+  //     setIsRegistered(false);
+  //     setIsCheckingRegisterStatus(false);
+  //     return;
+  //   }
 
-  useEffect(() => {
-    if (!userSession) {
-      setIsRegistered(false);
-      setIsCheckingRegisterStatus(false);
-      return;
-    }
+  //   let isMounted = true;
+  //   setIsCheckingRegisterStatus(true);
 
-    let isMounted = true;
-    setIsCheckingRegisterStatus(true);
+  //   apiClient
+  //     .get<{ registered: boolean }>(
+  //       `/api/protected/event/${encodeURIComponent(slug)}/rsvp-status`,
+  //     )
+  //     .then(({ data }) => {
+  //       if (isMounted) {
+  //         setIsRegistered(Boolean(data.registered));
+  //       }
+  //     })
+  //     .catch(() => {
+  //       if (isMounted) {
+  //         setIsRegistered(false);
+  //       }
+  //     })
+  //     .finally(() => {
+  //       if (isMounted) {
+  //         setIsCheckingRegisterStatus(false);
+  //       }
+  //     });
 
-    apiClient
-      .get<{ registered: boolean }>(
-        `/api/protected/event/${encodeURIComponent(slug)}/rsvp-status`,
-      )
-      .then(({ data }) => {
-        if (isMounted) {
-          setIsRegistered(Boolean(data.registered));
-        }
-      })
-      .catch(() => {
-        if (isMounted) {
-          setIsRegistered(false);
-        }
-      })
-      .finally(() => {
-        if (isMounted) {
-          setIsCheckingRegisterStatus(false);
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [slug, userSession]);
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, [slug, userSession]);
 
   return (
     <Card className="pt-0">
@@ -103,12 +97,10 @@ export default function EventCard({
       </Link>
 
       <CardFooter>
-        {isRegistered ? (
+        {registered ? (
           <p className="text-muted-foreground text-sm">
             You already registered for this event.
           </p>
-        ) : isCheckingRegisterStatus ? (
-          <p className="text-muted-foreground text-sm">Checking RSVP status...</p>
         ) : (
           <Link href={rspvHref}>
             <Button>

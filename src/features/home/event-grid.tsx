@@ -31,6 +31,7 @@ export default function EventGrid({
           endDate={event.endDate}
           href={`/home/event/${event.slug}`}
           rspvHref={`/home/event/${event.slug}`}
+          registered={Boolean(event?.registrations)}
         />
       ))}
     </div>

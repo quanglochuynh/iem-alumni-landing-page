@@ -17,6 +17,7 @@ export interface TEventPreview {
   createdAt: Date;
   updatedAt: Date;
   thumbnail: TEventThumbnail | null;
+  registrations: TRegistration | null;
 }
 
 export interface TEventDetailPreview {
@@ -34,4 +35,13 @@ export interface TEventDetailPreview {
   createdAt: Date;
   updatedAt: Date;
   thumbnail: TEventThumbnail | null;
+  registrations: TRegistration | null;
+}
+
+export interface TRegistration {
+  id: string;
+  eventId: string;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -51,6 +51,12 @@ export const updateProfileFormSchemaClient = registerFormSchema
     avatar: createMediaArraySchema({ min: 0, max: 1 }),
   });
 
+export const updateProfileFormSchemaClientWithRefine =
+  updateProfileFormSchemaClient.refine(
+    (data) => data.password === data.confirmPassword,
+    { path: ['confirmPassword'] },
+  );
+
 export type UpdateProfileFormDataClient = z.infer<
   typeof updateProfileFormSchemaClient
 >;
