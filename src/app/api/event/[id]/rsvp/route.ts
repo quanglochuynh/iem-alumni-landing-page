@@ -11,16 +11,19 @@ export async function POST(
 
   const { env } = getCloudflareContext();
   const target = new URL(
-    `/api/event/${encodeURIComponent(id)}/rsvp`,
+    `/api/protected/event/${encodeURIComponent(id)}/rsvp`,
     'https://iem-alumni-admin',
   );
+  const cookie = request.headers.get('Cookie');
   const adminRequest = new Request(target, {
     method: 'POST',
     headers: {
       'Content-Type': request.headers.get('Content-Type') ?? 'application/json',
+      ...(cookie ? { Cookie: cookie } : {}),
     },
     body: await request.arrayBuffer(),
   });
 
-  return env.ADMIN_SERVICE.fetch(adminRequest);
+  const result = await env.ADMIN_SERVICE.fetch(adminRequest);
+  return new Response(result.body, result);
 }

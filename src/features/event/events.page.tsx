@@ -75,6 +75,8 @@ export default async function EventsPage(props: { locale: string }) {
                 location={event.location}
                 startDate={event.startDate}
                 endDate={event.endDate}
+                href={`/event/${event.slug}`}
+                rspvHref={`/home/event/${event.slug}/rsvp`}
               />
             ))}
           </div>
@@ -96,6 +98,8 @@ export default async function EventsPage(props: { locale: string }) {
                 location={event.location}
                 startDate={event.startDate}
                 endDate={event.endDate}
+                href={`/event/${event.slug}`}
+                rspvHref={`/event/${event.slug}/rsvp`}
               />
             ))}
           </div>

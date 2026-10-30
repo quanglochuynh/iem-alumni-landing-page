@@ -5,7 +5,6 @@ import html from 'remark-html';
 import Container from '@/components/common/container';
 import SimpleBreadcrumb from '@/components/common/simple-breadcrumb';
 import type { TEventDetailPreview } from '@/features/event/event.type';
-import { getCommonTranslation } from '@/hooks';
 import { getR2ImageUrl } from '@/lib/cloudflare.helper';
 import { DateFormat, getDateFormatted } from '@/lib/date.util';
 
@@ -24,18 +23,22 @@ async function fetchEventDetail(slug: string) {
 type Props = {
   locale: string;
   slug: string;
+  basePaths: { name: string; href: string }[];
+  renderRSVPForm?: (eventId: string) => React.ReactNode;
 };
 
-export default async function EventDetailPage({ locale, slug }: Props) {
-  const commonT = await getCommonTranslation(locale);
+export default async function EventDetailPage({
+  slug,
+  basePaths,
+  renderRSVPForm,
+}: Props) {
   const event = await fetchEventDetail(slug);
 
   return (
     <Container>
       <SimpleBreadcrumb
         paths={[
-          { name: commonT('Home'), href: '/' },
-          { name: commonT('Events'), href: '/events' },
+          ...basePaths,
           { name: event.title, href: `/event/${event.slug}` },
         ]}
         className="mt-4"
@@ -67,6 +70,7 @@ export default async function EventDetailPage({ locale, slug }: Props) {
         // biome-ignore lint/security/noDangerouslySetInnerHtml: This is safe because this page is SSR and the content is processed with remark
         dangerouslySetInnerHTML={{ __html: event.contentHtml }}
       />
+      {renderRSVPForm?.(event.id)}
     </Container>
   );
 }

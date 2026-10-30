@@ -29,6 +29,8 @@ export default function EventGrid({
           location={event.location}
           startDate={event.startDate}
           endDate={event.endDate}
+          href={`/home/event/${event.slug}`}
+          rspvHref={`/home/event/${event.slug}`}
         />
       ))}
     </div>

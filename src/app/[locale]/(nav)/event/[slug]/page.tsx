@@ -7,5 +7,14 @@ export default async function Page({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  return <EventDetailPage locale={locale} slug={slug} />;
+  return (
+    <EventDetailPage
+      locale={locale}
+      slug={slug}
+      basePaths={[
+        { name: 'Home', href: '/' },
+        { name: 'Events', href: '/events' },
+      ]}
+    />
+  );
 }
