@@ -12,6 +12,7 @@ export enum AppRoute {
   LOGIN = '/login',
   REGISTER = '/register',
   HOME = '/home',
+  MY_CONTACT = '/my-contact',
   ACTIVATE_ACCOUNT = '/activate-account',
 }
 

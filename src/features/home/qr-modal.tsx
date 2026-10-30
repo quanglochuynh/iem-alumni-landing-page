@@ -32,7 +32,12 @@ export default function QrModal({ disclosure }: Props) {
     >
       <div className="flex justify-center">
         {qrData ? (
-          <img src={qrData} alt="Your QR Code" className="size-64" />
+          <div className="flex flex-col items-center">
+            <img src={qrData} alt="Your QR Code" className="size-64" />
+            <p className="mt-4 text-muted-foreground text-xs italic">
+              {disclosure.data?.href}
+            </p>
+          </div>
         ) : (
           <Spinner />
         )}

@@ -6,6 +6,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const containerSizes = {
+  sm: 'mx-auto w-full px-4 sm:w-11/12 md:w-1/2 lg:w-1/3 xl:w-1/4',
   md: 'mx-auto w-full px-4 sm:w-11/12 md:w-5/6 lg:w-4/6 xl:w-1/2',
   lg: 'mx-auto w-full px-4 sm:w-11/12 md:w-5/6 lg:w-4/5 xl:w-2/3',
   xl: 'mx-auto w-full px-4 lg:w-4/5 xl:w-2/3',

@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { authStore } from '@/components/providers/auth-provider/auth.store';
 import { useRouter } from '@/i18n/navigation';
@@ -12,12 +13,18 @@ export default function UnAuthenticatedLayout({
 }) {
   const userSession = authStore((state) => state.userSession);
   const router = useRouter();
+  const redirectTo = useSearchParams().get('redirect');
 
   useEffect(() => {
     if (userSession) {
-      router.replace(AppRoute.HOME);
+      // Only allow same-site relative paths to avoid open redirects
+      const isSafe =
+        redirectTo?.startsWith('/') &&
+        !redirectTo.startsWith('//') &&
+        !redirectTo.includes('\\');
+      router.replace(isSafe && redirectTo ? redirectTo : AppRoute.HOME);
     }
-  }, [userSession, router]);
+  }, [userSession, router, redirectTo]);
 
   return <section className="z-10 size-full">{children}</section>;
 }

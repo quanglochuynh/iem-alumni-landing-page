@@ -7,3 +7,4 @@ export * from './media.util';
 export * from './qr.util';
 export * from './rich-text.util';
 export * from './utils';
+export * from './vcard.util';

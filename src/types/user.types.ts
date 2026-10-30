@@ -32,6 +32,20 @@ export type RefreshTokenResponse = {
   refreshToken: string;
 };
 
+export type ContactResponse = {
+  name: string;
+  avatar: TFileRecord | null;
+  isAuthenticated: boolean;
+  details?: {
+    email: string;
+    phone: string;
+    studentId: string;
+    bio?: string;
+    facebookProfile?: string;
+    linkedinProfile?: string;
+  };
+};
+
 export type MeResponse = Omit<UserSession, 'avatar'> & {
   avatar: TFileRecord | null;
   clientCode: string;

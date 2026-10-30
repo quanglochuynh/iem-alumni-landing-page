@@ -16,7 +16,8 @@ repositories:
 | Articles, careers, events               | Admin Worker, backed by Cloudflare D1                | Read server-side for listing and detail pages                        |
 | Images and uploaded files               | Cloudflare R2, managed by the admin Worker           | Referenced by file path and rendered from the configured R2 base URL |
 | UI text and translations                | `src/messages/` and `src/i18n/` in this repository   | Selected using the route locale                                      |
-| Event registrations                     | Admin Worker's public RSVP API, backed by D1         | Submitted from the landing page's RSVP form                          |
+| Event registrations and RSVP status     | Admin Worker's protected HTTP API, backed by D1      | Requested by signed-in users from the event RSVP UI                  |
+| User profile                            | Admin Worker's protected `/api/protected/me`, D1     | Read into the auth store; updated from the home page's edit modal    |
 
 ## Request and storage flow
 
@@ -80,12 +81,31 @@ These pages do not use the admin service as a content-management source.
 - `src/lib/cloudflare.helper.ts` turns a file path into a URL using
   `NEXT_PUBLIC_R2_BASE_URL`. Configure that value for the desired public R2
   delivery host in each landing-page environment.
-- The admin Worker exposes `POST /api/event/:id/rsvp` and stores registrations
-  in D1's `EventRegistration` table. The landing page's event RSVP form submits
-  the registration fields `name`, `email`, `phone`, `studentId`, `password`,
-  `confirmPassword`, `academicYear`, and `major`, plus optional `bio`, to its
-  same-origin `/api/event/:id/rsvp` route, which forwards the request through
-  the `ADMIN_SERVICE` binding.
+- RSVP requires a signed-in user. The admin Worker authenticates
+  `/api/protected/*` routes with the `session` cookie and stores registrations
+  in D1's `EventRegistration` table (unique per event and user). No user
+  details are submitted with an RSVP; the registration uses the signed-in user.
+- RSVP endpoints (event `:id` may be an id or a slug):
+  - `POST /api/protected/event/:id/rsvp` registers the user. It returns 201,
+    409 if already registered, 401 if not signed in, and 404 for an unknown or
+    inactive event. The landing page calls it through its same-origin
+    `/api/event/:id/rsvp` route, which forwards the cookie via `ADMIN_SERVICE`.
+  - `GET /api/protected/event/:id/rsvp-status` returns `{ registered: boolean }`.
+    The event card and RSVP form use it to show an "already registered"
+    message instead of the RSVP button.
+  - `GET /api/protected/events` lists active events excluding those the user
+    has registered for; `GET /api/protected/my-events` lists the registered
+    ones. The home page shows these in separate sections.
+- Profile: `GET /api/protected/me` returns the user's profile and
+  `PATCH /api/protected/me` updates name, password, avatar, and social links.
+  The home page's "Edit my info" modal (`src/features/home/update-info-modal.tsx`,
+  react-hook-form + zod) uploads the avatar to R2, sends the PATCH, then
+  refreshes the auth store.
+- Contact: the home page's QR encodes `/{locale}/my-contact?code=<clientCode>`.
+  The page calls the public `GET /api/contact/:clientCode`. Anonymous callers
+  get only name and avatar; signed-in callers also get email, phone, student
+  id, bio and social links, and can download a vCard to add the contact.
+  Anonymous users are sent to `/login?redirect=...` and returned afterwards.
 
 ## Configuration to keep aligned
 

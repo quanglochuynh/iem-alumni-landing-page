@@ -1,5 +1,6 @@
 'use client';
 
+import { useLocale } from 'next-intl';
 import { LogOut, QrCode } from 'lucide-react';
 import Container from '@/components/common/container';
 import DynamicAvatar from '@/components/common/overridden/avatar';
@@ -13,10 +14,12 @@ import QrModal from '@/features/home/qr-modal';
 import UpdateInfoModal from '@/features/home/update-info-modal';
 import UserDetailsCard from '@/features/home/user-details-card';
 import { useDisclosure } from '@/hooks';
+import { AppRoute } from '@/interfaces';
 import { getR2ImageUrl } from '@/lib/cloudflare.helper';
 
 export default function HomePage() {
   const { logout } = useLogout();
+  const locale = useLocale();
   const user = authStore((s) => s.userSession);
   const events = useEvents(false);
   const qrDisclosure = useDisclosure<{ href: string }>();
@@ -49,7 +52,9 @@ export default function HomePage() {
               <Button
                 icon={QrCode}
                 onClick={() =>
-                  qrDisclosure.open({ href: user?.clientCode || '' })
+                  qrDisclosure.open({
+                    href: `${window.location.origin}/${locale}${AppRoute.MY_CONTACT}?code=${user?.clientCode ?? ''}`,
+                  })
                 }
               >
                 My QR
