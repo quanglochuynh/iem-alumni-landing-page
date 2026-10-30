@@ -4,8 +4,10 @@ import { Ticket } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { HTMLAttributes } from 'react';
-import { Button } from '@/components/ui/button';
+import { type HTMLAttributes, useEffect } from 'react';
+import Button from '@/components/common/overridden/button';
+import { me } from '@/components/providers/auth-provider/auth.api';
+import { authStore } from '@/components/providers/auth-provider/auth.store';
 import { AppRoute } from '@/interfaces';
 import { cn } from '@/lib/utils';
 
@@ -14,6 +16,13 @@ type Props = HTMLAttributes<HTMLDivElement>;
 export default function HeroSection({ className, ...props }: Props) {
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 600], [0, 200]);
+  const user = authStore((s) => s.userSession);
+
+  useEffect(() => {
+    me().then((response) => {
+      authStore.getState().setUserSession(response.data);
+    });
+  }, []);
 
   return (
     <section
@@ -50,15 +59,24 @@ export default function HeroSection({ className, ...props }: Props) {
           >
             Reunite, Celebrate, and Ignite the Future of IEM Alumni
           </motion.p>
-          <Link href={AppRoute.LOGIN}>
-            <Button
-              size={'lg'}
-              className="bg-background text-foreground text-lg hover:translate-y-1 hover:bg-background/80 hover:text-foreground"
-            >
-              <Ticket />
-              Join us now
-            </Button>
-          </Link>
+          {!user && (
+            <Link href={AppRoute.LOGIN}>
+              <Button size={'lg'} variant={'secondary'}>
+                <Ticket />
+                Join us now
+              </Button>
+            </Link>
+          )}
+          {user && (
+            <>
+              <p className="text-lg md:text-2xl">Welcome back, {user.name}!</p>
+              <Link href={AppRoute.HOME}>
+                <Button size={'lg'} variant={'secondary'} className="mt-4">
+                  Go to Home
+                </Button>
+              </Link>
+            </>
+          )}
         </motion.div>
       </div>
     </section>

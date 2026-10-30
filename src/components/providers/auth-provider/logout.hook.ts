@@ -2,14 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { apiClient } from '@/components/providers/api-provider/api-client';
+import { logout } from '@/components/providers/auth-provider/auth.api';
 import { authStore } from '@/components/providers/auth-provider/auth.store';
 import { STORAGE_KEY } from '@/constants';
 import { AppRoute } from '@/interfaces';
-
-function logout() {
-  return apiClient.get('/api/logout');
-}
 
 export function useLogout() {
   // const navigate = useNavigate();
@@ -25,7 +21,7 @@ export function useLogout() {
     },
     onSuccess: () => {
       logoutAuth();
-      router.replace(AppRoute.LOGIN);
+      router.replace(AppRoute.ROOT);
       localStorage.removeItem(STORAGE_KEY.REFRESH_TOKEN);
     },
   });

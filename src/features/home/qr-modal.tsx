@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import Modal from '@/components/common/modal';
 import { Spinner } from '@/components/ui/spinner';

@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 type Props = ComponentProps<'div'>;
 
 const navLinks = [
-  { href: AppRoute.OUR_PEOPLE, label: 'Our People' },
   { href: AppRoute.WIEMA2025, label: 'WIEMA 2025' },
   {
     href: AppRoute.EVENTS,

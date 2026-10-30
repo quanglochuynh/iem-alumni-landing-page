@@ -1,13 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
-import { apiClient } from '@/components/providers/api-provider/api-client';
+import { me } from '@/components/providers/auth-provider/auth.api';
 import { authStore } from '@/components/providers/auth-provider/auth.store';
 import { QueryKeys } from '@/constants';
-import type { MeResponse } from '@/types/user.types';
-
-async function me() {
-  return apiClient.get<MeResponse>('/api/protected/me');
-}
 
 export function useFetchMe() {
   const setUserSession = authStore((s) => s.setUserSession);

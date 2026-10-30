@@ -1,3 +1,5 @@
+'use client';
+
 import type { DialogContentProps, DialogProps } from '@radix-ui/react-dialog';
 import {
   Dialog,
@@ -39,7 +41,14 @@ const Modal = ({
   const { className: contentClassName, ...restContentProps } =
     contentProps || {};
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} {...rest}>
+    <Dialog
+      open={open}
+      modal={true}
+      onOpenChange={(open) => {
+        onOpenChange?.(open);
+      }}
+      {...rest}
+    >
       {trigger && <DialogTrigger asChild={asChild}>{trigger}</DialogTrigger>}
       <DialogContent
         className={cn(
