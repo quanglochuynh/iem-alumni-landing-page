@@ -1,5 +1,5 @@
-import { TFileRecord } from '@common/schema/file.schema';
 import { create } from 'zustand';
+import type { TFileRecord } from '@/schemas/file.schema';
 
 type MediaItem = {
   title: string;
