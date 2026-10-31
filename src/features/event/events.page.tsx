@@ -68,7 +68,6 @@ export default async function EventsPage(props: { locale: string }) {
             {upcoming.map((event) => (
               <EventCard
                 key={event.id}
-                slug={event.slug}
                 title={event.title}
                 description={event.description}
                 imageUrl={getR2ImageUrl(event.thumbnail?.path || '')}
@@ -76,8 +75,9 @@ export default async function EventsPage(props: { locale: string }) {
                 startDate={event.startDate}
                 endDate={event.endDate}
                 href={`/event/${event.slug}`}
-                rspvHref={`/home/event/${event.slug}/rsvp`}
+                rspvHref={`/home/event/${event.slug}`}
                 registered={false}
+                isCheckedIn={false}
               />
             ))}
           </div>
@@ -92,7 +92,6 @@ export default async function EventsPage(props: { locale: string }) {
             {happened.map((event) => (
               <EventCard
                 key={event.id}
-                slug={event.slug}
                 title={event.title}
                 description={event.description}
                 imageUrl={getR2ImageUrl(event.thumbnail?.path || '')}
@@ -102,6 +101,7 @@ export default async function EventsPage(props: { locale: string }) {
                 href={`/event/${event.slug}`}
                 rspvHref={`/event/${event.slug}/rsvp`}
                 registered={false}
+                isCheckedIn={false}
               />
             ))}
           </div>

@@ -11,11 +11,12 @@ type Props = HTMLAttributes<HTMLElement>;
 export default function ContactSection({ className, ...props }: Props) {
   const t = useTranslations('Info');
   const commonT = useTranslations('Common');
+  const landingT = useTranslations('Landing');
 
   const items = [
     {
       icon: IconMail,
-      label: 'Email',
+      label: landingT('email'),
       value: t('CONTACT_US.email'),
       href: `mailto:${t('CONTACT_US.email')}`,
     },
@@ -35,7 +36,7 @@ export default function ContactSection({ className, ...props }: Props) {
 
   return (
     <section className={cn('p-4 md:p-8 lg:p-16', className)} {...props}>
-      <h2 className="font-black text-6xl">CONTACT US</h2>
+      <h2 className="font-black text-6xl">{landingT('contactUs')}</h2>
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {items.map(({ icon: Icon, label, value, href }, i) => (
           <motion.div

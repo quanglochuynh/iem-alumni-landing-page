@@ -2,12 +2,14 @@
 
 import { Edit } from 'lucide-react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { FOOTER } from '@/constants/content.constant';
 import { useInfoTranslation } from '@/hooks';
 import { StripTags } from '@/lib/rich-text.util';
 
 export default function Footer() {
   const infoTrans = useInfoTranslation();
+  const landingT = useTranslations('Landing');
   return (
     <footer className="border-t bg-primary font-sans text-primary-foreground">
       <div className="container mt-16 flex flex-col items-center gap-4 md:flex-row">
@@ -15,7 +17,7 @@ export default function Footer() {
           width={64}
           height={64}
           src={'/iema-logo-bg-md.png'}
-          alt={'IEMA Logo'}
+          alt={landingT('logoAlt')}
           className="rounded-2xl"
         />
         <h2 className="font-black text-2xl lg:text-6xl">
@@ -65,7 +67,7 @@ export default function Footer() {
         />
       </div> */}
       <div className="container flex flex-wrap items-center gap-2 py-6 text-primary-foreground">
-        <p className="text-muted-foreground text-sm">{FOOTER.copyright}</p>
+        <p className="text-muted-foreground text-sm">{landingT('copyright')}</p>
         <a
           className="ms-auto font-mono text-muted-foreground text-sm hover:underline"
           href={FOOTER.suggestEditsUrl}
@@ -73,7 +75,7 @@ export default function Footer() {
           rel="noreferrer noopener"
         >
           <Edit className="mr-2 inline" size={16} />
-          Suggest edits
+          {landingT('suggestEdits')}
         </a>
       </div>
     </footer>

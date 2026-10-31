@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { type ComponentProps, useEffect, useState } from 'react';
 import {
   Dialog,
@@ -29,6 +30,7 @@ type Props = ComponentProps<'section'>;
 type Selected = { album: Album; index: number };
 
 export default function GallerySection({ className, ...props }: Props) {
+  const t = useTranslations('Landing');
   const [albums, setAlbums] = useState<Album[]>([]);
   const [selected, setSelected] = useState<Selected | null>(null);
 
@@ -63,9 +65,9 @@ export default function GallerySection({ className, ...props }: Props) {
       id="gallery"
       {...props}
     >
-      <h2 className="font-black text-6xl">GALLERY</h2>
+      <h2 className="font-black text-6xl">{t('gallery')}</h2>
       <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-        Moments from our reunions, events and everyday community life.
+        {t('galleryDescription')}
       </p>
 
       <div className="mt-16 space-y-24">
@@ -89,7 +91,7 @@ export default function GallerySection({ className, ...props }: Props) {
                   </p>
                 </div>
                 <span className="rounded-full border px-4 py-1 text-sm">
-                  {images.length} photos
+                  {t('photoCount', { count: images.length })}
                 </span>
               </motion.div>
 
@@ -109,7 +111,10 @@ export default function GallerySection({ className, ...props }: Props) {
                         ease: 'easeOut',
                       }}
                       onClick={() => setSelected({ album, index: i })}
-                      aria-label={`Open photo ${i + 1} of ${album.name}`}
+                      aria-label={t('openPhoto', {
+                        number: i + 1,
+                        album: album.name,
+                      })}
                       className={cn(
                         'group relative aspect-square cursor-zoom-in overflow-hidden rounded-xl bg-muted',
                         isLarge && 'md:col-span-2 md:row-span-2',
@@ -117,7 +122,10 @@ export default function GallerySection({ className, ...props }: Props) {
                     >
                       <Image
                         src={resolveUrl(image.file.path)}
-                        alt={`${album.name} ${i + 1}`}
+                        alt={t('photoAlt', {
+                          album: album.name,
+                          number: i + 1,
+                        })}
                         fill
                         sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -149,13 +157,19 @@ export default function GallerySection({ className, ...props }: Props) {
                 {selected.album.name}
               </DialogTitle>
               <DialogDescription className="sr-only">
-                Photo {selected.index + 1} of {selected.album.images.length}
+                {t('photoPosition', {
+                  number: selected.index + 1,
+                  total: selected.album.images.length,
+                })}
               </DialogDescription>
               <div className="relative h-[70svh] w-full">
                 <Image
                   key={currentImage.id}
                   src={resolveUrl(currentImage.file.path)}
-                  alt={`${selected.album.name} ${selected.index + 1}`}
+                  alt={t('photoAlt', {
+                    album: selected.album.name,
+                    number: selected.index + 1,
+                  })}
                   fill
                   sizes="100vw"
                   className="object-contain"
@@ -165,7 +179,7 @@ export default function GallerySection({ className, ...props }: Props) {
                     <button
                       type="button"
                       onClick={() => step(-1)}
-                      aria-label="Previous photo"
+                      aria-label={t('previousPhoto')}
                       className="absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/50 p-2 transition-colors hover:bg-black/80"
                     >
                       <ChevronLeft className="size-6" />
@@ -173,7 +187,7 @@ export default function GallerySection({ className, ...props }: Props) {
                     <button
                       type="button"
                       onClick={() => step(1)}
-                      aria-label="Next photo"
+                      aria-label={t('nextPhoto')}
                       className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/50 p-2 transition-colors hover:bg-black/80"
                     >
                       <ChevronRight className="size-6" />

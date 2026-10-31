@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ComponentProps } from 'react';
+import { useCommonTranslation } from '@/hooks';
 import { AppRoute } from '@/interfaces';
 import { cn } from '@/lib/utils';
 
@@ -13,11 +14,13 @@ const navLinks = [
   },
   {
     href: AppRoute.ARTICLES,
-    label: 'Articles',
+    label: 'Blogs',
   },
 ];
 
 export default function HomeNav({ className, ...props }: Props) {
+  const t = useCommonTranslation();
+
   return (
     <nav
       className={cn(
@@ -32,7 +35,7 @@ export default function HomeNav({ className, ...props }: Props) {
           href={link.href}
           className="font-light text-md hover:underline md:text-xl"
         >
-          {link.label}
+          {t(link.label)}
         </Link>
       ))}
     </nav>

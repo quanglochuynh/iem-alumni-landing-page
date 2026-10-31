@@ -4,6 +4,7 @@ import { HouseHeart, Ticket } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { type HTMLAttributes, useEffect } from 'react';
 import Button from '@/components/common/overridden/button';
 import { me } from '@/components/providers/auth-provider/auth.api';
@@ -18,6 +19,7 @@ export default function HeroSection({ className, ...props }: Props) {
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 600], [0, 200]);
   const user = authStore((s) => s.userSession);
+  const t = useTranslations('Landing');
 
   useEffect(() => {
     me().then((response) => {
@@ -32,7 +34,7 @@ export default function HeroSection({ className, ...props }: Props) {
     >
       <Image
         src={'/I_M1A0855.webp'}
-        alt="Hero Image"
+        alt={t('heroImageAlt')}
         loading="eager"
         width={1920}
         height={1080}
@@ -49,8 +51,8 @@ export default function HeroSection({ className, ...props }: Props) {
             transition={{ duration: 0.7, ease: 'easeOut' }}
             className="mb-4 font-black font-heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
           >
-            IEM-IU Alumni <br />
-            Association
+            {t('heroTitleLine1')} <br />
+            {t('heroTitleLine2')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -58,19 +60,21 @@ export default function HeroSection({ className, ...props }: Props) {
             transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
             className="mb-6 max-w-3xl text-lg md:text-3xl"
           >
-            Reunite, Celebrate, and Ignite the Future of IEM Alumni
+            {t('heroSubtitle')}
           </motion.p>
           {!user && (
             <Link href={AppRoute.LOGIN}>
               <Button size={'lg'} variant={'secondary'}>
                 <Ticket />
-                Join us now
+                {t('joinUs')}
               </Button>
             </Link>
           )}
           {user && (
             <>
-              <p className="text-lg md:text-2xl">Welcome back, {user.name}!</p>
+              <p className="text-lg md:text-2xl">
+                {t('welcomeBack', { name: user.name })}
+              </p>
               <Link href={AppRoute.HOME}>
                 <RainbowButton
                   size={'lg'}
@@ -78,7 +82,7 @@ export default function HeroSection({ className, ...props }: Props) {
                   className="mt-4 text-md"
                 >
                   <HouseHeart />
-                  Go to my IEM Profile
+                  {t('myProfile')}
                 </RainbowButton>
               </Link>
             </>

@@ -7,6 +7,7 @@ import {
   useScroll,
 } from 'motion/react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { type HTMLAttributes, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -15,25 +16,23 @@ type Props = HTMLAttributes<HTMLElement>;
 const SLIDES = [
   {
     image: '/bg/IMG_1832.JPG',
-    title: 'Connect',
-    description:
-      'Build lasting relationships between IEM alumni across generations, industries, and countries through reunions and community events.',
+    titleKey: 'connect',
+    descriptionKey: 'connectDescription',
   },
   {
     image: '/bg/hoc-bong.jpg',
-    title: 'Support',
-    description:
-      'Mentor current students, share career opportunities, and help fellow alumni grow professionally and personally.',
+    titleKey: 'support',
+    descriptionKey: 'supportDescription',
   },
   {
     image: '/bg/IDSC00042.jpg',
-    title: 'Celebrate',
-    description:
-      'Honor the achievements of our community and keep the IEM spirit alive with annual gatherings such as WIEMA.',
+    titleKey: 'celebrate',
+    descriptionKey: 'celebrateDescription',
   },
-];
+] as const;
 
 export default function WhatWeDoSection({ className, ...props }: Props) {
+  const t = useTranslations('Landing');
   const containerRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const { scrollYProgress } = useScroll({
@@ -70,7 +69,7 @@ export default function WhatWeDoSection({ className, ...props }: Props) {
           >
             <Image
               src={slide.image}
-              alt={slide.title}
+              alt={t(slide.titleKey)}
               fill
               sizes="100vw"
               className="object-cover"
@@ -80,28 +79,28 @@ export default function WhatWeDoSection({ className, ...props }: Props) {
         </AnimatePresence>
 
         <div className="relative z-10 flex h-full flex-col p-4 md:p-8 lg:p-16">
-          <h2 className="font-black text-6xl">WHAT WE DO</h2>
+          <h2 className="font-black text-6xl">{t('whatWeDo')}</h2>
 
           <div className="mt-auto max-w-2xl pb-8">
             <AnimatePresence mode="wait">
               <motion.div
-                key={slide.title}
+                key={slide.titleKey}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -24 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
               >
                 <h3 className="mb-4 font-extrabold text-4xl md:text-6xl">
-                  {slide.title}
+                  {t(slide.titleKey)}
                 </h3>
-                <p className="text-lg md:text-2xl">{slide.description}</p>
+                <p className="text-lg md:text-2xl">{t(slide.descriptionKey)}</p>
               </motion.div>
             </AnimatePresence>
 
             <div className="mt-8 flex gap-2">
               {SLIDES.map((s, i) => (
                 <span
-                  key={s.title}
+                  key={s.titleKey}
                   className={cn(
                     'h-1 w-12 rounded-full bg-white/30 transition-colors',
                     i === activeIndex && 'bg-white',
