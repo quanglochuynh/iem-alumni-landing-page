@@ -22,7 +22,6 @@ const BUCKET_URL = process.env.NEXT_PUBLIC_R2_BASE_URL;
 function resolveUrl(path: string) {
   if (/^https?:\/\//.test(path)) return path;
   return `${BUCKET_URL}/${path.replace(/^\//, '')}`;
-  // return `${BUCKET_URL}/${path}`;
 }
 
 type Props = ComponentProps<'section'>;
@@ -95,35 +94,38 @@ export default function GallerySection({ className, ...props }: Props) {
               </motion.div>
 
               <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4">
-                {images.map((image, i) => (
-                  <motion.button
-                    key={image.id}
-                    type="button"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: (i % 4) * 0.07,
-                      ease: 'easeOut',
-                    }}
-                    onClick={() => setSelected({ album, index: i })}
-                    aria-label={`Open photo ${i + 1} of ${album.name}`}
-                    className={cn(
-                      'group relative aspect-square cursor-zoom-in overflow-hidden rounded-xl bg-muted',
-                      i % 7 === 0 && 'md:col-span-2 md:row-span-2',
-                    )}
-                  >
-                    <Image
-                      src={resolveUrl(image.file.path)}
-                      alt={`${album.name} ${i + 1}`}
-                      fill
-                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/30" />
-                  </motion.button>
-                ))}
+                {images.map((image, i) => {
+                  const isLarge = i % 7 === 0;
+                  return (
+                    <motion.button
+                      key={image.id}
+                      type="button"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: (i % 4) * 0.07,
+                        ease: 'easeOut',
+                      }}
+                      onClick={() => setSelected({ album, index: i })}
+                      aria-label={`Open photo ${i + 1} of ${album.name}`}
+                      className={cn(
+                        'group relative aspect-square cursor-zoom-in overflow-hidden rounded-xl bg-muted',
+                        isLarge && 'md:col-span-2 md:row-span-2',
+                      )}
+                    >
+                      <Image
+                        src={resolveUrl(image.file.path)}
+                        alt={`${album.name} ${i + 1}`}
+                        fill
+                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/30" />
+                    </motion.button>
+                  );
+                })}
               </div>
             </div>
           );
@@ -155,7 +157,6 @@ export default function GallerySection({ className, ...props }: Props) {
                   src={resolveUrl(currentImage.file.path)}
                   alt={`${selected.album.name} ${selected.index + 1}`}
                   fill
-                  unoptimized
                   sizes="100vw"
                   className="object-contain"
                 />

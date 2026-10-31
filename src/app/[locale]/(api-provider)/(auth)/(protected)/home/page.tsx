@@ -1,7 +1,7 @@
 'use client';
 
-import { useLocale } from 'next-intl';
 import { LogOut, QrCode } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import Container from '@/components/common/container';
 import DynamicAvatar from '@/components/common/overridden/avatar';
 import Button from '@/components/common/overridden/button';

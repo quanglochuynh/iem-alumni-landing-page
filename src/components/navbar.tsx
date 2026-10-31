@@ -20,9 +20,9 @@ export default function Navbar() {
       <div className="flex h-(--navbar-height) items-center justify-between px-4">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2">
-            <span className="flex size-16 items-center justify-center transition hover:bg-gray-700">
+            <span className="flex size-16 items-center justify-center bg-white transition hover:bg-gray-100">
               <Image
-                src="/android-chrome-512x512.png"
+                src="/web-app-manifest-192x192.png"
                 alt="Event Landing Page"
                 width={48}
                 height={48}

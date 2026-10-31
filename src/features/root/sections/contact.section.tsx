@@ -21,7 +21,7 @@ export default function ContactSection({ className, ...props }: Props) {
     },
     {
       icon: IconPhone,
-      label: commonT('RSVP phone'),
+      label: commonT('Phone'),
       value: t('CONTACT_US.phone'),
       href: `tel:${t('CONTACT_US.phone').replace(/\s/g, '')}`,
     },

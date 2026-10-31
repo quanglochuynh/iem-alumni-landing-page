@@ -30,7 +30,7 @@ export default function UserDetailsCard({ onEdit }: Props) {
         <CardAction>
           <Button
             type="button"
-            variant={'outline'}
+            variant={'ghost'}
             icon={Edit}
             onClick={() => onEdit()}
           >

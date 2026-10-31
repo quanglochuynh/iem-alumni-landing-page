@@ -1,6 +1,6 @@
 'use client';
 
-import { Ticket } from 'lucide-react';
+import { HouseHeart, Ticket } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,6 +8,7 @@ import { type HTMLAttributes, useEffect } from 'react';
 import Button from '@/components/common/overridden/button';
 import { me } from '@/components/providers/auth-provider/auth.api';
 import { authStore } from '@/components/providers/auth-provider/auth.store';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 import { AppRoute } from '@/interfaces';
 import { cn } from '@/lib/utils';
 
@@ -71,9 +72,14 @@ export default function HeroSection({ className, ...props }: Props) {
             <>
               <p className="text-lg md:text-2xl">Welcome back, {user.name}!</p>
               <Link href={AppRoute.HOME}>
-                <Button size={'lg'} variant={'secondary'} className="mt-4">
-                  Go to Home
-                </Button>
+                <RainbowButton
+                  size={'lg'}
+                  variant={'outline'}
+                  className="mt-4 text-md"
+                >
+                  <HouseHeart />
+                  Go to my IEM Profile
+                </RainbowButton>
               </Link>
             </>
           )}

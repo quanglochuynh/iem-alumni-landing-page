@@ -157,11 +157,7 @@ export default function UpdateInfoModal({ disclosure }: Props) {
           pickerProps={{ numImage: 1 }}
         />
         <div className="flex justify-end gap-2">
-          <Button
-            type="button"
-            variant={'outline'}
-            onClick={disclosure.close}
-          >
+          <Button type="button" variant={'outline'} onClick={disclosure.close}>
             Cancel
           </Button>
           <Button type="submit" icon={Save} loading={isSubmitting}>

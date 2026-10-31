@@ -1,6 +1,7 @@
 'use client';
 
 import Lenis from '@/components/common/lenis';
+import ScrollToTop from '@/components/common/scroll-to-top';
 import Footer from '@/components/footer';
 import HomeNav from '@/features/root/home-nav';
 import ContactSection from '@/features/root/sections/contact.section';
@@ -21,6 +22,7 @@ export default function RootPage() {
         <ContactSection className="mt-32" />
       </main>
       <Footer />
+      <ScrollToTop />
     </Lenis>
   );
 }

@@ -118,21 +118,29 @@ export default function RSVPForm({ eventId }: Props) {
       onSubmit={handleSubmit}
       aria-busy={isSubmitting}
     >
-      {status !== 'registered' && status !== 'duplicate' && status !== 'success' && (
-        <Button disabled={isSubmitting || isComplete} type="submit">
-          {commonT(isSubmitting ? 'RSVP submitting' : 'Submit RSVP')}
-        </Button>
-      )}
+      {status !== 'registered' &&
+        status !== 'duplicate' &&
+        status !== 'success' && (
+          <Button disabled={isSubmitting || isComplete} type="submit">
+            {commonT(isSubmitting ? 'RSVP submitting' : 'Submit RSVP')}
+          </Button>
+        )}
 
       {statusMessage && (
         <p
-          aria-live={status === 'success' || status === 'registered' ? 'polite' : 'assertive'}
+          aria-live={
+            status === 'success' || status === 'registered'
+              ? 'polite'
+              : 'assertive'
+          }
           className={
             status === 'success' || status === 'registered'
               ? 'text-green-700 text-sm dark:text-green-400'
               : 'text-destructive text-sm'
           }
-          role={status === 'success' || status === 'registered' ? 'status' : 'alert'}
+          role={
+            status === 'success' || status === 'registered' ? 'status' : 'alert'
+          }
         >
           {commonT(statusMessage)}
           {status === 'unauthorized' && (

@@ -42,6 +42,7 @@ export interface TRegistration {
   id: string;
   eventId: string;
   userId: string;
+  checkedInAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
 }

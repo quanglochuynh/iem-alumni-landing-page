@@ -5,10 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { cn } from '@/lib';
 import { DateFormat, getDateFormatted } from '@/lib/date.util';
 
 type Props = {
-  slug: string;
   title: string;
   description: string;
   imageUrl: string;
@@ -18,10 +18,10 @@ type Props = {
   href: string;
   registered: boolean;
   rspvHref: string;
+  isCheckedIn: boolean;
 };
 
 export default function EventCard({
-  slug,
   title,
   description,
   imageUrl,
@@ -31,44 +31,10 @@ export default function EventCard({
   href,
   rspvHref,
   registered,
+  isCheckedIn,
 }: Props) {
-  // useEffect(() => {
-  //   if (!userSession) {
-  //     setIsRegistered(false);
-  //     setIsCheckingRegisterStatus(false);
-  //     return;
-  //   }
-
-  //   let isMounted = true;
-  //   setIsCheckingRegisterStatus(true);
-
-  //   apiClient
-  //     .get<{ registered: boolean }>(
-  //       `/api/protected/event/${encodeURIComponent(slug)}/rsvp-status`,
-  //     )
-  //     .then(({ data }) => {
-  //       if (isMounted) {
-  //         setIsRegistered(Boolean(data.registered));
-  //       }
-  //     })
-  //     .catch(() => {
-  //       if (isMounted) {
-  //         setIsRegistered(false);
-  //       }
-  //     })
-  //     .finally(() => {
-  //       if (isMounted) {
-  //         setIsCheckingRegisterStatus(false);
-  //       }
-  //     });
-
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  // }, [slug, userSession]);
-
   return (
-    <Card className="pt-0">
+    <Card className={cn('pt-0', isCheckedIn && 'border-2 border-green-500')}>
       <Link href={href}>
         <Image
           className="rounded-t-xl"
@@ -97,7 +63,11 @@ export default function EventCard({
       </Link>
 
       <CardFooter>
-        {registered ? (
+        {isCheckedIn ? (
+          <p className="text-green-500 text-sm">
+            You have checked in for this event.
+          </p>
+        ) : registered ? (
           <p className="text-muted-foreground text-sm">
             You already registered for this event.
           </p>
