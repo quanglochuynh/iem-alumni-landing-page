@@ -81,7 +81,6 @@ export default function RegisterPage() {
             control={control}
             name="studentId"
             label={t('studentId')}
-            autoComplete="username"
             disabled={isSubmitting}
             placeholder="IEIEIU12XXX, IELSIU16XXX"
           />

@@ -13,13 +13,15 @@ export default function Footer() {
   return (
     <footer className="border-t bg-primary font-sans text-primary-foreground">
       <div className="container mt-16 flex flex-col items-center gap-4 md:flex-row">
-        <Image
-          width={64}
-          height={64}
-          src={'/iema-logo-bg-md.png'}
-          alt={landingT('logoAlt')}
-          className="rounded-2xl"
-        />
+        <div className="rounded-lg bg-muted p-2">
+          <Image
+            width={64}
+            height={64}
+            src={'/web-app-manifest-192x192.png'}
+            alt={landingT('logoAlt')}
+            className="rounded-2xl"
+          />
+        </div>
         <h2 className="font-black text-2xl lg:text-6xl">
           {infoTrans('FOOTER.heading')}
         </h2>

@@ -5,7 +5,7 @@ export const createLoginFormSchema = (messages: {
   invalidPassword: string;
 }) =>
   z.object({
-    studentId: z.string().trim().min(3, messages.invalidStudentId),
+    studentId: z.string().trim().min(3, messages.invalidStudentId).transform((val) => val.toUpperCase()),
     password: z.string().min(6, messages.invalidPassword),
     keepMeLoggedIn: z.boolean(),
   });
