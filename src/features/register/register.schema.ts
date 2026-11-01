@@ -7,12 +7,20 @@ const socialProfileSchema = z
   .optional();
 
 export const registerFormSchema = z.object({
-  name: z.string().min(1).max(100),
+  name: z
+    .string()
+    .min(1)
+    .max(100)
+    .transform((val) => val.trim()),
   password: z.string().min(6).max(100),
   confirmPassword: z.string().min(6).max(100),
   email: z.email(),
   phone: z.string().min(10).max(15),
-  bio: z.string().max(500).optional(),
+  bio: z
+    .string()
+    .max(500)
+    .transform((val) => val.trim())
+    .optional(),
   facebookProfile: socialProfileSchema,
   linkedinProfile: socialProfileSchema,
   studentId: z.string().min(1).max(20),

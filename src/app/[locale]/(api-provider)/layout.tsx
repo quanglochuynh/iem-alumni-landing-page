@@ -5,6 +5,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import ErrorBoundary from '@/components/common/error-boundary';
 import { AuroraBackground } from '@/components/ui/aurora-background';
 
 const queryClient = new QueryClient({
@@ -26,7 +27,11 @@ export default function ApiProvider({
 }) {
   return (
     <AuroraBackground>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </ErrorBoundary>
     </AuroraBackground>
   );
 }

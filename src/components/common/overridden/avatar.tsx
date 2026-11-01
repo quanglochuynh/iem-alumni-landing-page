@@ -26,14 +26,16 @@ interface Props extends VariantProps<typeof avatarVariants> {
 
 const DynamicAvatar = forwardRef<HTMLSpanElement, Props>(
   ({ name, src, className, size }, ref) => {
-    const shortName = name ? getUserLastName(name)[0] : '?';
+    const safeName = typeof name === 'string' ? name.trim() : '';
+    const shortName = safeName ? (getUserLastName(safeName)[0] ?? '?') : '?';
+
     return (
       <Avatar ref={ref} className={cn(avatarVariants({ size }), className)}>
         {src && (
           <AvatarImage
             src={src}
             className="object-cover"
-            alt={name + ' avatar'}
+            alt={safeName || 'User avatar'}
           />
         )}
         <AvatarFallback className="bg-primary text-background">
