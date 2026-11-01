@@ -75,7 +75,9 @@ type LabelKey =
   | 'Facebook Profile'
   | 'LinkedIn Profile'
   | 'Phone'
-  | 'Student ID label';
+  | 'Student ID label'
+  | 'Company'
+  | 'Bio';
 
 const userDetailsFields: {
   key: keyof UserSession;
@@ -85,6 +87,11 @@ const userDetailsFields: {
   {
     key: 'name',
     label: 'Name',
+    type: 'text',
+  },
+  {
+    key: 'studentId',
+    label: 'Student ID label',
     type: 'text',
   },
   {
@@ -108,8 +115,13 @@ const userDetailsFields: {
     type: 'text',
   },
   {
-    key: 'studentId',
-    label: 'Student ID label',
+    key: 'company',
+    label: 'Company',
+    type: 'url',
+  },
+  {
+    key: 'bio',
+    label: 'Bio',
     type: 'text',
   },
 ];

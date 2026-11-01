@@ -19,7 +19,7 @@ export const registerFormSchema = z.object({
   confirmPassword: z.string().min(6).max(100),
   email: z.email(),
   phone: z.string().min(10).max(15),
-  company: z.string().min(1).max(100).optional(),
+  company: z.string().min(0).max(100).optional(),
   bio: z
     .string()
     .max(500)

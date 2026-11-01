@@ -27,8 +27,6 @@ export default function HomePage() {
   const qrDisclosure = useDisclosure<{ href: string }>();
   const profileDisclosure = useDisclosure();
 
-  console.log(qrDisclosure);
-
   return (
     <>
       <QrModal disclosure={qrDisclosure} />
@@ -47,7 +45,7 @@ export default function HomePage() {
         <header className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <DynamicAvatar
-              size="xl"
+              size="2xl"
               name={user?.name}
               src={user?.avatar ? getR2ImageUrl(user.avatar.path) : null}
             />
@@ -57,6 +55,7 @@ export default function HomePage() {
               </h1>
               <Button
                 icon={QrCode}
+                className="mt-2"
                 onClick={() =>
                   qrDisclosure.open({
                     href: `${window.location.origin}/${locale}${AppRoute.MY_CONTACT}?code=${user?.clientCode ?? ''}`,

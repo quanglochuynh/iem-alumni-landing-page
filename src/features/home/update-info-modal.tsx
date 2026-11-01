@@ -10,6 +10,7 @@ import Modal from '@/components/common/modal';
 import Button from '@/components/common/overridden/button';
 import InputForm from '@/components/forms/input-form';
 import MediaPickerForm from '@/components/forms/media-picker-form';
+import TextareaForm from '@/components/forms/textarea-form';
 import {
   convert2TMediaItem,
   syncMediaArray,
@@ -48,6 +49,8 @@ export default function UpdateInfoModal({ disclosure }: Props) {
         avatar: convert2TMediaItem(user?.avatar),
         facebookProfile: user?.facebookProfile || '',
         linkedinProfile: user?.linkedinProfile || '',
+        company: user?.company || '',
+        bio: user?.bio || '',
       },
     });
   const isSubmitting = formState.isSubmitting;
@@ -61,6 +64,8 @@ export default function UpdateInfoModal({ disclosure }: Props) {
       avatar: convert2TMediaItem(user?.avatar),
       facebookProfile: user?.facebookProfile || '',
       linkedinProfile: user?.linkedinProfile || '',
+      company: user?.company || '',
+      bio: user?.bio || '',
     });
   }, [reset, user]);
 
@@ -78,6 +83,8 @@ export default function UpdateInfoModal({ disclosure }: Props) {
       avatar: avatarItem[0] || null,
       facebookProfile: values.facebookProfile || '',
       linkedinProfile: values.linkedinProfile || '',
+      company: values.company || '',
+      bio: values.bio || '',
     };
 
     try {
@@ -155,6 +162,20 @@ export default function UpdateInfoModal({ disclosure }: Props) {
           name="avatar"
           label="Avatar"
           pickerProps={{ numImage: 1 }}
+        />
+        <InputForm
+          control={control}
+          name="company"
+          label={t('company')}
+          optional
+          disabled={isSubmitting}
+        />
+        <TextareaForm
+          control={control}
+          name="bio"
+          label={t('bio')}
+          optional
+          disabled={isSubmitting}
         />
         <div className="flex justify-end gap-2">
           <Button type="button" variant={'outline'} onClick={disclosure.close}>
