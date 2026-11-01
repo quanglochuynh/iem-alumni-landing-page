@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { useCommonTranslation } from '@/hooks';
 import type { UserSession } from '@/types/user.types';
 
 type Props = {
@@ -19,14 +20,13 @@ type Props = {
 
 export default function UserDetailsCard({ onEdit }: Props) {
   const user = authStore((s) => s.userSession);
+  const t = useCommonTranslation();
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>User details</CardTitle>
-        <CardDescription>
-          Update and review your account information.
-        </CardDescription>
+        <CardTitle>{t('User details')}</CardTitle>
+        <CardDescription>{t('User details description')}</CardDescription>
         <CardAction>
           <Button
             type="button"
@@ -34,20 +34,31 @@ export default function UserDetailsCard({ onEdit }: Props) {
             icon={Edit}
             onClick={() => onEdit()}
           >
-            Edit my info
+            {t('Edit my info')}
           </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
         <dl className="grid gap-4 sm:grid-cols-2">
-          {userDetailsFields.map(({ key, label }) => (
+          {userDetailsFields.map(({ key, label, type }) => (
             <div key={key}>
               <dt className="font-medium text-muted-foreground capitalize">
-                {label}
+                {t(label)}
               </dt>
               <dd>
-                {String(user?.[key] ?? '') || (
-                  <i className="text-muted-foreground">Not provided</i>
+                {type === 'url' && user?.[key] ? (
+                  <a
+                    href={String(user?.[key])}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline"
+                  >
+                    {String(user?.[key])}
+                  </a>
+                ) : (
+                  String(user?.[key] ?? '') || (
+                    <i className="text-muted-foreground">{t('Not provided')}</i>
+                  )
                 )}
               </dd>
             </div>
@@ -58,29 +69,47 @@ export default function UserDetailsCard({ onEdit }: Props) {
   );
 }
 
-const userDetailsFields: { key: keyof UserSession; label: string }[] = [
+type LabelKey =
+  | 'Name'
+  | 'Email'
+  | 'Facebook Profile'
+  | 'LinkedIn Profile'
+  | 'Phone'
+  | 'Student ID label';
+
+const userDetailsFields: {
+  key: keyof UserSession;
+  label: LabelKey;
+  type: 'text' | 'url';
+}[] = [
   {
     key: 'name',
     label: 'Name',
+    type: 'text',
   },
   {
     key: 'email',
     label: 'Email',
+    type: 'text',
   },
   {
     key: 'facebookProfile',
     label: 'Facebook Profile',
+    type: 'url',
   },
   {
     key: 'linkedinProfile',
     label: 'LinkedIn Profile',
+    type: 'url',
   },
   {
     key: 'phone',
     label: 'Phone',
+    type: 'text',
   },
   {
     key: 'studentId',
-    label: 'Student ID',
+    label: 'Student ID label',
+    type: 'text',
   },
 ];

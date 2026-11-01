@@ -1,5 +1,6 @@
 {
   "Failed to load articles": "Đã xảy ra lỗi khi tải bài viết.",
   "Failed to load events": "Đã xảy ra lỗi khi tải sự kiện.",
-  "Failed to load careers": "Đã xảy ra lỗi khi tải việc làm."
+  "Failed to load careers": "Đã xảy ra lỗi khi tải việc làm.",
+  "Failed to load scan history": "Đã xảy ra lỗi khi tải lịch sử quét mã."
 }

@@ -50,3 +50,18 @@ export type MeResponse = Omit<UserSession, 'avatar'> & {
   avatar: TFileRecord | null;
   clientCode: string;
 };
+
+export type ConnectionUser = {
+  id: string;
+  name: string;
+  studentId: string;
+  clientCode: string;
+  company: string | null;
+  avatar: { id: string; path: string } | null;
+  connectedAt: string;
+};
+
+export type ConnectionsResponse = {
+  scanned: ConnectionUser[];
+  scannedBy: ConnectionUser[];
+};

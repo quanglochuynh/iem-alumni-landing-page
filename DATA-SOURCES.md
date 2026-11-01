@@ -105,6 +105,11 @@ These pages do not use the admin service as a content-management source.
   The page calls the public `GET /api/contact/:clientCode`. Anonymous callers
   get only name and avatar; signed-in callers also get email, phone, student
   id, bio and social links, and can download a vCard to add the contact.
+  When a signed-in user opens another user's contact page, the page calls
+  `POST /api/protected/connections/:clientCode`, which upserts a
+  `UserConnection` (scanner → scanned; self-scans ignored).
+  `GET /api/protected/connections` returns `{ scanned, scannedBy }`, shown in
+  the home page's "Scan History" section.
   Anonymous users are sent to `/login?redirect=...` and returned afterwards.
 
 ## Configuration to keep aligned

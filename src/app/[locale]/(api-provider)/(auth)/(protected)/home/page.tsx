@@ -11,14 +11,16 @@ import { useLogout } from '@/components/providers/auth-provider/logout.hook';
 import { useEvents } from '@/features/event/event.hook';
 import EventGrid from '@/features/home/event-grid';
 import QrModal from '@/features/home/qr-modal';
+import ScanHistory from '@/features/home/scan-history';
 import UpdateInfoModal from '@/features/home/update-info-modal';
 import UserDetailsCard from '@/features/home/user-details-card';
-import { useDisclosure } from '@/hooks';
+import { useCommonTranslation, useDisclosure } from '@/hooks';
 import { AppRoute } from '@/interfaces';
 import { getR2ImageUrl } from '@/lib/cloudflare.helper';
 
 export default function HomePage() {
   const { logout } = useLogout();
+  const t = useCommonTranslation();
   const locale = useLocale();
   const user = authStore((s) => s.userSession);
   const events = useEvents(false);
@@ -35,7 +37,7 @@ export default function HomePage() {
           paths={[
             { name: 'IEM Alumni Landing page', href: '/' },
             {
-              name: 'Home',
+              name: t('Home'),
               href: '/home',
             },
           ]}
@@ -48,7 +50,9 @@ export default function HomePage() {
               src={user?.avatar ? getR2ImageUrl(user.avatar.path) : null}
             />
             <div>
-              <h1 className="font-bold text-2xl">Hello, {user?.name}</h1>
+              <h1 className="font-bold text-2xl">
+                {t('Hello', { name: user?.name ?? '' })}
+              </h1>
               <Button
                 icon={QrCode}
                 onClick={() =>
@@ -57,24 +61,29 @@ export default function HomePage() {
                   })
                 }
               >
-                My QR
+                {t('My QR')}
               </Button>
             </div>
           </div>
           <div className="flex gap-2">
             <Button icon={LogOut} onClick={logout} variant={'outline'}>
-              Logout
+              {t('Logout')}
             </Button>
           </div>
         </header>
 
         <section className="my-8">
-          <h2 className="my-4 font-bold text-2xl">My Details</h2>
+          <h2 className="my-4 font-bold text-2xl">{t('My Details')}</h2>
           <UserDetailsCard onEdit={profileDisclosure.open} />
         </section>
 
+        <section className="mb-8">
+          <h2 className="my-4 font-bold text-2xl">{t('Scan History')}</h2>
+          <ScanHistory />
+        </section>
+
         <section>
-          <h2 className="my-4 font-bold text-2xl">Events</h2>
+          <h2 className="my-4 font-bold text-2xl">{t('Events')}</h2>
           <EventGrid
             events={events.data}
             isLoading={events.isLoading}

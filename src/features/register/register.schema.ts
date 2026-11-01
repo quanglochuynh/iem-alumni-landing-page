@@ -7,6 +7,9 @@ const socialProfileSchema = z
   .optional();
 
 export const registerFormSchema = z.object({
+  studentId: z
+    .string()
+    .regex(/^IE(?:IE|LS)[A-Z]{2}\d{5}$/, 'Invalid student ID format'),
   name: z
     .string()
     .min(1)
@@ -16,6 +19,7 @@ export const registerFormSchema = z.object({
   confirmPassword: z.string().min(6).max(100),
   email: z.email(),
   phone: z.string().min(10).max(15),
+  company: z.string().min(1).max(100).optional(),
   bio: z
     .string()
     .max(500)
@@ -23,7 +27,6 @@ export const registerFormSchema = z.object({
     .optional(),
   facebookProfile: socialProfileSchema,
   linkedinProfile: socialProfileSchema,
-  studentId: z.string().min(1).max(20),
 });
 
 export const registerFormSchemaWithRefine = registerFormSchema.refine(
@@ -43,6 +46,7 @@ export const registerFormInitialValues: RegisterFormData = {
   facebookProfile: '',
   linkedinProfile: '',
   studentId: '',
+  company: '',
 };
 
 export const updateProfileFormSchemaClient = registerFormSchema
@@ -77,6 +81,8 @@ export const updateProfileFormInitialValues: UpdateProfileFormDataClient = {
   avatar: [],
   facebookProfile: '',
   linkedinProfile: '',
+  company: '',
+  bio: '',
 };
 
 export const updateProfileFormSchemaServer = updateProfileFormSchemaClient

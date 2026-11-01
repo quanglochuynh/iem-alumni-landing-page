@@ -71,18 +71,18 @@ export default function RegisterPage() {
         >
           <InputForm
             control={control}
+            name="studentId"
+            label={t('studentId')}
+            disabled={isSubmitting}
+            placeholder="IEIEIU12XXX, IELSIU16XXX"
+          />
+          <InputForm
+            control={control}
             name="name"
             label={t('fullName')}
             autoComplete="name"
             disabled={isSubmitting}
             placeholder="Nguyễn Văn A"
-          />
-          <InputForm
-            control={control}
-            name="studentId"
-            label={t('studentId')}
-            disabled={isSubmitting}
-            placeholder="IEIEIU12XXX, IELSIU16XXX"
           />
           <InputForm
             control={control}
@@ -133,6 +133,13 @@ export default function RegisterPage() {
             name="linkedinProfile"
             label={t('linkedinProfile')}
             type="url"
+            optional
+            disabled={isSubmitting}
+          />
+          <InputForm
+            control={control}
+            name="company"
+            label={t('company')}
             optional
             disabled={isSubmitting}
           />

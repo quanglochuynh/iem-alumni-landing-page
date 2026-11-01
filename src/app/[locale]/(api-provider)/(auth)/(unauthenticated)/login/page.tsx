@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import CheckboxForm from '@/components/forms/checkbox-form';
 import InputForm from '@/components/forms/input-form';
 import { apiClient } from '@/components/providers/api-provider/api-client';
 import { useFetchMe } from '@/components/providers/auth-provider/me.hook';
@@ -102,12 +101,12 @@ export default function LoginPage() {
             autoComplete="current-password"
             disabled={isSubmitting}
           />
-          <CheckboxForm
+          {/* <CheckboxForm
             control={control}
             name="keepMeLoggedIn"
             label={t('keepMeLoggedIn')}
             disabled={isSubmitting}
-          />
+          /> */}
           {error && (
             <p className="text-destructive text-sm" role="alert">
               {t(error)}

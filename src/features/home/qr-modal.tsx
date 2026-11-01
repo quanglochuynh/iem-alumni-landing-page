@@ -33,10 +33,18 @@ export default function QrModal({ disclosure }: Props) {
       <div className="flex justify-center">
         {qrData ? (
           <div className="flex flex-col items-center">
-            <img src={qrData} alt="Your QR Code" className="size-64" />
-            <p className="mt-4 text-muted-foreground text-xs italic">
-              {disclosure.data?.href}
-            </p>
+            {/** biome-ignore lint/performance/noImgElement: qr data in base64 format */}
+            <img
+              src={qrData}
+              alt="Your QR Code"
+              className="size-64"
+              draggable="false"
+            />
+            {process.env.NODE_ENV === 'development' && (
+              <p className="mt-4 text-muted-foreground text-xs italic">
+                {disclosure.data?.href}
+              </p>
+            )}
           </div>
         ) : (
           <Spinner />

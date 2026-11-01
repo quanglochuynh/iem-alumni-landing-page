@@ -1,10 +1,12 @@
 'use client';
 
-import { Contact, ExternalLink, LogIn, Mail, Phone } from 'lucide-react';
+import { Contact, Facebook, Linkedin, LogIn, Mail, Phone } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import Container from '@/components/common/container';
 import DynamicAvatar from '@/components/common/overridden/avatar';
 import Button from '@/components/common/overridden/button';
+import SimpleBreadcrumb from '@/components/common/simple-breadcrumb';
 import { authStore } from '@/components/providers/auth-provider/auth.store';
 import {
   Card,
@@ -14,36 +16,48 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Spinner } from '@/components/ui/spinner';
-import { useContact } from '@/features/contact/contact.hook';
+import {
+  useContact,
+  useRecordConnection,
+} from '@/features/contact/contact.hook';
+import { useCommonTranslation } from '@/hooks';
 import { Link } from '@/i18n/navigation';
 import { AppRoute } from '@/interfaces';
 import { downloadVCard, getR2ImageUrl } from '@/lib';
 
-const safeUrl = (value?: string) => {
+function safeUrl(value?: string): { url: string; username: string } | null {
   if (!value) return null;
   try {
     const url = new URL(value.startsWith('http') ? value : `https://${value}`);
-    return url.protocol === 'https:' || url.protocol === 'http:'
-      ? url.toString()
-      : null;
+    if (url.protocol === 'https:' || url.protocol === 'http:') {
+      return {
+        url: url.toString(),
+        username: url.pathname.split('/').filter(Boolean).pop() || '',
+      };
+    }
+    return null;
   } catch {
     return null;
   }
-};
+}
 
 export default function MyContactPage() {
+  const t = useCommonTranslation();
   const code = useSearchParams().get('code');
   const viewer = authStore((s) => s.userSession);
   const { data, isLoading, isError } = useContact(code);
+  const { mutate: recordConnection } = useRecordConnection();
+
+  useEffect(() => {
+    if (viewer && code && data) recordConnection(code);
+  }, [viewer, code, data, recordConnection]);
 
   if (!code || isError) {
     return (
       <Container size="md" className="py-16 text-center">
-        <h1 className="font-bold text-2xl">Contact not found</h1>
-        <p className="my-4 text-muted-foreground">
-          This QR code is invalid or the account is not available.
-        </p>
-        <Link href={AppRoute.ROOT}>Back to home</Link>
+        <h1 className="font-bold text-2xl">{t('Contact not found')}</h1>
+        <p className="my-4 text-muted-foreground">{t('Invalid QR')}</p>
+        <Link href={AppRoute.ROOT}>{t('Back to home')}</Link>
       </Container>
     );
   }
@@ -66,7 +80,16 @@ export default function MyContactPage() {
 
   return (
     <Container size="sm" className="z-10 py-16">
-      <Card>
+      <SimpleBreadcrumb
+        paths={[
+          { name: t('Home'), href: viewer ? AppRoute.HOME : AppRoute.ROOT },
+          {
+            name: t('My Contact'),
+            href: `${AppRoute.MY_CONTACT}?code=${code}`,
+          },
+        ]}
+      />
+      <Card className="mt-4">
         <CardHeader className="flex flex-col items-center justify-center gap-4 text-center">
           <DynamicAvatar
             size="xl"
@@ -75,7 +98,9 @@ export default function MyContactPage() {
           />
           <CardTitle className="text-2xl">{data.name}</CardTitle>
           {details?.studentId && (
-            <CardDescription>Student ID: {details.studentId}</CardDescription>
+            <CardDescription>
+              {t('Student ID', { id: details.studentId })}
+            </CardDescription>
           )}
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
@@ -89,16 +114,18 @@ export default function MyContactPage() {
                     name: data.name,
                     phone: details.phone,
                     email: details.email,
-                    urls: [facebook, linkedin].filter((u): u is string =>
-                      Boolean(u),
-                    ),
+                    urls: [facebook, linkedin]
+                      .filter((u): u is { url: string; username: string } =>
+                        Boolean(u),
+                      )
+                      .map((u) => u.url),
                     note: details.studentId
                       ? `IEM Alumni - ${details.studentId}`
                       : 'IEM Alumni',
                   })
                 }
               >
-                Add to contacts
+                {t('Add to contacts')}
               </Button>
               <Button
                 icon={Phone}
@@ -120,38 +147,36 @@ export default function MyContactPage() {
               </Button>
               {facebook && (
                 <Button
-                  icon={ExternalLink}
+                  icon={Facebook}
                   variant="outline"
                   onClick={() =>
-                    window.open(facebook, '_blank', 'noopener,noreferrer')
+                    window.open(facebook.url, '_blank', 'noopener,noreferrer')
                   }
                 >
-                  Facebook
+                  {facebook.username}
                 </Button>
               )}
               {linkedin && (
                 <Button
-                  icon={ExternalLink}
+                  icon={Linkedin}
                   variant="outline"
                   onClick={() =>
-                    window.open(linkedin, '_blank', 'noopener,noreferrer')
+                    window.open(linkedin.url, '_blank', 'noopener,noreferrer')
                   }
                 >
-                  LinkedIn
+                  {linkedin.username}
                 </Button>
               )}
             </>
           ) : (
             <>
               <p className="text-center text-muted-foreground">
-                {viewer
-                  ? 'Details are unavailable.'
-                  : 'Log in to see contact details and connect with this alumnus.'}
+                {viewer ? t('Details unavailable') : t('Login to view contact')}
               </p>
               {!viewer && (
                 <Link href={loginHref}>
                   <Button icon={LogIn} className="w-full">
-                    Log in to view details
+                    {t('Log in to view details')}
                   </Button>
                 </Link>
               )}

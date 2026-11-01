@@ -3,4 +3,5 @@ export enum QueryKeys {
   EVENTS = 'events',
   ENROLLED_EVENTS = 'enrolled-events',
   CONTACT = 'contact',
+  CONNECTIONS = 'connections',
 }
