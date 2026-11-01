@@ -26,5 +26,9 @@ export default function UnAuthenticatedLayout({
     }
   }, [userSession, router, redirectTo]);
 
+  if (userSession) {
+    return null;
+  }
+
   return <section className="z-10 size-full">{children}</section>;
 }

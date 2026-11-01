@@ -54,6 +54,27 @@
     "email": "iem.alumni@hcmiu.edu.vn",
     "phone": "+8486 8278 587"
   },
+  "USEFUL_LINKS": {
+    "heading": "Useful Links",
+    "links": {
+      "0": {
+        "title": "Facebook IEM Alumni",
+        "url": "https://www.facebook.com/iemalumni"
+      },
+      "1": {
+        "title": "Articles",
+        "url": "/articles"
+      },
+      "2": {
+        "title": "Careers",
+        "url": "/careers"
+      },
+      "3": {
+        "title": "Login My IEM",
+        "url": "/home"
+      }
+    }
+  },
   "FOOTER": {
     "heading": "IEM Alumni Association"
   }

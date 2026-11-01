@@ -33,7 +33,9 @@ function PeopleList({
                     <DynamicAvatar
                       size="lg"
                       name={p.name}
-                      src={p.avatar ? getR2ImageUrl(p.avatar.path) : null}
+                      src={
+                        p.avatar ? getR2ImageUrl(p.avatar.thumbnailPath) : null
+                      }
                     />
                     <div className="min-w-0">
                       <p className="truncate font-medium">{p.name}</p>

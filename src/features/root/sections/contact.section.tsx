@@ -4,6 +4,7 @@ import { IconMail, IconMapPin, IconPhone } from '@tabler/icons-react';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import type { HTMLAttributes } from 'react';
+import { FOOTER } from '@/constants';
 import { cn } from '@/lib/utils';
 
 type Props = HTMLAttributes<HTMLElement>;
@@ -30,7 +31,7 @@ export default function ContactSection({ className, ...props }: Props) {
       icon: IconMapPin,
       label: commonT('Address'),
       value: t('CONTACT_US.address'),
-      href: 'https://maps.app.goo.gl/BTYgnEN2cwDnSfoN8',
+      href: FOOTER.mapUrl,
     },
   ];
 

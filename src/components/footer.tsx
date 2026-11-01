@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { FOOTER } from '@/constants/content.constant';
 import { useInfoTranslation } from '@/hooks';
+import { getKey } from '@/lib';
 import { StripTags } from '@/lib/rich-text.util';
 
 export default function Footer() {
@@ -44,7 +45,14 @@ export default function Footer() {
               {infoTrans('CONTACT_US.description')}
             </p>
             <p className="text-background text-sm">
-              {infoTrans('CONTACT_US.address')}
+              <a
+                href={FOOTER.mapUrl}
+                className="underline"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {infoTrans('CONTACT_US.address')}
+              </a>
               <br />
               {infoTrans('CONTACT_US.email')}
               <br />
@@ -55,23 +63,39 @@ export default function Footer() {
               </a>
             </p>
           </div>
+          <div>
+            <h3 className="mb-3 font-semibold">
+              {infoTrans('USEFUL_LINKS.heading')}
+            </h3>
+            <ul className="grid gap-2 text-muted-foreground text-sm">
+              {Object.values(infoTrans.raw('USEFUL_LINKS.links')).map(
+                (link: any, index: number) => {
+                  const shouldOpenInNewTab = link.url.startsWith('http');
+                  return (
+                    <li key={getKey('link', index)} className="ms-2">
+                      <a
+                        href={link.url}
+                        className="underline"
+                        target={shouldOpenInNewTab ? '_blank' : '_self'}
+                        rel={
+                          shouldOpenInNewTab ? 'noreferrer noopener' : undefined
+                        }
+                      >
+                        {link.title}
+                      </a>
+                    </li>
+                  );
+                },
+              )}
+            </ul>
+          </div>
         </div>
       </div>
-      {/* <div className='mt-8 flex justify-center'>
-        <iframe
-          title='map'
-          className='w-full md:w-3/2'
-          height={400}
-          style={{ border: 0 }}
-          loading='lazy'
-          referrerPolicy='no-referrer-when-downgrade'
-          src={FOOTER.mapSrc}
-        />
-      </div> */}
+
       <div className="container flex flex-wrap items-center gap-2 py-6 text-primary-foreground">
         <p className="text-muted-foreground text-sm">{landingT('copyright')}</p>
         <a
-          className="ms-auto font-mono text-muted-foreground text-sm hover:underline"
+          className="ms-auto mr-8 font-mono text-muted-foreground text-sm hover:underline"
           href={FOOTER.suggestEditsUrl}
           target="_blank"
           rel="noreferrer noopener"

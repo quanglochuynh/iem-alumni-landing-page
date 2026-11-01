@@ -27,6 +27,8 @@ export default function HomePage() {
   const qrDisclosure = useDisclosure<{ href: string }>();
   const profileDisclosure = useDisclosure();
 
+  console.log(qrDisclosure);
+
   return (
     <>
       <QrModal disclosure={qrDisclosure} />

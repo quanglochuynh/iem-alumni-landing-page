@@ -57,7 +57,7 @@ export type ConnectionUser = {
   studentId: string;
   clientCode: string;
   company: string | null;
-  avatar: { id: string; path: string } | null;
+  avatar: { id: string; thumbnailPath: string } | null;
   connectedAt: string;
 };
 
