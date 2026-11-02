@@ -31,5 +31,14 @@
   "registerError": "Unable to register. Please try again.",
   "registerSuccess": "Registered successfully. Please sign in.",
   "invalidField": "Invalid value.",
-  "haveAccount": "Already have an account? Sign in"
+  "haveAccount": "Already have an account? Sign in",
+  "orContinueWith": "or",
+  "googleSignInError": "Unable to sign in with Google. Please try again.",
+  "completeProfileTitle": "Complete your profile",
+  "completeProfileDescription": "Please fill in the remaining details to create your account",
+  "emailTaken": "Email is already in use.",
+  "phoneTaken": "Phone number is already in use.",
+  "registrationExpired": "Registration session expired. Please sign in with Google again.",
+  "continue": "Continue",
+  "loginWithGoogle": "Login using Google"
 }

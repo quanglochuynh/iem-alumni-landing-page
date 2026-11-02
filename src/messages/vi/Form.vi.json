@@ -31,5 +31,14 @@
   "registerError": "Không thể đăng ký. Vui lòng thử lại.",
   "registerSuccess": "Đăng ký thành công. Vui lòng đăng nhập.",
   "invalidField": "Giá trị không hợp lệ.",
-  "haveAccount": "Đã có tài khoản? Đăng nhập"
+  "haveAccount": "Đã có tài khoản? Đăng nhập",
+  "orContinueWith": "hoặc",
+  "googleSignInError": "Không thể đăng nhập bằng Google. Vui lòng thử lại.",
+  "completeProfileTitle": "Hoàn tất thông tin",
+  "completeProfileDescription": "Vui lòng điền các thông tin còn thiếu để tạo tài khoản",
+  "emailTaken": "Email đã được sử dụng.",
+  "phoneTaken": "Số điện thoại đã được sử dụng.",
+  "registrationExpired": "Phiên đăng ký đã hết hạn. Vui lòng đăng nhập Google lại.",
+  "continue": "Tiếp tục",
+  "loginWithGoogle": "Đăng nhập bằng Google"
 }
