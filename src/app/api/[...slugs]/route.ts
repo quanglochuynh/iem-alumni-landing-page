@@ -9,6 +9,8 @@ const DEV_ADMIN_ORIGIN =
     ? (process.env.ADMIN_DEV_ORIGIN ?? 'http://localhost:5501')
     : null;
 
+export const dynamic = 'force-dynamic';
+
 async function ALL(req: NextRequest) {
   const path = `${req.nextUrl.pathname}${req.nextUrl.search}`;
   const body =
@@ -35,6 +37,7 @@ async function ALL(req: NextRequest) {
       method: req.method,
       headers: req.headers,
       body,
+      redirect: 'manual',
     }),
   );
 
