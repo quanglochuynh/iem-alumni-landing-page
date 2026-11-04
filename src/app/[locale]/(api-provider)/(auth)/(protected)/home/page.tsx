@@ -31,7 +31,7 @@ export default function HomePage() {
     <>
       <QrModal disclosure={qrDisclosure} />
       <UpdateInfoModal disclosure={profileDisclosure} />
-      <Container size="2xl">
+      <Container size="2xl" className="pb-16">
         <SimpleBreadcrumb
           className="my-8"
           paths={[

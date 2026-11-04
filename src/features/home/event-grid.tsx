@@ -19,9 +19,7 @@ export default function EventGrid({
   if (isLoading) return <Spinner />;
   if (isError)
     return (
-      <p className="text-muted-foreground">
-        {errorT('Failed to load events')}
-      </p>
+      <p className="text-muted-foreground">{errorT('Failed to load events')}</p>
     );
   if (!events?.length)
     return <p className="text-muted-foreground">{commonT('No events')}</p>;
@@ -30,7 +28,7 @@ export default function EventGrid({
       {events.map((event) => (
         <EventCard
           key={event.id}
-          isCheckedIn={event.registrations?.checkedInAt !== null}
+          isCheckedIn={event.registrations.some((r) => r.checkedInAt !== null)}
           title={event.title}
           description={event.description}
           imageUrl={getR2ImageUrl(event.thumbnail?.path || '')}
@@ -38,8 +36,8 @@ export default function EventGrid({
           startDate={event.startDate}
           endDate={event.endDate}
           href={`/home/event/${event.slug}`}
-          rspvHref={`/home/event/${event.slug}`}
-          registered={Boolean(event?.registrations)}
+          rsvpHref={`/home/event/${event.slug}`}
+          registered={Boolean(event?.registrations.length)}
         />
       ))}
     </div>

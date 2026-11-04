@@ -26,7 +26,7 @@ export default function ApiProvider({
   children: React.ReactNode;
 }) {
   return (
-    <AuroraBackground>
+    <AuroraBackground className="overflow-y-auto">
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
           {children}

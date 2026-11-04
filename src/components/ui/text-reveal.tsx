@@ -16,27 +16,33 @@ import {
 
 import { cn } from '@/lib/utils';
 
+type ScrollOffsets = NonNullable<Parameters<typeof useScroll>[0]>['offset'];
+
 export interface TextRevealProps extends ComponentPropsWithoutRef<'div'> {
   children: string;
   containerClassName?: string;
+  offset?: ScrollOffsets;
+  targetSelector: string;
 }
 
 export const TextReveal: FC<TextRevealProps> = ({
   children,
   className,
   containerClassName,
+  offset = ['start end', '50% 50%'],
+  targetSelector,
 }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef || undefined,
-    offset: ['start end', '50% 50%'],
+    offset,
   });
 
   // Debugging: Log scrollYProgress value on scroll
   // useEffect(() => {
   //   const handleScroll = () => {
   //     // Force update to log the latest scrollYProgress value
-  //     console.log(scrollYProgress.get());
+  //     console.log(`scrollYProgress: ${scrollYProgress.get()}`);
   //   };
 
   //   window.addEventListener('scroll', handleScroll);
@@ -46,8 +52,8 @@ export const TextReveal: FC<TextRevealProps> = ({
   // }, [scrollYProgress]);
 
   useEffect(() => {
-    targetRef.current = document.querySelector('#hero-section');
-  }, []);
+    targetRef.current = document.querySelector(targetSelector);
+  }, [targetSelector]);
 
   if (typeof children !== 'string') {
     throw new Error('TextReveal: children must be a string');
@@ -56,11 +62,11 @@ export const TextReveal: FC<TextRevealProps> = ({
   const words = children.split(' ');
 
   return (
-    <div className={cn('relative z-0', containerClassName)} ref={targetRef}>
+    <div className={cn('relative z-0', containerClassName)}>
       <div className={'top-0 flex max-w-4xl items-center bg-transparent'}>
         <span
           className={cn(
-            'flex flex-wrap font-bold text-2xl text-black/20 md:text-3xl lg:text-4xl xl:text-5xl dark:text-white/20',
+            'flex flex-wrap gap-y-2 font-bold text-2xl text-black/20 md:text-3xl lg:text-4xl xl:text-5xl dark:text-white/20',
             className,
           )}
         >

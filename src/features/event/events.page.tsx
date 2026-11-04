@@ -75,7 +75,7 @@ export default async function EventsPage(props: { locale: string }) {
                 startDate={event.startDate}
                 endDate={event.endDate}
                 href={`/event/${event.slug}`}
-                rspvHref={`/home/event/${event.slug}`}
+                rsvpHref={`/home/event/${event.slug}`}
                 registered={false}
                 isCheckedIn={false}
               />
@@ -99,7 +99,7 @@ export default async function EventsPage(props: { locale: string }) {
                 startDate={event.startDate}
                 endDate={event.endDate}
                 href={`/event/${event.slug}`}
-                rspvHref={`/event/${event.slug}/rsvp`}
+                rsvpHref={`/event/${event.slug}/rsvp`}
                 registered={false}
                 isCheckedIn={false}
               />

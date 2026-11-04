@@ -17,7 +17,7 @@ type Props = {
   endDate: Date | null;
   href: string;
   registered: boolean;
-  rspvHref: string;
+  rsvpHref: string;
   isCheckedIn: boolean;
 };
 
@@ -29,7 +29,7 @@ export default function EventCard({
   startDate,
   endDate,
   href,
-  rspvHref,
+  rsvpHref,
   registered,
   isCheckedIn,
 }: Props) {
@@ -37,7 +37,7 @@ export default function EventCard({
     <Card className={cn('pt-0', isCheckedIn && 'border-2 border-green-500')}>
       <Link href={href}>
         <Image
-          className="rounded-t-xl"
+          className="max-h-96 w-full rounded-t-xl object-cover"
           src={imageUrl}
           alt=""
           width={500}
@@ -72,7 +72,7 @@ export default function EventCard({
             You already registered for this event.
           </p>
         ) : (
-          <Link href={rspvHref}>
+          <Link href={rsvpHref}>
             <Button>
               <Ticket className="size-4" />
               RSVP

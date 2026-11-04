@@ -6,13 +6,21 @@
   "joinUs": "Tham gia ngay",
   "welcomeBack": "Chào mừng {name} trở lại!",
   "myProfile": "Đến hồ sơ IEM của tôi",
-  "whoWeAre": "CHÚNG TÔI LÀ AI",
-  "whoWeAreDescription": "Hội Cựu sinh viên IEM - HCMIU là một cộng đồng gắn kết các cựu sinh viên của Khoa IEM - HCMIU. Hội được lập ra trên tinh thần kết nối và hỗ trợ lẫn nhau giữa các cựu sinh viên.",
-  "founderHaName": "Anh Lê Chí Hà - ISE K09, Chủ tịch Hội Cựu sinh viên IEM - HCMIU",
-  "founderHoaQuote": "“Đối với mình, IEM Alumni chính là ngôi nhà thứ hai của các cựu sinh viên.”",
-  "founderHoaName": "Chị Nguyễn Lê Minh Hoa - ISE K17, thành viên Ban Chấp hành Hội Cựu sinh viên IEM - HCMIU",
-  "founderHaAlt": "Anh Lê Chí Hà",
-  "founderHoaAlt": "Chị Nguyễn Lê Minh Hoa",
+  "whoWeAre": {
+    "title": "Chúng tôi là ai",
+    "descriptions": [
+      {
+        "img": "/founders/co-hoa.jpg",
+        "text": "Về với ngôi nhà chung IEM, về với ký ức và kỷ niệm, để tiếp tục cùng nhau viết tiếp hành trình đầy tự hào của IEM alumni.",
+        "author": "PGS. TS. Hồ Thị Thu Hòa, Quyền Trưởng Khoa KT&QLCN"
+      },
+      {
+        "img": "/founders/anh-ha.jpg",
+        "text": "IEM Alumni được thành lập nhằm mục đích tạo kết nối, gắn kết giữa các cựu sinh viên IEM ở môi trường doanh nghiệp và cuộc sống trên tinh thần giúp đỡ và hỗ trợ lẫn nhau.",
+        "author": "Anh Lê Chí Hà - ISE K09, Chủ tịch Hội Cựu sinh viên IEM - HCMIU"
+      }
+    ]
+  },
   "whatWeDo": "CHÚNG TÔI LÀM GÌ",
   "connect": "Kết nối",
   "connectDescription": "Xây dựng mối quan hệ bền chặt giữa các thế hệ cựu sinh viên IEM ở nhiều ngành nghề và quốc gia thông qua các buổi hội ngộ và sự kiện cộng đồng.",
