@@ -45,7 +45,7 @@
   },
   "ABOUT_US": {
     "heading": "Về chúng tôi",
-    "description": "Hội cựu sinh viên khoa Kỹ thuật và Quản lý Công nghiệp. Khoa có 2 bộ môn: Kỹ thuật hệ thống công nghiệp và Logistics & quản lý chuỗi cung ứng."
+    "description": "IEM ALumni là Hội cựu sinh viên của Khoa Kỹ thuật và Quản lý Công nghiệp, Đại học Quốc tế - ĐHQG TP.HCM"
   },
   "CONTACT_US": {
     "heading": "Liên hệ",
@@ -76,6 +76,6 @@
     }
   },
   "FOOTER": {
-    "heading": "IEM Alumni Association"
+    "heading": "IEM Alumni"
   }
 }

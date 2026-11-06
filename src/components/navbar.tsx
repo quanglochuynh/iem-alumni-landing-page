@@ -5,9 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/overridden/button';
 import { NAV_ITEMS } from '@/constants/content.constant';
 import { useCommonTranslation } from '@/hooks';
+import { cn } from '@/lib';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -49,31 +50,33 @@ export default function Navbar() {
         </nav>
         <div className="flex items-center gap-2 md:hidden">
           <Button
-            variant="outline"
-            size="sm"
+            size="icon-sm"
             onClick={() => setOpen((s) => !s)}
             aria-label="Toggle Menu"
-          >
-            <Menu />
-          </Button>
+            icon={Menu}
+          />
         </div>
       </div>
-      {open && (
-        <div className="border-t bg-background md:hidden">
-          <div className="container space-y-3 py-3">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block font-medium text-background text-sm transition-colors hover:text-background/60"
-                onClick={() => setOpen(false)}
-              >
-                {commonTrans(item.label)}
-              </Link>
-            ))}
-          </div>
+      <div
+        aria-hidden={!open}
+        className={cn(
+          'overflow-hidden bg-foreground text-primary-foreground transition-[max-height,opacity] duration-200 ease-out md:hidden',
+          open ? 'visible max-h-96 opacity-100' : 'invisible max-h-0 opacity-0',
+        )}
+      >
+        <div className="container space-y-3 py-3">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block font-medium text-background text-sm transition-colors hover:text-background/60"
+              onClick={() => setOpen(false)}
+            >
+              {commonTrans(item.label)}
+            </Link>
+          ))}
         </div>
-      )}
+      </div>
     </header>
   );
 }

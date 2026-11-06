@@ -22,9 +22,11 @@ export default function HeroSection({ className, ...props }: Props) {
   const t = useTranslations('Landing');
 
   useEffect(() => {
-    me().then((response) => {
-      authStore.getState().setUserSession(response.data);
-    });
+    me()
+      .then((response) => {
+        authStore.getState().setUserSession(response.data);
+      })
+      .catch(() => {});
   }, []);
 
   return (

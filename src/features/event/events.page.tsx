@@ -83,29 +83,30 @@ export default async function EventsPage(props: { locale: string }) {
           </div>
         </section>
 
-        <section className="mb-10">
-          <h2 className="mb-4 font-bold text-2xl">
-            {commonT('Happened events')}
-          </h2>
-          {happened.length === 0 && <Empty />}
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {happened.map((event) => (
-              <EventCard
-                key={event.id}
-                title={event.title}
-                description={event.description}
-                imageUrl={getR2ImageUrl(event.thumbnail?.path || '')}
-                location={event.location}
-                startDate={event.startDate}
-                endDate={event.endDate}
-                href={`/event/${event.slug}`}
-                rsvpHref={`/event/${event.slug}/rsvp`}
-                registered={false}
-                isCheckedIn={false}
-              />
-            ))}
-          </div>
-        </section>
+        {happened.length !== 0 && (
+          <section className="mb-10">
+            <h2 className="mb-4 font-bold text-2xl">
+              {commonT('Happened events')}
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {happened.map((event) => (
+                <EventCard
+                  key={event.id}
+                  title={event.title}
+                  description={event.description}
+                  imageUrl={getR2ImageUrl(event.thumbnail?.path || '')}
+                  location={event.location}
+                  startDate={event.startDate}
+                  endDate={event.endDate}
+                  href={`/event/${event.slug}`}
+                  rsvpHref={`/event/${event.slug}/rsvp`}
+                  registered={false}
+                  isCheckedIn={false}
+                />
+              ))}
+            </div>
+          </section>
+        )}
       </Container>
     );
   } catch {

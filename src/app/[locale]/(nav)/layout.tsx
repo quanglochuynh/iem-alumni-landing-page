@@ -4,10 +4,10 @@ import type { ILocaleParams } from '@/interfaces';
 
 export default function NavLayout({ children }: ILocaleParams) {
   return (
-    <div className="min-h-screen">
+    <>
       <Navbar />
-      {children}
+      <div className="min-h-[calc(100vh-40rem)]">{children}</div>
       <Footer />
-    </div>
+    </>
   );
 }

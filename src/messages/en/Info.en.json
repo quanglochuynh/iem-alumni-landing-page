@@ -45,7 +45,7 @@
   },
   "ABOUT_US": {
     "heading": "About Us",
-    "description": "Alumni Association of the Faculty of Industrial Engineering and Management. The faculty has two departments: Industrial Systems Engineering and Logistics & Supply Chain Management."
+    "description": "IEM Alumni is the alumni association of the Faculty of Industrial Engineering and Management, International University - VNU HCM"
   },
   "CONTACT_US": {
     "heading": "Contact Us",
@@ -76,6 +76,6 @@
     }
   },
   "FOOTER": {
-    "heading": "IEM Alumni Association"
+    "heading": "IEM Alumni"
   }
 }

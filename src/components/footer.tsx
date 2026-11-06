@@ -44,7 +44,7 @@ export default function Footer() {
             <p className="text-muted-foreground text-sm">
               {infoTrans('CONTACT_US.description')}
             </p>
-            <p className="text-background text-sm">
+            <p className="text-background text-sm leading-loose">
               <a
                 href={FOOTER.mapUrl}
                 className="underline"
@@ -54,9 +54,19 @@ export default function Footer() {
                 {infoTrans('CONTACT_US.address')}
               </a>
               <br />
-              {infoTrans('CONTACT_US.email')}
+              <a
+                href={`mailto:${infoTrans('CONTACT_US.email')}`}
+                className="underline"
+              >
+                {infoTrans('CONTACT_US.email')}
+              </a>
               <br />
-              {infoTrans('CONTACT_US.phone')}
+              <a
+                href={`tel:${infoTrans('CONTACT_US.phone')}`}
+                className="underline"
+              >
+                {infoTrans('CONTACT_US.phone')}
+              </a>
               <br />
               <a href="https://iemalumni.org" className="underline">
                 iemalumni.org
