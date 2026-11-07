@@ -34,24 +34,24 @@ export default function UserDetailsCard({ onEdit }: Props) {
             icon={Edit}
             onClick={() => onEdit()}
           >
-            {t('Edit my info')}
+            <span className="hidden md:inline">{t('Edit my info')}</span>
           </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
-        <dl className="grid gap-4 sm:grid-cols-2">
+        <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {userDetailsFields.map(({ key, label, type }) => (
-            <div key={key}>
+            <div key={key} className="min-w-0">
               <dt className="font-medium text-muted-foreground capitalize">
                 {t(label)}
               </dt>
-              <dd>
+              <dd className="min-w-0 truncate">
                 {type === 'url' && user?.[key] ? (
                   <a
                     href={String(user?.[key])}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary underline"
+                    className="block max-w-full truncate text-primary underline"
                   >
                     {String(user?.[key])}
                   </a>
@@ -117,7 +117,7 @@ const userDetailsFields: {
   {
     key: 'company',
     label: 'Company',
-    type: 'url',
+    type: 'text',
   },
   {
     key: 'bio',

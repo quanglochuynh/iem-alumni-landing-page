@@ -108,6 +108,7 @@ export default function MyContactPage() {
             <>
               {details.bio && <p className="text-center">{details.bio}</p>}
               <Button
+                size={'lg'}
                 icon={Contact}
                 onClick={() =>
                   downloadVCard({
@@ -133,12 +134,28 @@ export default function MyContactPage() {
                 onClick={() => {
                   window.location.href = `tel:${details.phone}`;
                 }}
+                size={'lg'}
               >
                 {details.phone}
               </Button>
+              <a
+                href={`https://zalo.me/${details.phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
+              >
+                <Button
+                  variant="outline"
+                  className="w-full bg-blue-600 text-white"
+                  size={'lg'}
+                >
+                  Zalo: {details.phone}
+                </Button>
+              </a>
               <Button
                 icon={Mail}
                 variant="outline"
+                size={'lg'}
                 onClick={() => {
                   window.location.href = `mailto:${details.email}`;
                 }}
@@ -149,6 +166,7 @@ export default function MyContactPage() {
                 <Button
                   icon={Facebook}
                   variant="outline"
+                  size={'lg'}
                   onClick={() =>
                     window.open(facebook.url, '_blank', 'noopener,noreferrer')
                   }
@@ -159,6 +177,7 @@ export default function MyContactPage() {
               {linkedin && (
                 <Button
                   icon={Linkedin}
+                  size={'lg'}
                   variant="outline"
                   onClick={() =>
                     window.open(linkedin.url, '_blank', 'noopener,noreferrer')
