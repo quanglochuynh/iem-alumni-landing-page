@@ -16,7 +16,7 @@ export default function RootPage() {
       <HomeNav />
       <main className="relative pb-32">
         <HeroSection id="hero-section" />
-        <WhoWeAreSection className="mt-32" />
+        <WhoWeAreSection className="mt-8 md:mt-32" />
         <WhatWeDoSection className="mt-32" />
         <GallerySection className="mt-32" />
         <ContactSection className="mt-32" />

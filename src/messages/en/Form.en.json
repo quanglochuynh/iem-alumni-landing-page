@@ -24,7 +24,7 @@
   "company": "Your current company is",
   "bio": "Bio",
   "confirmPassword": "Confirm password",
-  "register": "Register",
+  "register": "Register a new account",
   "registering": "Registering...",
   "passwordsNotMatch": "Passwords do not match.",
   "studentIdTaken": "Student ID is already taken.",

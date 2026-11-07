@@ -25,7 +25,16 @@ export interface TextRevealProps extends ComponentPropsWithoutRef<'div'> {
   targetSelector: string;
 }
 
-export const TextReveal: FC<TextRevealProps> = ({
+export const TextReveal: FC<TextRevealProps> = (props) => {
+  // if user screen width is too small, we might want to skip the animation
+  if (typeof window !== 'undefined' && window.innerWidth < 768) {
+    return <div {...props}>{props.children}</div>;
+  }
+
+  return <TextAnimated {...props} />;
+};
+
+export const TextAnimated: FC<TextRevealProps> = ({
   children,
   className,
   containerClassName,

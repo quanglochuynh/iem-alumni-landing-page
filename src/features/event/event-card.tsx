@@ -3,6 +3,7 @@
 import { Ticket } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { cn } from '@/lib';
@@ -33,6 +34,7 @@ export default function EventCard({
   registered,
   isCheckedIn,
 }: Props) {
+  const commonT = useTranslations('Common');
   return (
     <Card className={cn('pt-0', isCheckedIn && 'border-2 border-green-500')}>
       <Link href={href}>
@@ -75,7 +77,7 @@ export default function EventCard({
           <Link href={rsvpHref}>
             <Button>
               <Ticket className="size-4" />
-              RSVP
+              {commonT('RSVP')}
             </Button>
           </Link>
         )}

@@ -1,15 +1,16 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { IconBrandGoogle } from '@tabler/icons-react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Button from '@/components/common/overridden/button';
 import InputForm from '@/components/forms/input-form';
 import { apiClient } from '@/components/providers/api-provider/api-client';
 import { useFetchMe } from '@/components/providers/auth-provider/me.hook';
-import { Button } from '@/components/ui/button';
 import { STORAGE_KEY } from '@/constants';
 import GoogleRegisterForm from '@/features/google-login/google-register-form';
 import { Link } from '@/i18n/navigation';
@@ -75,7 +76,7 @@ export default function LoginPage() {
     if (googleHandled.current) {
       return;
     }
-    googleHandled.current = true; 
+    googleHandled.current = true;
     if (searchParams.get('error') === 'google') {
       setError('googleSignInError');
       return;
@@ -154,6 +155,9 @@ export default function LoginPage() {
           />
         ) : (
           <>
+            <Link className="mb-4 block underline" href={AppRoute.ROOT}>
+              {t('backToHome')}
+            </Link>
             <h1 className="text-center font-bold text-3xl">
               {t('loginTitle')}
             </h1>
@@ -180,12 +184,6 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 disabled={isSubmitting}
               />
-              {/* <CheckboxForm
-            control={control}
-            name="keepMeLoggedIn"
-            label={t('keepMeLoggedIn')}
-            disabled={isSubmitting}
-          /> */}
               {error && (
                 <p className="text-destructive text-sm" role="alert">
                   {t(error)}
@@ -204,14 +202,18 @@ export default function LoginPage() {
               {t('orContinueWith')}
               <div className="h-px flex-1 bg-border" />
             </div>
-            <Button
-              asChild
-              className="w-full"
-              disabled={isSubmitting}
-              variant="outline"
-            >
-              <a href="/api/login/google/start">{t('loginWithGoogle')}</a>
-            </Button>
+
+            <a href="/api/login/google/start">
+              <Button
+                className="w-full"
+                disabled={isSubmitting}
+                variant="outline"
+                icon={IconBrandGoogle}
+              >
+                {t('loginWithGoogle')}
+              </Button>
+            </a>
+
             <Link
               className="mt-4 block w-full text-center text-sm underline"
               href={AppRoute.REGISTER}
@@ -221,14 +223,8 @@ export default function LoginPage() {
                 variant={'ghost'}
                 disabled={isSubmitting}
               >
-                Tạo tài khoản
+                {t('register')}
               </Button>
-            </Link>
-            <Link
-              className="mt-6 block text-center text-sm underline"
-              href={AppRoute.ROOT}
-            >
-              {t('backToHome')}
             </Link>
           </>
         )}

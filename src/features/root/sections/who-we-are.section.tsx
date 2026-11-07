@@ -21,11 +21,11 @@ export default function WhoWeAreSection({ className, ...props }: Props) {
   return (
     <section
       ref={container}
-      className={cn('relative grid gap-32 px-4 md:px-32', className)}
+      className={cn('relative grid gap-8 px-4 md:gap-32 md:px-32', className)}
       {...props}
     >
       <h2 className="z-10 font-black text-6xl">{t('whoWeAre.title')}</h2>
-      <motion.div style={{ y: parallaxY }}>
+      <motion.div style={{ y: parallaxY }} className="hidden lg:block">
         <Image
           src={'/bg/light-wave.png'}
           width={1920}
@@ -36,7 +36,11 @@ export default function WhoWeAreSection({ className, ...props }: Props) {
         />
       </motion.div>
       {descriptions.map(({ id, img, text, author }) => (
-        <div className="md:flex md:h-[60svh] md:items-start" id={id} key={id}>
+        <div
+          className="z-10 min-h-160 md:flex md:h-[60svh] md:items-start"
+          id={id}
+          key={id}
+        >
           <div className="flex justify-center md:sticky md:top-[30svh] md:w-1/2 md:self-start">
             <Image
               src={t(img)}
