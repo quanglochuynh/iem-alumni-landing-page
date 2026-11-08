@@ -48,6 +48,7 @@ export type ContactResponse = {
 
 export type MeResponse = Omit<UserSession, 'avatar'> & {
   avatar: TFileRecord | null;
+  googleAvatarURL?: string;
   clientCode: string;
 };
 

@@ -101,6 +101,9 @@ These pages do not use the admin service as a content-management source.
   The home page's "Edit my info" modal (`src/features/home/update-info-modal.tsx`,
   react-hook-form + zod) uploads the avatar to R2, sends the PATCH, then
   refreshes the auth store.
+  Google sign-in also saves the Google profile picture URL in the admin
+  database's `User.googleAvatarURL`; this does not replace the uploaded avatar
+  or change which avatar the landing page displays.
 - Contact: the home page's QR encodes `/{locale}/my-contact?code=<clientCode>`.
   The page calls the public `GET /api/contact/:clientCode`. Anonymous callers
   get only name and avatar; signed-in callers also get email, phone, student

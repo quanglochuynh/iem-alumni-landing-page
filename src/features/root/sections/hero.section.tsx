@@ -21,7 +21,9 @@ export default function HeroSection({ className, ...props }: Props) {
   const backgroundParallaxY = useTransform(scrollY, [0, 600], [40, -40]);
   const user = authStore((s) => s.userSession);
   const t = useTranslations('Landing');
-  const isLargerThanMd = window.matchMedia('(min-width: 768px)').matches;
+  const isLargerThanMd =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(min-width: 768px)').matches;
 
   useEffect(() => {
     me()

@@ -31,6 +31,10 @@ export default function HomePage() {
   const scanDisclosure = useDisclosure();
   const profileDisclosure = useDisclosure();
 
+  const userAvatarURL = user?.avatar
+    ? getR2ImageUrl(user.avatar.path)
+    : (user?.googleAvatarURL ?? null);
+
   return (
     <>
       <QrModal disclosure={qrDisclosure} />
@@ -57,11 +61,7 @@ export default function HomePage() {
         />
         <header className="flex items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-4">
-            <DynamicAvatar
-              size="2xl"
-              name={user?.name}
-              src={user?.avatar ? getR2ImageUrl(user.avatar.path) : null}
-            />
+            <DynamicAvatar size="2xl" name={user?.name} src={userAvatarURL} />
             <div>
               <h1 className="font-bold text-2xl">
                 {t('Hello', { name: user?.name ?? '' })}

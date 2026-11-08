@@ -44,6 +44,7 @@ export default function EventCard({
           alt=""
           width={500}
           height={300}
+          loading="eager"
         />
         <CardContent className="p-5">
           <h5 className="mb-2 font-bold text-2xl text-gray-900 tracking-tight dark:text-white">
