@@ -56,6 +56,7 @@ export default async function EventDetailPage({
         </p>
       </div>
       <p className="text-gray-600 text-lg">{event.description}</p>
+      {renderRSVPForm?.(event.id)}
       {event.thumbnail?.path ? (
         <Image
           className="my-4 rounded-lg"
@@ -70,7 +71,6 @@ export default async function EventDetailPage({
         // biome-ignore lint/security/noDangerouslySetInnerHtml: This is safe because this page is SSR and the content is processed with remark
         dangerouslySetInnerHTML={{ __html: event.contentHtml }}
       />
-      {renderRSVPForm?.(event.id)}
     </Container>
   );
 }
