@@ -35,7 +35,7 @@ export default async function EventDetailPage({
   const event = await fetchEventDetail(slug);
 
   return (
-    <Container>
+    <Container className="pb-16">
       <SimpleBreadcrumb
         paths={[
           ...basePaths,
@@ -56,7 +56,7 @@ export default async function EventDetailPage({
         </p>
       </div>
       <p className="text-gray-600 text-lg">{event.description}</p>
-      {renderRSVPForm?.(event.id)}
+      <div className="my-8">{renderRSVPForm?.(event.id)}</div>
       {event.thumbnail?.path ? (
         <Image
           className="my-4 rounded-lg"

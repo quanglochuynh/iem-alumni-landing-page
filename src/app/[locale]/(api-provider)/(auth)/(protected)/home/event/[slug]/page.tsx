@@ -26,10 +26,8 @@ export default async function Page({
       renderRSVPForm={(eventId) => (
         <Card>
           <CardHeader>
-            <CardTitle>RSVP</CardTitle>
-            <CardDescription>
-              Let us know if you'll be attending the event.
-            </CardDescription>
+            <CardTitle>{commonT('RSVP')}</CardTitle>
+            <CardDescription>{commonT('RSVP description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <RSVPForm eventId={eventId} />
