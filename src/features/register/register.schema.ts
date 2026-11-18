@@ -9,7 +9,7 @@ const socialProfileSchema = z
 export const registerFormSchema = z.object({
   studentId: z
     .string()
-    .regex(/^IE(?:IE|LS)[A-Z]{2}\d{5}$/, 'Invalid student ID format'),
+    .regex(/^(?:IE(?:IE|LS)[A-Z]{2}\d{5}|MIEIU\d{5})$/, 'Invalid student ID format'),
   name: z
     .string()
     .min(1)
